@@ -1,0 +1,858 @@
+# **Python 基础语法**
+
+## 输出
+
+```python
+# 1. 基础操作
+age = 20
+print(age)
+print(1 + 1)
+print('Hello world!')
+```
+
+## if语句
+
+```
+# 2. 条件判断if
+if 1 == 2: # 如果 if 跟随的条件为 假 则不执行 if 的语句，然后寻找 else 语句执行
+    print("假的")
+else: 
+    print("1 == 2 是假的")
+```
+
+## for语句
+
+```
+# 3. 循环操作---for
+for i in range(2,5):
+    print(i)
+```
+
+## while语句
+
+```
+# 3. 循环操作---while
+sum = 0
+n = 99
+while n > 0:
+    sum = sum + n
+    n = n - 1
+print(sum)
+```
+
+## break语句
+
+```
+# 4. break、continue、pass
+# break语句可以跳出 for and while 的循环体
+n = 1
+while n <= 100:
+    if n > 10:
+        break
+    print (n)
+    n += 1
+```
+
+## continue语句
+
+```
+# continue语句跳过当前循环，直接进行下一个循环
+n = 1
+while n <= 10:
+    n  = n + 1
+    if n % 2 == 0:
+        continue
+    print(n)
+```
+
+## pass语句
+
+```
+# pass是空语句，一般用作占位语句，不能做任何事情
+for letter in 'Room':
+    if letter == 'o':
+        pass
+        print('pass')
+    print(letter)
+```
+
+## 数据类型Number
+
+```
+# 5. 数据类型---Number(数字)
+# Python支持 int，float，complex三种不同的数据类型
+a = 3
+b = 3.14
+c = 3 + 4j
+print(type(a),type(b),type(c))
+```
+
+## 数据类型String
+
+```
+# 5. 数据类型---String(字符串)
+# 支持字符串拼接、截取等多种运算
+a = "Hello"
+b = "Python"
+# 拼接
+print("a + b 输出结果：", a + b)
+# 截取,[]左闭右开
+print("a[1:4] 输出结果：", a[1:4])
+```
+
+## 数据类型List
+
+```
+# 5. 数据类型---List（列表）
+# 列表是写在方括号之间[]之间、用逗号分隔开的元素列表
+# 列表索引值以 0 为开始值，-1 为末尾的开始值
+list = ['abcd', 786 , 2.23 , 'runoob', 70.2]
+#print(list[1:3])
+tinylist = [123,'runoob']
+print(list + tinylist)
+```
+
+## 数据类型set
+
+```
+# 5. 数据类型---set（集合）,常用作去重操作
+# set 与 dict 类似，也是一组key的集合，但不存储value。由于key不能重复，所以不可重复
+# set是无序的，重复元素在set中自动过滤。
+s = set([1, 1, 2, 2, 3, 3])
+print(s)
+```
+
+# **Python 进阶**
+
+# 数字
+
+Python Number数据类型用于存储数值，包括整型，长整型，浮点型，复数
+
+**(1)Python Number 模块：** Python中数学运算常用的函数基本都在math模块
+
+In [5]
+
+```
+import math
+print(math.ceil(4.1))  # 返回数字的上入整数，5
+print(math.floor(4.9))  # 返回数字的下舍整数，4
+print(math.fabs(-10))  # 返回数字的绝对值，10
+print(math.sqrt(9))  # 返回数字的正平方根，3
+print(math.exp(2))  # 返回e的2次幂
+```
+
+**（2）Python随机数**
+
+首先import random，使用random（）方法即可随之生成一个[0,1)范围内的实数
+
+In [10]
+
+```
+import random
+ran = random.random()
+print(ran)
+```
+
+调用random.random()生成随机数时，每一次生成的数是随机的。但是，预先使用random.seed(x)设定好种子之后，其中的x可以是任意数字，此时使用random（）生成的随机数将会是同一个。
+
+In [14]
+
+```
+print("------- 设置种子 seed -------")
+random.seed(10)
+print("Random number with seed 10 : ", random.random())
+
+# 生成同一个随机数
+random.seed(10)
+print("Random number with seed 10 : ", random.random())
+```
+
+randint()生成一个随机整数
+
+In [17]
+
+```
+ran = random.randint(1,20)
+print(ran)
+```
+
+# 字符串
+
+字符串连接：+
+
+In [18]
+
+```
+a = "Hello "
+b = "World "
+print(a + b)
+```
+
+重复输出字符串：*
+
+In [20]
+
+```
+print(a * 3)
+```
+
+通过索引获取字符串中字符[]
+
+In [21]
+
+```
+print(a[0])
+```
+
+字符串截取[:] 牢记：左开右闭
+
+In [23]
+
+```
+print(a[1:4])
+```
+
+判断字符串中是否包含给定的字符：in/not in
+
+In [24]
+
+```
+print('e' in a)
+print('e' not in a)
+```
+
+join():以字符作为分隔符，将字符串中所有的元素合并为一个新的字符串
+
+In [25]
+
+```
+new_str = '-'.join('Hello')
+print(new_str)
+```
+
+字符串单引号，双引号，三引号
+
+In [26]
+
+```
+print('Hello World!')
+print("Hello World!")
+```
+
+转义字符\
+
+In [27]
+
+```
+print("The \t is a tab")
+print('I\'m going to the movies')
+```
+
+三引号可以用来规避引号和特殊字符串的冲突，所见即所得
+
+In [28]
+
+```
+print('''I'm going to the movies''')
+```
+
+# 列表（数组）
+
+作用；类似其他语言中的数组
+
+声明一个列表，并通过下标或索引获得元素
+
+| 正向 | 0    | 1    | 2    | 3    | 4    |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 反向 | -5   | -4   | -3   | -2   | -1   |
+
+In [29]
+
+```
+# 声明一个列表
+names = ['jack','tom','tonney','superman','jey']
+
+# 通过下标或索引获取元素
+print(names[0])
+print(names[1])
+```
+
+In [30]
+
+```
+# 获取最后一个元素
+print(names[-1])
+print(names[len(names)-1])
+```
+
+In [34]
+
+```
+# 获取第一个元素
+print(names[0])
+print(names[-5])
+```
+
+In [35]
+
+```
+# 遍历列表，获取元素
+for name in names:
+    print(name)
+```
+
+In [39]
+
+```
+# 查询names里是否有某个元素
+for name in names:
+    if name == 'superman':
+        print('有')
+        break
+else:
+    print('没有')  
+```
+
+In [40]
+
+```
+# 另一种方法查询names里是否有某个元素
+if 'superman' in names:
+    print('有')
+else:
+    print('没有')
+```
+
+列表元素添加
+
+In [42]
+
+```
+# 声明一个空列表
+girls =[]
+
+# append()，末尾追加
+girls.append('宁静')
+print(girls)
+```
+
+In [43]
+
+```
+# extend()，一次添加多个，把一个列表添加到另一个列表，列表合并
+models = ['刘雯','雎晓雯']
+girls.extend(models)
+# girls = girls + models
+print(girls)
+```
+
+In [44]
+
+```
+# insert():指定位置添加
+girls.insert(1,'虞书欣')
+print(girls)
+```
+
+列表元素修改，通过下标找到元素，然后用=赋值
+
+In [48]
+
+```
+fruits = ['apple','pear','pineapple','banana','草莓']
+print(fruits)
+
+fruits[-1] = 'strawberry'
+print(fruits)
+```
+
+In [51]
+
+```
+# 将fruits 列表中的‘香蕉’替换为‘banana’
+for i in range (len(fruits)):
+    if 'banana' in fruits[i]:
+        fruits[i] = '香蕉'
+        break
+print(fruits)
+```
+
+列表元素删除
+
+In [52]
+
+```
+words = ['apple','pear','pineapple','banana','strawberry']
+del words[1]
+print(words)
+```
+
+In [ ]
+
+```
+words = ['apple','pear','pineapple','banana','strawberry']
+words.remove('apple')
+print(words)
+```
+
+In [53]
+
+```
+words = ['apple','pear','pineapple','banana','strawberry']
+words.pop(1)
+print(words)
+```
+
+列表切片
+
+- 在Python中处理列表的部分元素，称之为切片。
+- 创建切片，可指定要使用的第一个元素和最后一个元素的索引。注意：左开右闭
+- 将截取的结果再次存放在一个列表中，所以还是返回列表
+
+| **元素** | **cat** | **dog** | **tiger** | **snake** | **mouse** | **bird** |
+| :------- | :------ | :------ | :-------- | :-------- | :-------- | :------- |
+| 正向     | 0       | 1       | 2         | 3         | 4         | 5        |
+| 反向     | -6      | -5      | -4        | -3        | -2        | -1       |
+
+In [55]
+
+```
+animals = ['cat','dog','tiger','snake','mouse','bird']
+print(animals[2:5])
+print(animals[-1:])
+print(animals[-3:-1])
+print(animals[-5:-1:2])  # 从[-5,-1)间隔一个取值
+print(animals[::2])  # 全部间隔一个取值
+```
+
+列表排序
+
+- 随机生成10个不同的整数，并进行排序
+
+In [61]
+
+```
+import random
+
+random_list = []
+i = 0
+while i < 10:
+    ran = random.randint(1,20)
+    if ran not in random_list:
+        random_list.append(ran)
+        i += 1
+print(random_list)
+```
+
+In [62]
+
+```
+# 默认升序
+new_list = sorted(random_list)
+print(new_list)
+
+# 降序
+new_list = sorted(random_list,reverse = True)
+print(new_list)
+```
+
+长度
+
+在 Python 中，要查看数组（或其他可迭代对象）的长度，可以使用内置函数 `len()`。
+
+以下是使用 `len()` 函数查看数组长度的示例：
+
+```
+my_list = [1, 2, 3, 4, 5]
+length = len(my_list)
+print("数组的长度是:", length)
+```
+
+
+
+# 元组
+
+与列表类似，元组中的内容不可修改
+
+In [65]
+
+```
+tuple1 =()
+print(type(tuple1))
+```
+
+In [64]
+
+```
+tuple2 =('hello')
+print(type(tuple2))
+```
+
+注意：元组中只有一个元素时，需要在后面加逗号！
+
+In [66]
+
+```
+tuple3 =('hello',)
+print(type(tuple3))
+```
+
+元组不能修改，不存在往元组里加入元素
+
+In [69]
+
+```
+import random
+
+random_list = []
+for i in range(10):
+    ran = random.randint(1,20)
+    random_list.append(ran)
+print(random_list)
+
+random_tuple = tuple(random_list)
+print(random_tuple)
+```
+
+In [71]
+
+```
+print(random_tuple)
+print(random_tuple[0])
+print(random_tuple[-1])
+print(random_tuple[1:3])
+print(random_tuple[::-1]) # 从后往前依次打印元素
+```
+
+元组的修改：
+
+In [72]
+
+```
+t1 = (1,2,3) + (4,5)
+print(t1)
+```
+
+In [73]
+
+```
+t2 = (1,2,3)*2
+print(t2)
+```
+
+元组中的一些函数：
+
+In [75]
+
+```
+print(max(random_tuple))
+print(min(random_tuple))
+print(sum(random_tuple))
+print(len(random_tuple))
+```
+
+In [77]
+
+```
+# 统计元组中的4的个数
+print(random_tuple.count(4))
+```
+
+In [78]
+
+```
+# 元组中4所对应的下标，如果不存在，则会报错
+print(random_tuple.index(4))
+```
+
+In [80]
+
+```
+# 判断元组中是否存在1这个元素
+print(4 in random_tuple)
+
+# 返回元组中4所对应的下标，不会报错
+if(4 in random_tuple):
+    print(random_tuple.index(4))
+```
+
+元组的装包与拆包
+
+In [81]
+
+```
+# 定义一个元组
+t3 = (1,2,3)
+
+# 将元组赋值给变量a，b，c
+a,b,c = t3
+
+# 打印a，b，c
+print(a,b,c)
+```
+
+In [88]
+
+```
+# 当元组中元素个数与变量个数不一致时
+# 定义一个元组，包含5个元素
+t4 = (1,2,3,4,5)
+
+# 将t4[0]，t4[1]分别赋值给a，b；其余的元素装包后赋值给c
+a,b,*c = t4
+print(a,b,c)
+print(c)
+print(*c)
+```
+
+# 字典（对象）
+
+In [89]
+
+```
+# 定义一个空字典
+dict1 = {}
+dict2 = {'name':'宁静','weight':45,'age':25}
+print(dict2['name'])
+```
+
+In [92]
+
+```
+# list可以转成字典，但前提是列表中元素都要成对出现
+dict3 = dict([('name','宁静'),('weight',45)])
+print(dict3)
+```
+
+In [91]
+
+```
+dict4 = {}
+dict4['name'] = '宁静'
+dict4['weight'] = 45
+print(dict4)
+```
+
+In [93]
+
+```
+dict4['weight'] = 44
+print(dict4)
+```
+
+In [2]
+
+```
+# 字典里的函数 items() keys() values()
+dict5 = {'宁静':165,'张雨绮':166,'万茜':164}
+print(dict5.items())
+for key,value in dict5.items():
+    if value > 165:
+        print(key)
+```
+
+In [3]
+
+```
+# values()取出字典中所有的值，保存到列表中
+results = dict5.values()
+print(results)
+```
+
+In [4]
+
+```
+# 求平均身高
+heights = dict5.values()
+print(heights)
+total = sum(heights)
+avg = total/len(heights)
+print(avg)
+```
+
+In [5]
+
+```
+names = dict5.keys()
+print(names)
+```
+
+In [8]
+
+```
+# print(dict5['张含韵'])
+print(dict5.get('张含韵'))  # 如果没有该值，返回None
+print(dict5.get('张含韵',170))  # 如果能够取到值，则返回字典中的值，否则返回默认值170
+```
+
+In [10]
+
+```
+dict6 = {'宁静':165,'张雨绮':166,'万茜':164}
+del dict6['张雨绮']
+print(dict6)
+```
+
+In [11]
+
+```
+result = dict6.pop('万茜')  # 返回value值
+print(result) 
+print(dict6)  # 返回剩余的dict内容
+```
+
+# **Python 面向对象**
+
+定义一个类Animals:
+(1)init()定义构造函数，与其他面向对象语言不同的是，Python语言中，会明确得把代表自身实例的self作为第一个参数传入
+(2)创建一个实例化对象 cat，init()方法接收参数
+(3)使用点号，来访问对象的属性
+
+In [14]
+
+```
+class Animals:
+    def __init__(self,name):  # self 代表实例本身
+        self.name = name
+        print('动物名称实例化')
+    def eat(self):
+        print(self.name + '要吃东西啦！')
+    def drink(self):
+        print(self.name + '要喝水啦！')
+
+cat = Animals('熊猫')
+print(cat.name)
+cat.eat()
+cat.drink()
+```
+
+In [15]
+
+```
+class Person:
+    def __init__(self,name):
+        self.name = name
+        print('调用父类构造函数')
+    
+    def eat(self):
+        print('调用父类方法')
+
+class Student(Person):  # 定义子类
+    def __init__(self):
+        print('调用子类构造方法')
+
+    def study(self):
+        print('调用子类方法')
+
+s = Student()  # 实例化子类
+s.study()  # 调用子类方法
+s.eat()  # 调用父类方法
+```
+
+## 多文件编程
+
+在Python中，可以将代码拆分成多个文件进行编程，这样有助于组织和维护大型程序。以下是一些常用的方法：
+
+- 模块导入：将代码划分成几个逻辑上相似的文件，然后使用import语句导入需要使用的模块。
+- 包：将相关的模块放到同一个文件夹内，并加上一个名为`__init__.py`的空文件，这个文件会被解释器视为包，可以通过“包.模块”的方式来导入模块。
+- from...import语句：可以从某个模块中导入指定的函数或变量，这样就可以避免重复输入模块名。
+- __name__变量：该变量用来判断是否在当前模块内运行代码，如果是，则执行一些初始化操作，如果不是，则直接导入该模块。
+
+下面是一个简单的示例，演示如何在Python中进行多文件编程：假设我们有两个文件：index.py和router.py，其中router.py在相对于index.py路径下的admin文件夹中，包含了一个函数InitRouter()
+
+router.py：
+
+```python
+from flask import render_template
+from flask import Blueprint
+from flask import request
+def InitRouter(app): //函数
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    @app.route('/admin')
+    def admin():
+        username = request.cookies.get('username')
+        # 当没有登录的时候跳转到登录界面
+        if username == None:
+            return render_template('login.html')
+        # 当已经登录，跳转到管理界面
+```
+
+main.py文件内容如下：
+
+```python
+from flask import Flask
+import  pymysql
+from admin.router import InitRouter #调用该函数
+from flask import url_for
+
+app = Flask(__name__)
+
+
+#初始化扩展，传入app 创建db
+# 打开数据库连接
+db = pymysql.connect(host='localhost',
+                     user='root',
+                     password='123456',
+                     database='blog')
+
+InitRouter(app)
+db.close()
+
+```
+
+**注意：**如果在flask框架中调用函数，都是以根目录为准
+
+# try和 except(可以用于回滚事件)
+
+`try` 和 `except` 是 Python 中用于异常处理的关键字。i
+
+`try` 代码块用于包含可能会触发异常的代码。如果在 `try` 代码块中出现异常，那么程序的执行流程将会跳转到 `except` 代码块。
+
+`except` 代码块用于捕获并处理异常。你可以在 `except` 代码块中指定要捕获的异常类型，并在处理异常时执行相应的操作。
+
+以下是 `try` 和 `except` 的基本语法结构：
+
+```python
+try:
+    # 可能会触发异常的代码
+    # ...
+except ExceptionType1:
+    # 处理 ExceptionType1 类型的异常
+    # ...
+except ExceptionType2:
+    # 处理 ExceptionType2 类型的异常
+    # ...
+finally:
+    # 可选的 finally 代码块
+    # ...
+```
+
+
+
+在上述语法中，`ExceptionType1` 和 `ExceptionType2` 是异常类的名称，用于指定你想要捕获和处理的具体异常类型。你可以根据自己的需求捕获不同类型的异常并执行相应的操作。
+
+另外，`finally` 是一个可选的代码块，在 `try` 和 `except` 块之后执行。无论是否发生异常，`finally` 代码块中的代码总是会被执行。
+
+下面是一个简单的示例，演示了如何使用 `try` 和 `except` 来捕获和处理异常：
+
+```python
+try:
+    num = int(input("输入一个整数: "))
+    result = 10 / num
+    print("结果: ", result)
+except ValueError:
+    print("输入无效的整数")
+except ZeroDivisionError:
+    print("除数不能为0")
+finally:
+    print("程序执行完毕")
+```
+
+
+
+在上述示例中，我们尝试将用户输入的字符串转换为整数，并进行除法运算。如果用户输入的是无效的整数或除数为0，将会捕获相应的异常并打印相关的错误消息。最后，无论是否发生异常，最后一行的代码都会被执行。
+
+希望这个解释能够帮助你理解 `try` 和 `except` 的概念和用法。如果你有更多疑问，请随时提问。
