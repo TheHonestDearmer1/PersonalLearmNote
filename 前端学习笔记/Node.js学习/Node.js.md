@@ -1109,195 +1109,48 @@ ejs.renderFile('./1.ejs',{json:{arr:[
 npm install multer
 ```
 
-post请求体用req.body来接收参数
 
-1.指定上传文件所到的地址
 
-2.接收文件
+```js {.line-numbers}
+const express = require('express');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const fs = require('fs');
+const pathLib = require('path');
 
-要在 Node.js Express 中接收 `application/form-data` 类型的数据，你可以使用 `multer` 中间件进行处理。`multer` 是一个用于处理 `multipart/form-data` 类型请求的中间件，它可以帮助你解析和处理表单数据。
+var objMulter = multer({dest:'./day3/part7/www/upload'}); //dest的内容是文件上传到的地址
 
-以下是一个示例，演示如何在 Node.js Express 中接收 `application/form-data` 类型的数据：
+var server = express();
 
-1. 首先，确保你已经安装了 `multer` 模块。你可以使用 `npm install multer` 命令来安装：
+// 错误
+// server.use(bodyParser.urlencoded({extended:false}));
+server.use(objMulter.any()); //.single("f1") 接收name为f1的上传文件 .any()任何文件都接收
 
-   ```js
-   const express = require('express');
-   const multer = require('multer');
-   
-   const app = express();
-   const upload = multer(); // 创建 multer 实例
-   ```
+server.post('/',function(req,res){
+    //files代码上传的文件，是一个数组结构体元素  
+    console.log(req.files[0].originalname); // 取得原始文件名，带扩展名
 
-   
+    // 新文件名 
+        // './day3/part7/www/upload/sfjodfjdiofhjoef65ds8'+'png' 带路径的文件名，不带扩展名+扩展名   pathLib.parse解析文件路径,ext是获取其中的扩展名
+        var newName = req.files[0].path + pathLib.parse(req.files[0].originalname).ext;
+         //使用fs的rename函数来重命名上传上来的乱码函数
+        fs.rename(req.files[0].path,newName,function(err){
+            if(err)
+            res.send('上传失败');
+            else
+            res.send('成功');
+        })
+    // 1.获取原始文件扩展名
 
-2. 创建一个路由处理程序，将其与适当的路由进行关联，并使用 `upload` 中间件来处理 `application/form-data` 类型的数据。
+    // 2.重命名临时文件
+});
 
-   ```js
-   app.post('/api/formdata', upload.single('fieldname'), (req, res) => {
-     // 处理请求
-     console.log(req.body); // 表单字段的值
-     console.log(req.file); // 文件数据
-     res.json({ message: 'Data received successfully!' });
-   });
-   ```
-
-   上面的代码中，我们使用 `upload.single('fieldname')` 来指定需要处理的字段名（name）。这里的 `'fieldname'` 是表单中对应文件字段的名称。
-   你可以使用 `upload.array('fieldname', maxCount)` 来处理多个文件上传，其中 `'fieldname'` 是字段名称，`maxCount` 是最大文件数量。
-
-   file的结构如下：
-
-   ```js
-   {
-     fieldname: 'data',     //提交的name
-     originalname: 'VID_20230710_202656.mp4',
-     encoding: '7bit',
-     mimetype: 'multipart/form-data',
-     destination: '../public', //上传后存储到的地址（以index.js为准）
-     filename: '3a92bdef04659abcbd0b65b979eb288b',
-     path: '..\\public\\3a92bdef04659abcbd0b65b979eb288b',
-     size: 943840
-   }
-   ```
+server.listen(8080);
+```
 
 ---
 
-### 7.2 fs移动和重命名文件
-
-要将获取到的文件传到文件夹里，可以使用 Node.js 的 `fs` 模块来进行文件操作。具体步骤如下：
-
-1. 导入 `fs` 模块：
-
-   ```js
-   const fs = require('fs');
-   ```
-
-1. **调用 `fs.rename()` 方法重命名文件**，将源文件路径和目标文件路径作为参数，来进行文件重命名。如果源文件和目标文件位于同一目录，则可以使用相对路径。如果它们位于不同的目录，需要使用绝对路径。
-
-   ```js
-   const sourceFilePath = '源文件路径/文件名.ext';
-   const targetFilePath = '目标文件路径/新文件名.ext';
-   
-   fs.rename(sourceFilePath, targetFilePath, (err) => {
-     if (err) {
-       console.error(err);
-       // 处理重命名失败的情况
-     } else {
-       // 文件重命名成功
-     }
-   });
-   ```
-
-   在上述代码中，将 `'源文件路径/文件名.ext'` 替换为要重命名的源文件路径和名称，将 `'目标文件路径/新文件名.ext'` 替换为目标文件路径和新的文件名。
-
-   使用回调函数来处理重命名操作的结果。如果重命名成功，则回调函数不接收任何错误参数；如果重命名失败，则回调函数的参数将是一个 Error 对象，你可以根据需要进行错误处理。
-
-在请求处理程序中，获取到的文件数据可以通过 `req.file` 访问。可以使用 `fs.rename()` 或 `fs.copyFile()` 方法将文件移动或复制到指定的文件夹中。
-
-**删除文件**
-要删除改名之前的文件，可以使用 Node.js 的 `fs` 模块中的 `fs.unlink()` 方法。以下是一个示例代码，演示如何删除文件：
-
-```js
-const fs = require('fs');
-
-const filePath = '文件路径/文件名.ext';
-
-fs.unlink(filePath, (err) => {
-  if (err) {
-    console.error(err);
-    // 处理文件删除失败的情况
-  } else {
-    // 文件删除成功
-  }
-});
-```
-
-将 `'文件路径/文件名.ext'` 替换为要删除的文件的路径和名称
-
-- **使用 `fs.rename()` 方法移动文件：**
-
-  ```
-  const targetPath = '目标文件夹路径/' + req.file.originalname;
-  
-  fs.rename(req.file.path, targetPath, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'File move error' });
-    } else {
-      res.json({ message: 'File moved successfully' });
-    }
-  });
-  ```
-
-  
-
-- **使用 `fs.copyFile()` 方法复制文件：**
-
-  ```
-  const targetPath = '目标文件夹路径/' + req.file.originalname;
-  
-  fs.copyFile(req.file.path, targetPath, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'File copy error' });
-    } else {
-      res.json({ message: 'File copied successfully' });
-    }
-  });
-  ```
-
-  
-
-在上述代码中，目标文件夹路径是你希望将文件移动或复制到的文件夹路径。`req.file.path` 是临时文件的路径，`req.file.originalname` 是文件的原始名称。
-
-
-在 Node.js 中，你可以使用 `fs` 模块来删除文件。具体来说，可以使用 `fs.unlink()` 方法来删除文件。下面是一个简单的示例：
-
-```js
-const fs = require('fs');
-
-const filePath = 'path/to/file'; // 替换为要删除的文件路径
-
-fs.unlink(filePath, (err) => {
-  if (err) {
-    console.error(`删除文件时出错: ${err}`);
-    return;
-  }
-  console.log('文件删除成功');
-});
-```
-
-
-
-在这个例子中，我们使用 `fs.unlink()` 方法来删除指定的文件。`unlink()` 方法的第一个参数是要删除的文件路径，第二个参数是一个回调函数，它接收一个 `err` 参数，用于处理删除操作的结果。
-
-如果删除文件时出现错误，`err` 参数将包含一个错误对象，你可以在回调函数中对其进行处理。否则，如果删除成功，回调函数将被调用，你可以在其中执行相应的操作。
-
-请确保提供正确的文件路径，并确保该路径下的文件存在且有足够的权限进行删除操作。另外，也可以使用 `fs.existsSync()` 方法来检查文件是否存在，然后再执行删除操作，以避免在文件不存在时触发错误。
-
-```js
-const fs = require('fs');
-
-const filePath = 'path/to/file'; // 替换为要删除的文件路径
-
-if (fs.existsSync(filePath)) {
-  fs.unlink(filePath, (err) => {
-    if (err) {
-      console.error(`删除文件时出错: ${err}`);
-      return;
-    }
-    console.log('文件删除成功');
-  });
-} else {
-  console.error('文件不存在');
-}
-```
-
-
-
-请根据你的具体需求和文件路径进行相应的调整
-
-### 7.3 path中间件
+### path中间件
 
 `.parse()`是一个Node.js中的路径解析方法，用于解析文件路径。它接受一个文件路径作为输入，并返回一个包含解析结果的对象。
 
@@ -1462,41 +1315,9 @@ Server.listen(8080);
 
 ## <font color= "#0000dd">10.第十节 SQL</font>
 
-**当在Node中使用mysql连接mysql8时，相关配置没错，但是报错如下：**
-
-```
-code: 'ER_NOT_SUPPORTED_AUTH_MODE',
-errno: 1251,
-sqlMessage: 'Client does not support authentication protocol requested by server; consider upgrading MySQL client',
-sqlState: '08004',
-fatal: true
-```
-
-
-**原因：**
-mysql从8.04引入一个caching_sha2_password模块作为默认身份验证插件，数据库连接时验证身份的工作方式(handshake process)会与以往不同。
-
-**解决方案一：**
-删除旧连接器
-
-```
-npm uninstall mysql
-```
-
-
-使用新连接器
-
-```
-npm i mysql2
-导入模块
-```
-
-const mysql = require('mysql2')
-
-
 * NodeJS不支持MySQL 需要连接的代码如下：
 ```js {.line-numbers}
-const mysql = require('mysql2') //最新换版本了
+const mysql = require('mysql');
 
 // 1.连接
 // creatConnection(哪台服务器,用户名,密码,库)
@@ -1513,81 +1334,58 @@ db.query("select * from db1",(err,data)=>{
 ```
 ### 将MySQL连接池绑定到中间件
 
-要将 MySQL 连接绑定到 Express 上下文中，可以使用中间件。以下是一种常见的方法：
+果你想在 Express 的路由中保持 MySQL 连接并随时使用，你可以使用中间件将连接对象绑定到请求的 `locals` 对象上。这样，在每个路由处理程序中都能够方便地访问到数据库连接。
+
+以下是一个示例代码：
 
 ```js
-var mysql = require('mysql2');
-var express = require('express');
+const express = require('express');
+const mysql = require('mysql');
 
-var connection = mysql.createPool({
+const app = express();
+const port = 3000;
+
+// 创建MySQL连接池
+const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '123456',
-  database: 'douyindemo'
+  password: 'password',
+  database: 'your_database_name'
 });
 
-var Server = express();
-
-// 将连接绑定到上下文中的中间件
-Server.use(function(req, res, next) { //要写对
-  req.DB = connection;
+// 中间件：将MySQL连接对象保存到locals中
+app.use((req, res, next) => {
+  res.locals.connection = pool; //绑定到locals对象中
   next();
 });
 
-// 添加其他路由和中间件
-// ...
+// 示例路由
+app.get('/', (req, res) => {
+  const connection = res.locals.connection; //取出locals中的MySQL连接池
 
-Server.listen(8080, function() {
-  console.log("服务器在本地8080端口启动");
-});
-```
-
-在上述代码中，我们使用了一个自定义的中间件来将 MySQL 连接对象 `connection` 绑定到 Express 的上下文中，这样在后续的路由处理函数中就可以通过 `req.DB` 访问到该连接对象。
-
-请注意，这个中间件应该放在其他路由和中间件之前，以确保在进行数据库操作时能够访问到正确的连接对象。
-
-绑定之后，你可以在路由处理函数中使用 `req.DB` 来执行 MySQL 查询等操作，例如：
-
-```js
-Server.get('/books', function(req, res) {
-  req.DB.query('SELECT * FROM books', function(error, results, fields) {
+  // 从数据库查询数据
+  connection.query('SELECT * FROM your_table_name', (error, results) => {
+    if (error) {
+      throw error;
+    }
     // 处理查询结果
+    res.json(results);
   });
 });
-```
 
-这样，在 ‘/books’ 路由中，就能够通过 `req.DB` 对象进行 MySQL 查询，并在回调函数中处理查询结果。
-
-
-
-### 使用语句插入变量数据：
-
-要将 JavaScript 变量的值插入到 SQL 查询语句中，你可以使用占位符（placeholder）？来代替变量的值，并在执行查询时将实际值传递给占位符。以下是一个示例：
-
-```
-var id = 1;
-var name = "John";
-var followCount = 18;
-var followerCount = 1000;
-var token = "CN";
-
-var sqlRegister = `INSERT INTO users(id, name, follow_count, follower_count, token) VALUES(?, ?, ?, ?, ?)`;
-var values = [id, name, followCount, followerCount, token];
-
-connection.query(sqlRegister, values, function(error, results, fields) {
-  if (error) {
-    console.log(error);
-    return;
-  }
-  console.log("插入成功！");
+// 启动服务器
+app.listen(port, () => {
+  console.log(`服务器运行在 http://localhost:${port}`);
 });
 ```
 
-在上面的代码中，我们定义了五个 JavaScript 变量 `id`、`name`、`followCount`、`followerCount` 和 `token`，它们代表了要插入到 `users` 表中的值。
 
-然后，我们使用了一个带有占位符的 SQL 查询语句，并将实际的值存储在一个数组 `values` 中，以指定要插入的值。在执行查询时，我们将该数组作为第二个参数传递给 `query` 方法。
 
-请注意，占位符使用问号（?）来表示，顺序匹配占位符的位置和实际值的位置。这样可以预防 SQL 注入攻击，并以安全的方式将变量插入到查询语句中。
+在这个示例中，我们使用 `app.use()` 注册了一个中间件函数。这个函数将数据库连接对象赋值给 `res.locals.connection` 属性，从而将连接对象保存到请求的 `locals` 对象中。之后，在每个路由处理程序中，我们可以通过 `res.locals.connection` 访问到数据库连接对象。
+
+这样，你可以在任何路由处理程序中直接使用 `connection` 变量进行数据库查询和操作。
+
+请记得根据你的实际情况修改数据库配置，并根据需要进行适当的错误处理和异常处理。
 
 
 
@@ -1923,171 +1721,3 @@ LIMIT 5,8; //从5开始，要8个（包括第五条）
     4. LIMIT 限制
 
 >最后那个项目后续再看看再写写
-
-# 补充中间件
-
-## Node.js执行CMD
-
-```js
-const { exec } = require("child_process");
- 
-const command = "dir"; // 将要执行的 cmd 命令
- 
-exec(command, (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Failed to execute command: ${error}`);
-    return;
-  }
- 
-  console.log(stdout);
-});
-```
-
-示例代码将执行 dir 命令，并输出命令的输出结果。
-
-代码使用了 Node.js 标准库中的 child_process 模块来执行命令和读取输出结果。我们使用 exec() 方法来执行命令，并传入一个回调函数来处理输出结果。如果执行过程中出现错误，则回调函数会输出错误信息；否则，回调函数会以字符串形式打印命令执行的输出结果。
-
-```js
-const command = `./FFmpeg/ffmpeg.exe -i ${inputFile} -c:v libx264 -c:a aac ${outputFile}`; //使用模板来导入变量
-```
-
-### 如果命令无法正确定位到目录
-
-根据你的情况，你可以尝试以下解决方法：
-
-- 使用绝对路径：明确指定 FFmpeg 可执行文件的绝对路径，而不依赖于环境变量。例如，使用 `C:\\path\\to\\ffmpeg.exe` 的形式来指定路径。
-
-- 指定工作目录：使用 `exec` 方法的 `options` 参数，将 `cwd`（代表当前工作目录）设置为 FFmpeg 可执行文件所在的目录。这样可以确保相对路径正确解析。例如：
-
-  ```js
-  const { exec } = require('child_process');
-  
-  const ffmpegCommand = 'ffmpeg.exe -i input.mp4 output.mp4';
-  const ffmpegWorkingDir = 'C:\\path\\to\\ffmpeg\\directory';
-  
-  exec(ffmpegCommand, { cwd: ffmpegWorkingDir }, (error, stdout, stderr) => {
-    // 处理回调
-  });
-  ```
-
-## fs中间件
-
-要将获取到的文件传到文件夹里，可以使用 Node.js 的 `fs` 模块来进行文件操作。具体步骤如下：
-
-1. 导入 `fs` 模块：
-
-   ```js
-   const fs = require('fs');
-   ```
-
-1. **调用 `fs.rename()` 方法重命名文件**，将源文件路径和目标文件路径作为参数，来进行文件重命名。如果源文件和目标文件位于同一目录，则可以使用相对路径。如果它们位于不同的目录，需要使用绝对路径。
-
-   ```js
-   const sourceFilePath = '源文件路径/文件名.ext';
-   const targetFilePath = '目标文件路径/新文件名.ext';
-   
-   fs.rename(sourceFilePath, targetFilePath, (err) => {
-     if (err) {
-       console.error(err);
-       // 处理重命名失败的情况
-     } else {
-       // 文件重命名成功
-     }
-   });
-   ```
-
-   在上述代码中，将 `'源文件路径/文件名.ext'` 替换为要重命名的源文件路径和名称，将 `'目标文件路径/新文件名.ext'` 替换为目标文件路径和新的文件名。
-
-   使用回调函数来处理重命名操作的结果。如果重命名成功，则回调函数不接收任何错误参数；如果重命名失败，则回调函数的参数将是一个 Error 对象，你可以根据需要进行错误处理。
-
-在请求处理程序中，获取到的文件数据可以通过 `req.file` 访问。可以使用 `fs.rename()` 或 `fs.copyFile()` 方法将文件移动或复制到指定的文件夹中。
-
-### 移动文件
-
-- **使用 `fs.rename()` 方法移动文件：**
-
-  ```
-  const targetPath = '目标文件夹路径/' + req.file.originalname;
-  
-  fs.rename(req.file.path, targetPath, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'File move error' });
-    } else {
-      res.json({ message: 'File moved successfully' });
-    }
-  });
-  ```
-
-
-### 复制文件
-
-- **使用 `fs.copyFile()` 方法复制文件：**
-
-  ```
-  const targetPath = '目标文件夹路径/' + req.file.originalname;
-  
-  fs.copyFile(req.file.path, targetPath, (err) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'File copy error' });
-    } else {
-      res.json({ message: 'File copied successfully' });
-    }
-  });
-  ```
-
-  
-
-在上述代码中，目标文件夹路径是你希望将文件移动或复制到的文件夹路径。`req.file.path` 是临时文件的路径，`req.file.originalname` 是文件的原始名称。
-
-### 删除文件
-
-
-在 Node.js 中，你可以使用 `fs` 模块来删除文件。
-
-具体来说，可以使用 `fs.unlink()` 方法来删除文件。下面是一个简单的示例：
-
-```js
-const fs = require('fs');
-
-const filePath = 'path/to/file'; // 替换为要删除的文件路径
-
-fs.unlink(filePath, (err) => {
-  if (err) {
-    console.error(`删除文件时出错: ${err}`);
-    return;
-  }
-  console.log('文件删除成功');
-});
-```
-
-
-
-在这个例子中，我们使用 `fs.unlink()` 方法来删除指定的文件。`unlink()` 方法的第一个参数是要删除的文件路径，第二个参数是一个回调函数，它接收一个 `err` 参数，用于处理删除操作的结果。
-
-如果删除文件时出现错误，`err` 参数将包含一个错误对象，你可以在回调函数中对其进行处理。否则，如果删除成功，回调函数将被调用，你可以在其中执行相应的操作。
-
-请确保提供正确的文件路径，并确保该路径下的文件存在且有足够的权限进行删除操作。另外，也可以使用 `fs.existsSync()` 方法来检查文件是否存在，然后再执行删除操作，以避免在文件不存在时触发错误。
-
-```js
-const fs = require('fs');
-
-const filePath = 'path/to/file'; // 替换为要删除的文件路径
-
-if (fs.existsSync(filePath)) {
-  fs.unlink(filePath, (err) => {
-    if (err) {
-      console.error(`删除文件时出错: ${err}`);
-      return;
-    }
-    console.log('文件删除成功');
-  });
-} else {
-  console.error('文件不存在');
-}
-```
-
-
-
-请根据你的具体需求和文件路径进行相应的调整

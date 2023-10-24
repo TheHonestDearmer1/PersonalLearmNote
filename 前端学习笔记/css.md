@@ -229,13 +229,13 @@ section将其中全部的字体大小设置为20像素
 section h1的2em是相对的概念，即20*2=40像素的字体大小（与父元素字体大小相×）
 section .note将类为note的字体大小设置为父级大小的80%
 
-### front-style属性
+### font-style属性
 
 [CodePen Embed - 青训营/CSS/斜体](https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FWNZaZdN%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116)
 
 ![image-20230828094940154](img/image-20230828094940154.png)可以给字体效果,font-style:italic（表示斜体） normal（正常)
 
-### front-weight属性
+### font-weight属性
 
 [CodePen Embed - 青训营/CSS/字重](https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FOJxBxzY%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116)
 
@@ -447,7 +447,7 @@ CSS盒模型是CSS布局的基础，它将每个HTML元素看作是一个矩形�
 标准盒模型的宽度和高度仅包含内容区的大小，不包括内边距、边框和外边距。示例代码如下：
 
 ```html
-html复制代码<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" href="styles.css">
@@ -458,7 +458,7 @@ html复制代码<!DOCTYPE html>
 
 </body>
 </html>
-css复制代码/* styles.css */
+/* styles.css */
 .box-standard {
   width: 200px;
   height: 100px;

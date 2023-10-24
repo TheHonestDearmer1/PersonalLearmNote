@@ -1,0 +1,718 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>css笔记精简版</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#css的选择器">CSS的选择器</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#选择器selector）的作用">选择器（selector）的作用</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#通配选择器">通配选择器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#id选择器-）">id选择器 （#）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#类选择器-）">类选择器 （.）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#属性选择器">属性选择器</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#选择器的优先级">选择器的优先级</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#继承">继承</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#伪类pseudo-classes）选择器-状态-结构性">伪类（pseudo-classes）选择器 状态 结构性 </a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#状态伪类不同状态不同样式）">状态伪类（不同状态不同样式）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#结构性伪类位置）">结构性伪类（位置）</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组合">组合</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#组合简介">组合简介</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#选择器组">选择器组</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#颜色">颜色</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#rgb的组成">RGB的组成</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#颜色-hsl">颜色-HSL</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#颜色-透明度">颜色-透明度</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#字体">字体</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#字体的使用-font-family">字体的使用 font-family</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#属性">属性</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#font-size属性字体大小）">font-size属性（字体大小）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#font-style属性字体类型）">font-style属性（字体类型）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#font-weight属性">font-weight属性</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#line-height行高">line-height(行高)</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#空格处理white-space">空格处理(white-space)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#初始值">初始值</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#css盒模型">CSS盒模型</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#盒模型示意图">盒模型示意图</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#盒模型的宽度和高度计算">盒模型的宽度和高度计算</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#标准盒模型">标准盒模型</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#布局技巧">布局技巧</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#居中一个元素">居中一个元素</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#水平居中">水平居中</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#垂直居中">垂直居中</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#响应式布局">响应式布局</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#布局layout）">布局（Layout）</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#行级vs块级">行级vs块级</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#display属性">display属性</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#行级排版上下文inline">行级排版上下文(inline)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#块级排版上下文block">块级排版上下文(block)</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#flexboxdisplay-flex">FlexBox(display: flex;)</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#对齐">对齐</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#grid布局">Grid布局</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#网格间距column-gap）">网格间距（Column Gap）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#按行列划分网格">按行列划分网格</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h5 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#grid-line网格线空隙）"><strong>grid line网格线</strong>（空隙）:</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h5 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#用线的方式来指定项目的位置">用线的方式来指定项目的位置</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#浮动float）">浮动（float）</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#绝对定位">绝对定位</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#css过渡动画">CSS过渡动画</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#label">label</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#body-占满整个屏幕空间"><code>&lt;body&gt;</code> 占满整个屏幕空间</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#调试css">调试CSS</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#标签样式修改">标签样式修改</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#阴影">阴影</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='css的选择器'><span>CSS的选择器</span></h1><h2 id='选择器selector）的作用'><span>选择器（selector）的作用</span></h2><ul><li><strong><span>找出页面中的元素，以便给他们设置样式（name,id）</span></strong></li><li><span>使用多种方式去选择元素</span></li></ul><ol start='' ><li><strong><span>按照标签名，类名或者ID</span></strong></li><li><span>按照属性</span></li><li><span>按照DOM树中的位置</span></li><li><img src="%E5%9B%BE%E7%89%87/image-20230827112118556.png" referrerpolicy="no-referrer" alt="image-20230827112118556"></li></ol><p><strong><span>在html中使用样式的多种方法：</span></strong></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">link</span> <span class="cm-attribute">rel</span>=<span class="cm-string">"stylesheet"</span> <span class="cm-attribute">href</span>=<span class="cm-string">"/assets/style.css"</span><span class="cm-tag cm-bracket">&gt;</span> <span class="cm-comment">&lt;!--外链--&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span> <span class="cm-comment">&lt;!--嵌入--&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">p</span> <span class="cm-attribute">style</span>=<span class="cm-string">"margin:len 0 "</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">p</span><span class="cm-tag cm-bracket">&gt;</span> <span class="cm-comment">&lt;!--内联--&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><h2 id='通配选择器'><span>通配选择器</span></h2><p><span>*{}   *指代所有标签</span></p><p><span>p/h1....标签指定样式</span></p><h2 id='id选择器-）'><span>id选择器 （#）</span></h2><p><span>id作为全局属性，可以给任一标签设定id来使用style直接引用id设定样式（id要唯一)</span></p><p><span> </span><a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FrNGqBBL%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - 青训营/CSS/ID选择器</span></a></p><h2 id='类选择器-）'><span>类选择器 （.）</span></h2><p><span>给同一类型的HTML标签设定样式的时候，可以给这些同一类型设定全局属性class来方便设定这一类的统一样式（同样使用style来实现） class可以出现多次，比较常用</span></p><p><a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FYzrJKyL%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - 青训营/CSS/类选择器</span></a></p><h2 id='属性选择器'><span>属性选择器</span></h2><p><span>通过一些标签的属性去选择标签设定样式，例如input的disable就可以使用style的[disable]去选中标签设定样式，表示有disable这个属性就可以去选中它</span>
+<a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FgOGBYMZ%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - 青训营/CSS/属性选择器</span></a></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  [<span class="cm-tag">disabled</span>] {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">background</span>: <span class="cm-atom">#eee</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">color</span>: <span class="cm-atom">#999</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><p><span>如果想让</span><strong><span>选定属性是一个特定的值时</span></strong><span>再选中进行样式显示的话，我们可以写成如下 </span><a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FjOGeNGb%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - 青训营/CSS/属性选择器2</span></a></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag">input</span>[<span class="cm-tag">type</span>=<span class="cm-string">"password"</span>] {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">border-color</span>: <span class="cm-keyword">red</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">color</span>: <span class="cm-keyword">red</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><h2 id='选择器的优先级'><span>选择器的优先级</span></h2><p><span>CSS中可以写很多选择器，可以根据id更改内容的样式，也可以改整个标签内容的样式。当多个选择器作用在同一个元素的时候，元素样式将根据选择器特异度变化。这里特异度指的是越特殊的选择器，优先级越高。</span></p><p><img src="%E5%9B%BE%E7%89%87/3e9f21beca5344af8238d68156024a54tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp" alt="image.png" style="zoom:50%;" /></p><p><strong><span>上图中，id、伪类、标签数量越多，特异度越高</span></strong><span>。</span></p><p><span>举例： 利用选择器的优先级，可以很好地实现按钮复用（只需更改样式，便能区分两个相同的按钮）</span><strong><span>简单来说就是利用优先级来进行样式覆盖</span></strong></p><h2 id='继承'><span>继承</span></h2><p><span>某些属性会自动继承其父元素的计算值，除非显式指定一个值</span></p><p>&nbsp;</p><h1 id='伪类pseudo-classes）选择器-状态-结构性'><span>伪类（pseudo-classes）选择器 状态 结构性 </span></h1><p><span>还可以不通过属性选择属性，我们通过伪类（pseudo-classes）这种去选择标签元素</span></p><ul><li><span>不基于标签和属性定位元素</span></li><li><span>分为状态伪类和结构性伪类</span></li></ul><h2 id='状态伪类不同状态不同样式）'><span>状态伪类（不同状态不同样式）</span></h2><p><span>状态型的伪类不是说具体指某个元素，这个元素还要处与某种特定的状态下，才会被选中</span>
+<span>举例子，链接分为访问过的链接（跟非访问的颜色不一样）和非访问过的链接，鼠标选中链接（一般移到链接上面会变黄），和没有选中的不同状态都可以使用伪类进行修改样式</span></p><ul><li><span>a:link</span><strong><span>默认样式</span></strong></li><li><span>a:visited</span><strong><span>访问过的样式</span></strong></li><li><span>a:hover</span><strong><span>鼠标移上去之后显示的样式</span></strong></li><li><span>a:active</span><strong><span>鼠标按下去之后的显示样式</span></strong></li></ul><p><span>除了链接之外，其他标签也有多种状态，比如输入框input</span>
+<span>默认状态，没点过、点击文字框之后可以输入文字的focus状态</span>
+<span>:focus{outline:2px solid orange} </span><strong><span>outline是选定边框的属性</span></strong><span>，当被选中时，设定2像素橘色边框，值得注意是链接在按下去之后，</span><strong><span>也是focus状态</span></strong><span>。</span></p><p>&nbsp;</p><h2 id='结构性伪类位置）'><span>结构性伪类（位置）</span></h2><p><span>根据dom结点在dom树中出现的相对位置来决定是否选中这个标签（来改变样式）</span></p><ol start='' ><li><span>阿凡达</span></li><li><span>泰坦尼克号</span></li><li><span>星球大战：原力觉醒</span></li><li><span>复仇者联盟 3</span></li><li><span>侏罗纪世界</span></li></ol><p><span>对于这样的有序列表来说，我们想给排名第一的列表项目加样式，其他排名就不动，这么做呢?</span>
+<span>使用</span><strong><span>li:first-child来选中它</span></strong><span>，也可以用</span><strong><span>li:last-child来选中排名最后一名的列表项目</span></strong><span>， border-bottom:none;表示没有下边框的意思</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ol</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span>阿凡达<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span>泰坦尼克号<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span>星球大战：原力觉醒<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span>复仇者联盟 3<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span>侏罗纪世界<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">li</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ol</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">li</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">list-style-position</span>: <span class="cm-atom">inside</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">border-bottom</span>: <span class="cm-number">1px</span> <span class="cm-atom">solid</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">padding</span>: <span class="cm-number">0.5em</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">li</span>:<span class="cm-variable-3">first-child</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">color</span>: <span class="cm-keyword">coral</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">li</span>:<span class="cm-variable-3">last-child</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">border-bottom</span>: <span class="cm-atom">none</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 530px;"></div><div class="CodeMirror-gutters" style="display: none; height: 530px;"></div></div></div></pre><h1 id='组合'><span>组合</span></h1><h3 id='组合简介'><span>组合简介</span></h3><p><span>快速构建页面结构和CSS样式</span></p><figure><table><thead><tr><th><span>名称</span></th><th><span>语法</span></th><th><span>说明</span></th><th><span>示例</span></th></tr></thead><tbody><tr><td><span>直接结合</span></td><td><span>AB</span></td><td><span>满足A同时满足B</span></td><td><span>input:focus</span></td></tr><tr><td><span>后代组合</span></td><td><span>A B</span></td><td><span>选中B,如果它是A的子孙</span></td><td><span>nav a</span></td></tr><tr><td><span>亲子组合</span></td><td><span>A &gt; B</span></td><td><span>选中B,如果它是A的子元素</span></td><td><span>section &gt; p</span></td></tr><tr><td><span>兄弟选择器</span></td><td><span>A ~ B</span></td><td><span>选中B,如果它在A后且和A同级</span></td><td><span>h2 ~ p</span></td></tr><tr><td><span>相邻选择器</span></td><td><span>A + B</span></td><td><span>选中B,如果它紧跟在A后面</span></td><td><span>h2 + p</span></td></tr></tbody></table></figure><p><span>使用例子：</span>
+<span>article p{}</span><strong><span>表示article下的所有p标签</span></strong>
+<span>article &gt;p</span><strong><span>表示article下直接的p标签</span></strong><span>（article嵌套里面遇到的第一个p标签）</span>
+<span>h2+p表示h2后紧跟着的p标签</span></p><h3 id='选择器组'><span>选择器组</span></h3><p><span>有些时候想同时设定多个选择器，可以用,分隔</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">body</span>,<span class="cm-tag">h1</span>,<span class="cm-tag">h2</span>,<span class="cm-tag">h3</span>,<span class="cm-tag">h4</span>,<span class="cm-tag">h5</span>,<span class="cm-tag">h6</span>,<span class="cm-tag">ul</span>,<span class="cm-tag">ol</span>,<span class="cm-tag">li</span>{</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-property">margin</span>: <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-property">padding</span>: <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[<span class="cm-tag">type</span>=<span class="cm-string">'checkbox'</span>],[<span class="cm-tag">type</span>=<span class="cm-tag">radio</span>]{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property cm-error">box-mizin</span>:<span class="cm-atom">border-box</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">padding</span>:<span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 207px;"></div><div class="CodeMirror-gutters" style="display: none; height: 207px;"></div></div></div></pre><h1 id='颜色'><span>颜色</span></h1><h3 id='rgb的组成'><span>RGB的组成</span></h3><p><span>都是0即是黑色</span>
+<span>都是255即是白色</span>
+<span>具体怎么写颜色的值呢？rgb(红0-255,绿0-255,蓝0-255)</span>
+<span>或者#红红绿绿蓝蓝（每个颜色都是2个16进制字符（转化成10进制还是0-255的范围），#8fac87,不区分大小写）</span>
+<a href='https://link.juejin.cn/?target=https%3A%2F%2Fcdpn.io%2Fwebzhao%2Fdebug%2FbGomNLx'><span>CodePen - 青训营/CSS/RGB (cdpn.io)</span></a></p><h3 id='颜色-hsl'><span>颜色-HSL</span></h3><p><span>H代表Hue（色相），色彩的基本属性，取值0-360</span>
+<span>S代表Saturation（饱和度）,色彩的鲜艳程度，越高越鲜艳，0-100%</span>
+<span>L代表Lightness(亮度),色彩的明亮程度，越高颜色越亮，范围0-100%</span>
+<span>即通过Hsl来设定颜色，更加直观的可以调整hsl(Hue,Saturation,Lightness)</span></p><p><span>调整按钮颜色的话，点击变色的效果，用hsl该后面二个颜色的参数就更方便一些</span></p><p><span>还可以指定元素的名字（值），但是不常用，因为一般记不住，只能记很纯的颜色 </span><a href='https://link.juejin.cn/?target=https%3A%2F%2Fcdpn.io%2Fwebzhao%2Fdebug%2FMWEPYMY'><span>CodePen - 青训营/CSS/HSL (cdpn.io)</span></a>
+<a href='https://link.juejin.cn/?target=https%3A%2F%2Fcdpn.io%2Fwebzhao%2Fdebug%2FvYeVJaJ'><span>CodePen - 青训营/CSS/颜色关键字 (cdpn.io)</span></a></p><h3 id='颜色-透明度'><span>颜色-透明度</span></h3><p><span>alpha(透明度)可以理解成不透明度，因为调低是透明（0透明），调高不透明（1不透明）</span>
+<span>表现方式#ff0000ff</span>
+<span>rgba(255,0,0,1)</span>
+<span>hsla(0,100%,50%,1)</span>
+<span>a可以省略实际生（新版浏览器）</span>
+<span>[CodePen - 青训营/CSS/alpha (cdpn.io)](</span></p><h1 id='字体'><span>字体</span></h1><h3 id='字体的使用-font-family'><span>字体的使用 font-family</span></h3><p><span>通过font-family来设置字体</span>
+<a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FRwLeLWy%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - RwLeLWy</span></a>
+<span>为什么要设置多个字体？因为要在不同的设备上面使用，不同的设备可以有的字体是有限的，所以我们可以指定多个字体，多个字体从前到后设备有的就用，没有就往后面换</span>
+<span>sans-serif不是具体的字体，实际上是一个通用的字体组，CSS有5种的通用的字体组</span></p><p><span>暂时不具体写，用到的时候再记录</span></p><h1 id='属性'><span>属性</span></h1><h3 id='font-size属性字体大小）'><span>font-size属性（字体大小）</span></h3><p><a href='https://link.juejin.cn/?target=https%3A%2F%2Fcodepen.io%2Fwebzhao%2Fembed%2FoNGaGoq%3Fdefault-tab%3Dhtml%2Cresult%26editable%3Dtrue%26theme-id%3D40116'><span>CodePen Embed - 青训营/CSS/font-size</span></a></p><ul><li><span>关键字：small,medium,large</span></li><li><span>长度:px,em</span></li><li><span>百分数：相对于父元素字体的大小</span></li></ul><p><span>section将其中全部的字体大小设置为20像素</span>
+<span>section h1的2em是相对的概念，即20*2=40像素的字体大小（与父元素字体大小相×）</span>
+<span>section .note将类为note的字体大小设置为父级大小的80%</span></p><h2 id='font-style属性字体类型）'><span>font-style属性（字体类型）</span></h2><p><span>front-style:italic（表示斜体） normal（正常)</span></p><h2 id='font-weight属性'><span>font-weight属性</span></h2><p><span>weight属性(从100-900)字重的意思（</span><strong><span>粗细程度）</span></strong>
+<span>用来设置字体的粗细 正常normal表示400</span>
+<span>粗体bold表示700</span>
+<span>设置无效，可能是字体本身就没设计出这么多字重在字体库里面</span></p><h2 id='line-height行高'><span>line-height(行高)</span></h2><p><strong><span>二行文字</span></strong><span>的</span><strong><span>基准线之间的距离</span></strong>
+<span>行高一般表示字体大小的多少倍，h1大小30,行高45，即1.5倍的行高</span></p><p><strong><span>前面的所有属性都可以变成一个属性(即font) 在font里面这些属性都可以写进去</span></strong><span>：</span></p><p><span>斜体 粗细 大小/行高 字体族</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">font</span>: <span class="cm-variable-3">bold</span> <span class="cm-number">14px</span>/<span class="cm-number">1.7</span> <span class="cm-tag">Helvetica</span>,<span class="cm-tag">sans-serif</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><h3 id='空格处理white-space'><span>空格处理(white-space)</span></h3><p><span>HTML对连续的多个空格会合成一个</span>
+<span>怎么处理？</span></p><ul><li><span>normal吃空格，多个只显示一个空格</span></li><li><span>nowrap强制不换行</span></li><li><span>pre保留所有的格式</span></li><li><span>pre-wrap一行显示不下，会自动换行，同时保留空格</span></li><li><span>pre-line需要合并空格，但是保留换行（你怎么换就怎么显示</span></li></ul><p><span>示例：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">white-space</span>:<span class="cm-variable-3">pre</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><h3 id='初始值'><span>初始值</span></h3><ul><li><p><span>CSS中，每个属性都有一个初始值</span></p><p><span>background-color的初始值为transparent</span></p><p><span>margin-left的初始值为0</span></p></li><li><p><span>可以使用initial关键字显式重置为初始值</span></p><p><span>background-color：initial</span></p></li></ul><p><span>### </span></p><h1 id='css盒模型'><span>CSS盒模型</span></h1><p><span>CSS盒模型是CSS布局的基础，它将每个HTML元素看作是一个矩形的盒子，包含内容、内边距、边框和外边距。理解盒模型对于控制页面布局和样式非常重要。</span></p><h3 id='盒模型示意图'><span>盒模型示意图</span></h3><p><span>下图展示了一个典型的CSS盒模型：</span></p><p><img src="%E5%9B%BE%E7%89%87/242fa1d9532b498ebff6752076abd15btplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp" referrerpolicy="no-referrer" alt="CSS盒子模型"></p><ul><li><span>Content（内容区）：显示元素的实际内容，如文字、图片等。</span></li><li><span>Padding（内边距）：位于内容区和边框之间，用于增加元素内部的空白区域。</span></li><li><span>Border（边框）：围绕在内容区和内边距外部，显示元素的边界。</span></li><li><span>Margin（外边距）：位于边框以外，用于控制元素与其他元素之间的间距</span></li></ul><h2 id='盒模型的宽度和高度计算'><span>盒模型的宽度和高度计算</span></h2><p><span>当设置元素的宽度和高度时，需要考虑到不同盒模型的计算方式。</span></p><h2 id='标准盒模型'><span>标准盒模型</span></h2><p><span>标准盒模型的宽度和高度仅包含内容区的大小，不包括内边距、边框和外边距。示例代码如下：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">&lt;!DOCTYPE html&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">html</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">head</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">link</span> <span class="cm-attribute">rel</span>=<span class="cm-string">"stylesheet"</span> <span class="cm-attribute">href</span>=<span class="cm-string">"styles.css"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">head</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"box-standard"</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">html</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">/* styles.css */</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">.box-standard {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  width: 200px;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  height: 100px;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  padding: 20px;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  border: 2px solid black;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  margin: 10px;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 438px;"></div><div class="CodeMirror-gutters" style="display: none; height: 438px;"></div></div></div></pre><p><span>在上述示例中，元素的实际宽度计算为：200px (内容宽度) + 2 * 20px (左右内边距) + 2 * 2px (左右边框) + 2 * 10px (左右外边距) = 254px</span></p><p><span>元素的实际高度计算为：100px (内容高度) + 2 * 20px (上下内边距) + 2 * 2px (上下边框) + 2 * 10px (上下外边距) = 154px</span></p><h2 id='布局技巧'><span>布局技巧</span></h2><p><span>在实际前端开发中，CSS的布局是最常用的技巧之一。以下是一些常见的CSS布局技巧：</span></p><h3 id='居中一个元素'><span>居中一个元素</span></h3><p><span>居中一个元素是前端开发中常见的需求。可以使用以下方法实现水平和垂直居中。</span></p><h3 id='水平居中'><span>水平居中</span></h3><p><span>可以使用</span><code>margin: 0 auto;</code><span>将元素水平居中。例如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* styles.css */</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-qualifier">.container</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">width</span>: <span class="cm-number">300px</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">margin</span>: <span class="cm-number">0</span> <span class="cm-atom">auto</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><p><span>上述代码中，设置了容器的宽度为300px，并使用</span><code>margin: 0 auto;</code><span>将容器水平居中。</span></p><h3 id='垂直居中'><span>垂直居中</span></h3><p><span>可以使用CSS的</span><code>flexbox</code><span>或</span><code>grid</code><span>布局来实现垂直居中。例如，使用</span><code>flexbox</code><span>布局：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* styles.css */</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-qualifier">.container</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">display</span>: <span class="cm-atom">flex</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">justify-content</span>: <span class="cm-atom">center</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">align-items</span>: <span class="cm-atom">center</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">height</span>: <span class="cm-number">300px</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 161px;"></div><div class="CodeMirror-gutters" style="display: none; height: 161px;"></div></div></div></pre><p><span>上述代码中，将容器设置为</span><code>flex</code><span>布局，通过</span><code>justify-content: center;</code><span>和</span><code>align-items: center;</code><span>将内容在容器中垂直居中。</span></p><h3 id='响应式布局'><span>响应式布局</span></h3><p><strong><span>响应式布局</span></strong><span>是指网页能够根据不同设备的屏幕大小和分辨率</span><strong><span>自动调整布局</span></strong><span>，以适应不同的屏幕。这样可以使网页在手机、平板和电脑等多种设备上都能良好地显示。</span></p><p><span>可以使用CSS的</span><code>@media</code><span>查询来设置不同的样式规则。例如，当屏幕宽度小于等于768px时，设置元素的宽度为100%：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* styles.css */</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-qualifier">.container</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">width</span>: <span class="cm-number">80%</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">@media</span> (<span class="cm-property">max-width</span>: <span class="cm-number">768px</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-qualifier">.container</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">width</span>: <span class="cm-number">100%</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 230px;"></div><div class="CodeMirror-gutters" style="display: none; height: 230px;"></div></div></div></pre><p><span>上述代码中，当屏幕宽度小于等于768px时，容器的宽度将被设置为100%。</span></p><h2 id='布局layout）'><span>布局（Layout）</span></h2><p><span>布局相关技术：</span></p><figure><table><thead><tr><th><span>常规流</span></th><th><span>常规流</span></th><th><span>常规流</span></th></tr></thead><tbody><tr><td><span>行级</span></td><td><span>块级</span></td><td><span>表格布局</span></td></tr><tr><td><span>FlexBox</span></td><td><span>Grid布局</span></td><td>&nbsp;</td></tr></tbody></table></figure><figure><table><thead><tr><th><span>其他</span></th></tr></thead><tbody><tr><td><span>浮动</span></td></tr><tr><td><span>绝对定位</span></td></tr></tbody></table></figure><p><img src="%E5%9B%BE%E7%89%87/f9b505212de348628599c2759a8f6738tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp" referrerpolicy="no-referrer" alt="image.png"></p><p><span>说明：width 指定content box</span><strong><span>宽度</span></strong><span>，取值为长度、百分数、auto，aotu由浏览器根据其他属性确定，百分数相对于容器的content box宽度。容器有指定的高度时，百分数才生效。</span></p><p><span>说明：padding 指定元素四个方向的</span><strong><span>内边距</span></strong><span>，百分数相对于容器宽度（顺时针）。 border 指定容器边框样式、粗细和颜色</span></p><p><span>margin：auto水平居中</span></p><p><span>margin collapse 外边距叠加，上下两div(上定义有margin-bottom, 下有margin-top): 叠加取较大的margin值margin在垂直方向上有边界的合并。</span></p><p><strong><span>文字超出部分</span></strong><span>可以用overflow  -visible -hidden -scroll</span></p><p><span>overflow-wrap ： break-word 一个单词超出容器长度就会换行</span></p><h3 id='行级vs块级'><span>行级vs块级</span></h3><ul><li><strong><span>块级不和其他盒子并列摆放，适用所有的盒模型属性</span></strong></li><li><strong><span>行级和其他盒子一起放在一行或拆开成多行，盒模型中的width、height不适用</span></strong></li></ul><h4 id='display属性'><span>display属性</span></h4><ul><li><span>block 块级盒子</span></li><li><span>inline 行级盒子</span></li><li><span>inline-block 本身是行级，可以放在行盒中；可以设置宽高；作为一个整体不会被拆散成多行</span></li><li><span>flex 弹性盒子布局</span></li><li><span>none 排版时完全被忽略</span></li></ul><h4 id='行级排版上下文inline'><span>行级排版上下文(inline)</span></h4><p><span>简称IFC 只包含行级盒子的容器会创建一个IFC IFC内的排版规则：</span></p><ul><li><span>盒子在一行内水平摆放</span></li><li><span>一行放不下会换行</span></li><li><span>text-align决定一行盒子内的水平对齐</span></li><li><span>vertical-align垂直对齐，会避开浮动元素</span></li></ul><h4 id='块级排版上下文block'><span>块级排版上下文(block)</span></h4><p><span>简称BFC BFC内的排版规则：</span></p><ul><li><span>盒子从上到下摆放</span></li><li><span>垂直margin合并</span></li><li><span>BFC内盒子的margin不会与外面的合并</span></li><li><span>BFC不会和浮动元素重叠 </span></li></ul><h3 id='flexboxdisplay-flex'><span>FlexBox(display: flex;)</span></h3><p><span>一种新的排版上下文，它可以控制子级盒子的</span><strong><span>摆放流向</span></strong><span>、</span><strong><span>摆放顺序</span></strong><span>、</span><strong><span>盒子的宽度和高度</span></strong><span>、水</span><strong><span>平和垂直方向的对齐</span></strong><span>、</span><strong><span>是否允许折行</span></strong></p><h4 id='对齐'><span>对齐</span></h4><p><span>flex根据内容确定宽度高度，摆放从左至右</span></p><p><span>分为主轴与侧轴</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230904082710117.png" referrerpolicy="no-referrer" alt="image-20230904082710117"></p><p><span>justify-content   主轴     justify 使齐行 </span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">justify-content</span>: <span class="cm-variable-3">center</span> <span class="cm-comment">/*方块内内容主轴居中（横向）*/</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><img src="%E5%9B%BE%E7%89%87/image-20230904082848564.png" alt="image-20230904082848564" style="zoom:33%;" /></p><p><span>align-items 侧轴     align 排整齐</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">align-items</span>: <span class="cm-variable-3">center</span> <span class="cm-comment">/*方块内内容侧轴居中（竖向向）*/</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><strong><span>space-around</span></strong><span> - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍</span></p><p><strong><span>space-between</span></strong><span> - 项目与项目的间隔相等，项目与容器边框之间没有间隔</span></p><p><strong><span>space-evenly</span></strong><span> - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔</span></p><p><strong><span>stretch</span></strong><span> - 项目大小没有指定时，拉伸占据整个网格容器</span></p><h3 id='grid布局'><span>Grid布局</span></h3><p><span>二维   display：grid使元素生成一个块级的Grid容器</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230904084138674.png" referrerpolicy="no-referrer" alt="image-20230904084138674"></p><p><img src="%E5%9B%BE%E7%89%87/image-20230904084356207.png" referrerpolicy="no-referrer" alt="image-20230904084356207"></p><ul><li><strong><span>grid-template-columns 属性设置列数和列宽</span></strong></li><li><strong><span>grid-template-rows 属性设置行数和行高</span></strong></li><li><strong><span>数值个数代表列或行数，数值大小代表列宽或者行高</span></strong></li></ul><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">grid-template-columns</span>: <span class="cm-number">100px</span> <span class="cm-number">100px</span> <span class="cm-number">200px</span> <span class="cm-comment">/*三列，列宽*/</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">grid-template-rows</span>: <span class="cm-number">100px</span> <span class="cm-number">100px</span> <span class="cm-comment">/*两行，行宽*/</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 46px;"></div><div class="CodeMirror-gutters" style="display: none; height: 46px;"></div></div></div></pre><p><img src="%E5%9B%BE%E7%89%87/image-20230904090618928.png" referrerpolicy="no-referrer" alt="image-20230904090618928"></p><p><span>使用grid-template相关属性将容器划分为网格</span></p><p><span>1、 </span><strong><span>repeat() 函数</span></strong><span>：可以简化重复的值，例：repeat(3,1fr) //3行或列，都设置为1fr的宽度（1fr 1fr 1fr）</span></p><p><span>2、</span><strong><span>auto-fill 关键字</span></strong><span>：表示自动填充，让一行（或者一列）中尽可能的容纳更多的单元格。例如：</span></p><p><span>grid-template-columns: repeat(auto-fill, 200px);</span></p><p><span>3、</span><strong><span>fr 关键字</span></strong><span>（比例）：Grid</span>
+<span>grid-template-columns: 200px 1fr 2fr 表示第一个列宽设置为200px，后面剩余的宽度分为两部分，宽度分别为剩余宽度的 1/3 和 2/3。 </span></p><p><span>例如：grid-template-columns:200px 1fr 2fr;</span></p><p><span>4、</span><strong><span>minmax() 函数</span></strong><span>：我们有时候想给网格元素一个最小和最大的尺寸，minmax() 函数产生一个长度范围，表示长度就在这个范围之中都可以应用到网格项目中。它接受两个参数，分别为最小值和最大值。grid-template-columns: 1fr 1fr minmax(300px, 2fr) 的意思是，第三个列宽最少也是要 300px，但是最大不能大于第一第二列宽的两倍。</span></p><p><span>5、</span><strong><span>auto 关键字</span></strong><span>：由浏览器决定长度。通过 auto 关键字，我们可以轻易实现三列或者两列布局。grid-template-columns: 100px auto 100px 表示第一第三列为 100px，中间由浏览器决定长度</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; 6. **百分比**</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><h4 id='网格间距column-gap）'><span>网格间距（Column Gap）</span></h4><p><strong><span>网格间距（Column Gap）指的是两个网格单元之间的网格横向间距或网格纵向间距</span></strong></p><p><span>可以使用以下属性来调整间隙大小：</span></p><ul><li><p><span>grid-column-gap</span></p></li><li><p><span>grid-row-gap</span></p></li><li><p><span>grid-gap</span></p><p><img src="%E5%9B%BE%E7%89%87/grid_gaps.png" alt="img" style="zoom: 50%;" /></p></li></ul><h4 id='按行列划分网格'><span>按行列划分网格</span></h4><h5 id='grid-line网格线空隙）'><strong><span>grid line网格线</span></strong><span>（空隙）:</span></h5><h5 id='用线的方式来指定项目的位置'><span>用线的方式来指定项目的位置</span></h5><p><strong><span>grid-column-start 属性、grid-column-end 属性、grid-row-start 属性以及grid-row-end 属性</span></strong></p><p><span>可以指定网格项目所在的四个边框，分别定位在哪根网格线，用线的方式来指定项目的位置：</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230905092602036.png" referrerpolicy="no-referrer" alt="image-20230905092602036"></p><ul><li><span>&quot;grid-row-start: 1;&quot; 表示网格项的起始行为第一行线。</span></li><li><span>&quot;grid-column-start: 1;&quot; 表示网格项的起始列为第一列线。</span></li><li><span>&quot;grid-row-end: 3;&quot; 表示网格项的结束行为第三行线。</span></li><li><span>&quot;grid-column-end: 3;&quot; 表示网格项的结束列为第三列线。</span></li><li><span>可以使用grid-column和grid-row简写，grid-column: 1/3  //代表1号线开始，3号线结束</span></li></ul><p><a href='https://www.bilibili.com/video/BV1w84y1r7X8/?spm_id_from=333.337.search-card.all.click&amp;vd_source=a0e678f0a699f40cb533e1a6673f35fa'><span>13分钟彻底弄懂CSS Grid基础布局 / CSS Grid 入门教程</span><em><span>哔哩哔哩</span></em><span>bilibili</span></a></p><p><span>使用前先在容器中指定网格数量：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">grid-template-columns</span>: <span class="cm-number">100px</span> <span class="cm-number">100px</span> <span class="cm-number">200px</span> <span class="cm-comment">/*三列，列宽*/</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">grid-template-row</span>: <span class="cm-number">100px</span> <span class="cm-number">100px</span> <span class="cm-comment">/*两行，行宽*/</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 46px;"></div><div class="CodeMirror-gutters" style="display: none; height: 46px;"></div></div></div></pre><p><span>更简便的方法：</span>
+<span>使用grid-area对每个块进行标记，再使用grid-template-area对标记的块进行排版</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230905103823850.png" referrerpolicy="no-referrer" alt="image-20230905103823850"></p><h3 id='浮动float）'><span>浮动（float）</span></h3><p><span>实现文字环绕图片效果</span></p><p><span>float:left</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230905084400073.png" alt="image-20230905084400073" style="zoom: 33%;" /></p><h3 id='绝对定位'><span>绝对定位</span></h3><p><strong><span>position属性：</span></strong></p><ul><li><span>static 默认值，非定位元素</span></li><li><span>relative相对于原本位置偏离</span></li><li><span>absolute找父级定位，非本身</span></li><li><span>fixed总是相对于窗口定位</span></li></ul><p><strong><span>position: relative</span></strong></p><ul><li><span>在常规流里面布局</span></li><li><span>相对于自己本应该在的位置进行偏移</span></li><li><span>使用 top、left、bottom、right 设置偏移长度</span></li><li><span>流内其它元素当它没有偏移一样布局</span></li></ul><p><img src="%E5%9B%BE%E7%89%87/image-20230905085302482.png" referrerpolicy="no-referrer" alt="image-20230905085302482"></p><p><strong><span>position: absolute</span></strong></p><ul><li><span>脱离常规流</span></li><li><span>相对于</span><strong><span>最近的非 static 祖先(容器)</span></strong><span>定位</span></li><li><span>不会对流内元素布局造成影响</span></li></ul><p><img src="%E5%9B%BE%E7%89%87/image-20230905085509238.png" referrerpolicy="no-referrer" alt="image-20230905085509238"></p><p><strong><span>position: fixed</span></strong></p><p><span>相对于屏幕固定，不会随滚动变化</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230905090058476.png" referrerpolicy="no-referrer" alt="image-20230905090058476"></p><p><span>nav为自定义标签</span></p><p><img src="%E5%9B%BE%E7%89%87/image-20230905091710203.png" referrerpolicy="no-referrer" alt="image-20230905091710203"></p><h3 id='css过渡动画'><span>CSS过渡动画</span></h3><p><span>创建 CSS 过渡动画，你可以使用 CSS 的 </span><code>transition</code><span> 属性和其他相关属性来定义过渡效果。</span></p><p><span>下面是一个简单的例子，展示如何使用 CSS 过渡动画来淡入一个元素：</span></p><p><span>HTML:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="html"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="html"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">id</span>=<span class="cm-string">"myElement"</span><span class="cm-tag cm-bracket">&gt;</span>Hello, world!<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p>&nbsp;</p><p><span>CSS:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">#myElement</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">opacity</span>: <span class="cm-number">0</span>; <span class="cm-comment">/* 设置初始透明度为 0 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">transition</span>: <span class="cm-atom">opacity</span> <span class="cm-number">0.5s</span>; <span class="cm-comment">/* 使用 transition 属性定义过渡效果 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">#myElement</span><span class="cm-qualifier">.fade-in</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">opacity</span>: <span class="cm-number">1</span>; <span class="cm-comment">/* 过渡结束时的透明度为 1 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 184px;"></div><div class="CodeMirror-gutters" style="display: none; height: 184px;"></div></div></div></pre><p>&nbsp;</p><p><span>JavaScript:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="js"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="js"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">const</span> <span class="cm-def">element</span> <span class="cm-operator">=</span> <span class="cm-variable">document</span>.<span class="cm-property">getElementById</span>(<span class="cm-string">"myElement"</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">element</span>.<span class="cm-property">classList</span>.<span class="cm-property">add</span>(<span class="cm-string">"fade-in"</span>); <span class="cm-comment">// 添加 CSS 类，触发过渡效果</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 46px;"></div><div class="CodeMirror-gutters" style="display: none; height: 46px;"></div></div></div></pre><p>&nbsp;</p><p><span>在上述代码中，我们先为 </span><code>myElement</code><span> 元素设置了初始的透明度为 0，并定义了过渡效果。然后，通过 JavaScript，我们给元素添加了一个名为 </span><code>fade-in</code><span> 的 CSS 类，这将触发过渡效果并使元素淡入。</span></p><p><span>你可以根据需要来调整过渡的属性（如 </span><code>transition-duration</code><span>，</span><code>transition-property</code><span> 等），以及定义其他的过渡效果（如平移、旋转、缩放等），具体取决于你的设计需求。</span></p><p><span>请记住，CSS 过渡动画主要通过使用 CSS 的 </span><code>transition</code><span> 属性和添加、移除 CSS 类来实现，这样可以让浏览器自动应用过渡效果。使用 JavaScript 来操作 CSS 类可以在需要时触发过渡动画。</span></p><h3 id='label'><span>label</span></h3><p><strong><span>HTML </span><code>&lt;label&gt;</code><span> 元素</span></strong><span>（标签）表示用户界面中某个元素的说明。</span></p><p><a href='https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/label'><span> - HTML（超文本标记语言） | MDN (mozilla.org)</span></a></p><p><img src="%E5%9B%BE%E7%89%87/image-20230911120626107.png" referrerpolicy="no-referrer" alt="image-20230911120626107"></p><p><span>当你点击label中的文本的时候，就相当于点击for中绑定的imput</span></p><h1 id='body-占满整个屏幕空间'><code>&lt;body&gt;</code><span> 占满整个屏幕空间</span></h1><p><span>要让 </span><code>&lt;body&gt;</code><span> 占满整个屏幕空间，你可以使用 CSS 来设置相关样式。以下是一种常见的方法：</span></p><ol start='' ><li><span>首先，设置 </span><code>&lt;html&gt;</code><span> 和 </span><code>&lt;body&gt;</code><span> 的高度为 100%：</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">html, body {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  height: 100%;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><p><span>这将使 </span><code>&lt;html&gt;</code><span> 和 </span><code>&lt;body&gt;</code><span> 元素的高度扩展到整个浏览器窗口的高度。</span></p><ol start='' ><li><span>接下来，将 </span><code>&lt;body&gt;</code><span> 的外边距和内边距设置为 0：</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">body {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  margin: 0;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  padding: 0;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 92px;"></div><div class="CodeMirror-gutters" style="display: none; height: 92px;"></div></div></div></pre><p><span>这样可以消除默认的外边距和内边距，确保 </span><code>&lt;body&gt;</code><span> 元素与浏览器边界之间没有间隙。</span></p><ol start='' ><li><span>最后，将子元素（例如 </span><code>&lt;div&gt;</code><span>）的高度设置为 100%：</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">div {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  height: 100%;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><p><span>这将使 </span><code>&lt;div&gt;</code><span> 元素占据其父元素（即 </span><code>&lt;body&gt;</code><span>）的整个高度。</span></p><h1 id='调试css'><span>调试CSS</span></h1><p><strong><span>浏览器快捷键F12和cttrl+shift+I看下面的样式就可以看CSS代码了</span></strong></p><h1 id='标签样式修改'><span>标签样式修改</span></h1><p><span>a{text-decoration:none};去掉a标签的下划线</span></p><p><span>当一个输入框（input）被选中时，可以使用 CSS 的 </span><code>:focus</code><span> 伪类来应用样式。这个伪类用于匹配处于焦点状态的元素。你可以通过设置不同的样式来突出显示被选中的输入框。</span></p><p><span>以下是一些常见的针对被选中输入框的 CSS 样式：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">input</span>:<span class="cm-variable-3">focus</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">outline</span>: <span class="cm-atom">none</span>; <span class="cm-comment">/* 取消选中时的默认外观 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">border</span>: <span class="cm-number">2px</span> <span class="cm-atom">solid</span> <span class="cm-keyword">blue</span>; <span class="cm-comment">/* 设置选中时的边框样式 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">background-color</span>: <span class="cm-keyword">lightblue</span>; <span class="cm-comment">/* 设置选中时的背景色 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">/* 可以继续添加其他样式 */</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><p><span>在上面的示例中，</span><code>input:focus</code><span> 选择器会选择被选中的输入框，然后可以根据需要进行样式设置。</span><code>outline: none;</code><span> 会取消默认的选中外观，</span><code>border</code><span> 和 </span><code>background-color</code><span> 属性可以设置选中时的边框样式和背景色。</span></p><h2 id='阴影'><span>阴影</span></h2><p><span>要给元素添加阴影效果，你可以使用 CSS 的 </span><code>box-shadow</code><span> 属性。</span><code>box-shadow</code><span> 使你能够创建元素的阴影效果，可以控制阴影的颜色、大小、模糊度等。</span></p><p><span>下面是一个示例，展示如何为一个 </span><code>&lt;div&gt;</code><span> 元素添加阴影效果：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">div</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">box-shadow</span>: <span class="cm-number">2px</span> <span class="cm-number">2px</span> <span class="cm-number">4px</span> <span class="cm-atom">rgba</span>(<span class="cm-number">0</span>, <span class="cm-number">0</span>, <span class="cm-number">0</span>, <span class="cm-number">0.3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><p><span>在这例子中，</span><code>box-shadow</code><span> 的值包含四个参数，分别是：</span></p><ul><li><span>水平偏移量：2px</span></li><li><span>垂直偏移量：2px</span></li><li><span>模糊度：4px</span></li><li><span>阴影颜色：rgba(0, 0, 0, 0.3)</span></li></ul><p><span>你可以调整这些参数来得到你想要的阴影效果。水平偏移量和垂直偏移量可以为负值，表示阴影在元素的左上方，而不是右下方。</span></p><p><code>box-shadow</code><span> 属性还支持多个阴影效果的叠加，通过以逗号分隔的方式，你可以指定多个阴影效果。例如：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="css"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="css"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag">div</span> {</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-property">box-shadow</span>: <span class="cm-number">2px</span> <span class="cm-number">2px</span> <span class="cm-number">4px</span> <span class="cm-atom">rgba</span>(<span class="cm-number">0</span>, <span class="cm-number">0</span>, <span class="cm-number">0</span>, <span class="cm-number">0.3</span>),</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">-2px</span> <span class="cm-number">-2px</span> <span class="cm-number">4px</span> <span class="cm-atom">rgba</span>(<span class="cm-number">255</span>, <span class="cm-number">255</span>, <span class="cm-number">255</span>, <span class="cm-number">0.3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 92px;"></div><div class="CodeMirror-gutters" style="display: none; height: 92px;"></div></div></div></pre><p><span>这个例子中，该 </span><code>&lt;div&gt;</code><span> 元素将同时具有一个白色的内阴影和一个黑色的外阴影效果。</span></p><p><span>通过调整 </span><code>box-shadow</code><span> 的参数和添加额外的阴影效果，你可以创建出各种不同的阴影效果来适应你的设计需求。</span></p><p><strong><span>一 在原页面嵌入其他页面</span></strong></p><p><span>1、使用</span><strong><span>iframe</span></strong><span>框架</span></p><p><span>客户端页面嵌套可以使用iframe的方法，弊端是必须事先想好被嵌套的页面在首页中要占多大的位置。</span></p><p><span>如果被嵌套页面太大，超过事先定义的宽度或高度，则首页会出现滚动条。这也许正是你所需要的，</span></p><p><span>但也许会完全破坏主页的设计。</span></p><p><span>  </span><strong><span>&lt; iframe &gt;------ &lt; / iframe &gt;</span></strong></p><p><span>例： </span><strong><iframe src="text.asp" height="200" width="600"></strong><span>  </span></p><p><span>                       </span><a href="text.asp"></p><p><span>             </span><strong><span>你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</span></strong></p><p><span>            </span><strong></a></strong></p><p><span>       </span><strong></ifrmae ></strong></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

@@ -737,6 +737,78 @@ searchword = request.args.get('key', '')
 
 完整的请求对象方法和属性参见 [`Request`](https://dormousehole.readthedocs.io/en/latest/api.html#flask.Request) 文档。
 
+### POST,GET接收方式
+
+在 Flask 中，要接收通过 POST 请求发送的数据，您可以使用 `request.form` 或 `request.json` 来访问请求的表单数据或 JSON 数据。
+
+以下是一个在 Flask 中**post**接收数据的示例代码：
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route("/admin/register", methods=["POST"])
+def register():
+    username = request.form.get("username")
+    password = request.form.get("password")
+    repassword = request.form.get("repassword")
+
+    # 处理注册逻辑...
+
+    return jsonify(message="注册成功")
+
+if __name__ == "__main__":
+    app.run()
+```
+
+在上述示例中，我们使用 `request.form.get()` 来获取通过 POST 请求发送的表单数据。`request.form.get("参数名")` 方法可以访问请求中指定参数的值。
+
+如果您发送的是 JSON 数据，您可以改用 `request.json.get()` 方法来获取 JSON 数据中的值。示例如下：
+
+```python
+@app.route("/admin/register", methods=["POST"])
+def register():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    repassword = data.get("repassword")
+
+    # 处理注册逻辑...
+
+    return jsonify(message="注册成功")
+```
+
+在上述示例中，我们首先使用 `request.json` 来访问整个 JSON 数据对象，然后使用 `data.get("参数名")` 来获取指定参数的值。
+
+请根据您发送请求的方式（表单数据或 JSON 数据）选择使用适当的方式来接收数据，并进行相应的处理。
+
+**GET：**
+
+在 Flask 中，您可以使用 `request.args` 来接收 Vue.js 发来的 GET 请求中的参数。下面是一个简单的示例：
+
+```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/submit', methods=['GET'])
+def handle_get_request():
+    name = request.args.get('name')  # 通过传递的参数名获取值
+    age = request.args.get('age')
+
+    # 在这里可以进行进一步的处理
+
+    return f"Name: {name}, Age: {age}"
+
+if __name__ == '__main__':
+    app.run()
+```
+
+
+
+在上述示例中，我们创建了一个路由 `/submit` 并通过 GET 方法处理请求。使用 `request.args.get()` 方法来获取 GET 请求中传递的参数值。
+
 ### 文件上传
 
 用 Flask 处理文件上传很容易，只要确保不要忘记在您的 HTML 表单中设置 `enctype="multipart/form-data"` 属性就可以了。否则浏览器将不会传送 您的文件。
@@ -975,6 +1047,97 @@ $ python -c 'import secrets; print(secrets.token_hex())'
 基于 cookie 的会话的说明： Flask 会取出会话对象中的值，把值序列化后储 存到 cookie 中。在打开 cookie 的情况下，如果需要查找某个值，但是这个 值在请求中没有持续储存的话，那么不会得到一个清晰的出错信息。请检查页 面响应中的 cookie 的大小是否与网络浏览器所支持的大小一致。
 
 除了缺省的客户端会话之外，还有许多 Flask 扩展支持服务端会话。
+
+## Python实现JWT-Token详解
+
+### 引言
+
+>   Token是目前广泛使用的一种保持会话状态的技术，与以前的cookie、session共同存在于如今各大网站架构中。本篇中，我们着重来讲解在python中，怎样实现token。 
+
+
+首先，我们来看一下`session`的主要缺点：
+
+当我们在使用`session`保持会话状态，同时验证用户的合法性时，有两个问题存在:
+
+- 性能问题
+  因为`session`的实现过程，需要用户在每次请求中携带`sessionid`，服务端收到后，对比数据库中的`sessionid`是否一致。而我们知道，数据库的操作往往是服务端最常见的性能瓶颈。
+- 扩展性问题
+  当用户量变多后，后端往往采用多个服务器，多个节点。但多个节点都要访问`session`，这样就要去数据库服务能被多个节点访问，不方便分库以提高性能。
+
+而`Token`可以很好的解决这些问题
+
+### 原理
+
+`session`的机制是把数据信息放在服务端，正常情况下，服务端数据是无法被篡改的，从而保证验证的可靠性。
+
+而`Token`是将拼接好的数据信息传给客户端，客户每次请求携带过来给服务端。服务端直接根据携带的数据信息进行校验。
+
+那为什么，`token`将信息存放在客户端，而不会有被篡改的风险呢？服务端又是怎么验证`token`数据的完整性的呢？？
+
+目前，`JWT(Json Web Token)`是目前运用最广泛的认证解决方案，由于非常靠谱，已经被写入行业标准`RFC 7519`
+
+### python实现JWT-token
+
+在Python中，有一个包`pyjwt`，专门用来生成token，接下来，我们使用这个包，快速的生成我们想要的token
+
+安装：
+
+```cmd
+pip install pyjwt
+```
+
+#### **生成Token**
+
+```python
+import jwt
+import time
+
+# 生成一个字典，包含我们的具体信息
+d = {<!-- -->
+    # 公共声明
+    'exp':time.time()+3000, # (Expiration Time) 此token的过期时间的时间戳，移除可以设置无过期时间
+    'iat':time.time(), # (Issued At) 指明此创建时间的时间戳
+    'iss':'Issuer', # (Issuer) 指明此token的签发者
+    
+    # 私有声明
+    'data':{<!--需要加密的内容 -->
+        'username':'xjj',
+        'timestamp':time.time()
+    }
+}
+
+jwt_encode = jwt.encode(d,'123456',algorithm='HS256')
+
+print(jwt_encode)
+# 打印token串
+#eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjI2MDQ3MTguNjczNjgzNiwiaWF0IjoxNjIyNjAxNzE4LjY3MzY4MzYsImlzcyI6Iklzc3VlciIsImRhdGEiOnsidXNlcm5hbWUiOiJ4amoiLCJ0aW1lc3RhbXAiOjE2MjI2MDE3MTguNjczNjgzNn19.ASgB9-1U9ADhv6AmBH7p8leEtWMTMhaDQJSaZ9z9kZg
+
+```
+
+`pyjwt`提供的`jwt.encode(payload,key,algorithm)`方法可以让我们快速的生成`token`；需要提供三个参数
+
+|参数|说明
+|**payload**|公有声明和私有声明组成的字典，根据需要进行添加
+|**key**|自定义的加密key。重要，不能外泄
+|**algorithm**|声明需要使用的加密算法，如’HS256’
+
+生成完毕后，还可以进行`jwt.decode()`解密
+
+#### 解码token
+
+```python
+import jwt
+jwt_encode = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjI2MDQ3MTguNjczNjgzNiwiaWF0IjoxNjIyNjAxNzE4LjY3MzY4MzYsImlzcyI6Iklzc3VlciIsImRhdGEiOnsidXNlcm5hbWUiOiJ4amoiLCJ0aW1lc3RhbXAiOjE2MjI2MDE3MTguNjczNjgzNn19.ASgB9-1U9ADhv6AmBH7p8leEtWMTMhaDQJSaZ9z9kZg'
+
+jwt_decode = jwt.decode(jwt_encode, '123456', issuer='Issuer',  algorithms=['HS256'])
+
+print(jwt_decode)
+# 打印解密后信息
+# {'exp': 1622604718.6736836, 'iat': 1622601718.6736836, 'iss': 'Issuer', 'data': {'username': 'xjj', 'timestamp': 1622601718.6736836}}
+
+```
+
+使用现成的`pyjwt`，我们就可以像这样快速的生成token。
 
 ## 消息闪现
 
@@ -1236,6 +1399,8 @@ db.close()
 
 ```
 
+
+
 ### 6.查询数据
 
 ```python
@@ -1277,6 +1442,20 @@ db.close()
 ```
 
 这里就是数据库的一些基本操作，能够满足pymysql的基本使用。
+
+检测当查询不到数据的情况：
+
+```sql
+SREACHTSQL = f"UPDATE banner_table SET {SetTitle} {SetDescription} {SetHref} WHERE ID = %s;"
+DBCONN = g.db.cursor()
+params.append(banners_id)
+DBCONN.execute(SREACHTSQL, params)
+g.db.commit()
+
+if DBCONN.rowcount == 0:
+    # 处理ID不存在的情况，可以抛出异常或返回自定义错误信息
+    raise Exception("Banner ID not found")
+```
 
 **参数化**：
 
@@ -1396,4 +1575,99 @@ flask响应后进入的主页面文件login.html存放在“templates”文件�
     def OtherFile(filename):
         return render_template(f"public/{filename}")
 ```
+
+## 处理跨域请求
+
+在 Flask 中，您可以使用 `flask_cors` 扩展来配置跨域资源共享（CORS）设置，以允许跨域请求。以下是一个使用 `flask_cors` 允许跨域请求的示例：
+
+1. 首先，确保已经在您的 Flask 项目中安装了 `flask_cors` 扩展：
+
+```cmd
+pip install flask_cors
+```
+
+2. 在您的 Flask 应用程序中导入并初始化 `CORS` 扩展：
+
+```python
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+```
+
+在上面的示例中，我们导入了 `Flask` 和 `CORS`，然后通过传递 `app` 实例来初始化 `CORS` 扩展。这将为您的应用程序自动配置一组默认的 CORS 头部，以允许跨域请求。
+
+3. 在需要启用 CORS 的路由或视图函数上使用 `@cross_origin()` 装饰器：
+
+```python
+from flask import jsonify
+from flask_cors import cross_origin
+
+@app.route("/admin/register", methods=["POST"])
+@cross_origin()
+def register():
+    # 处理注册逻辑...
+    return jsonify(message="注册成功")
+```
+
+在上面的示例中，我们在 `/admin/register` 路由上使用了 `@cross_origin()` 装饰器。这将为该路由启用 CORS，以允许来自任何源的跨域请求访问该路由。
+
+您可以根据需要配置 `@cross_origin()` 装饰器的参数，如 `origins`、`methods`、`headers` 等，以更细粒度地控制跨域请求的配置。例如：
+
+```python
+@cross_origin(origins=["http://localhost:5173"], methods=["POST", "OPTIONS"], headers=["Content-Type"])
+```
+
+在上述示例中，我们限制了只允许来自 `http://localhost:5173` 源的请求进行跨域访问，并指定了允许的请求方法和头部。
+
+请注意，在实际生产环境中，根据安全性和可信任性的考虑，您应该根据需要进行相应的配置，并限制允许的请求源、方法和头部。
+
+使用 `flask_cors` 扩展可以方便地为您的 Flask 应用程序启用和配置 CORS 设置，以便处理跨域请求。
+
+## 接收后端发来的请求
+
+在 Flask 中，要接收通过 POST 请求发送的数据，您可以使用 `request.form` 或 `request.json` 来访问请求的表单数据或 JSON 数据。
+
+以下是一个在 Flask 中接收数据的示例代码：
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route("/admin/register", methods=["POST"])
+def register():
+    username = request.form.get("username")
+    password = request.form.get("password")
+    repassword = request.form.get("repassword")
+
+    # 处理注册逻辑...
+
+    return jsonify(message="注册成功")
+
+if __name__ == "__main__":
+    app.run()
+```
+
+在上述示例中，我们使用 `request.form.get()` 来获取通过 POST 请求发送的表单数据。`request.form.get("参数名")` 方法可以访问请求中指定参数的值。
+
+如果您发送的是 JSON 数据，您可以改用 `request.json.get()` 方法来获取 JSON 数据中的值。示例如下：
+
+```python
+@app.route("/admin/register", methods=["POST"])
+def register():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    repassword = data.get("repassword")
+
+    # 处理注册逻辑...
+
+    return jsonify(message="注册成功")
+```
+
+在上述示例中，我们首先使用 `request.json` 来访问整个 JSON 数据对象，然后使用 `data.get("参数名")` 来获取指定参数的值。
+
+请根据您发送请求的方式（表单数据或 JSON 数据）选择使用适当的方式来接收数据，并进行相应的处理。
 

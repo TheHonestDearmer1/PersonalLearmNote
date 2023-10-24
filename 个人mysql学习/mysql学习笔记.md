@@ -12,7 +12,7 @@ float/double
 
 datetime/timestamp(可储存时间戳)
 
-char(定长字符)/varchar(不定长字符)/text(大文本)
+char(定长字符)/varchar(不定长字符)/text(大文本不限制长度)
 
 blob(字节数据类型，存储图片，音频等文件)
 
@@ -38,6 +38,7 @@ create table 表名（
 - **FOREIGN KEY**（尽量少用）：保证一个表中的数据匹配另一个表中的值的参照完全性
 - **CHECK**：保证列中的值符合条件
 - **DEFAULT**：规定没有列赋值时的默认值
+- **AUTO_INCREMENT** 实现自动递增的 ID （**PRIMARY KEY**） INT型
 
 ```sql
 DROP TABLE IF EXISTS `websites`;
@@ -242,6 +243,42 @@ select avg(sal) '平均值' ,country from websites group by country HAVING 平�
 > 把查询结果当做一个表来使用
 >
 
+### COUNT(*) AS 
+
+COUNT(*) AS 是一种在数据库查询中用于计算满足条件的行数的方法，并将结果以指定的别名展示。
+
+在使用 COUNT(*) AS 时，COUNT(*) 表示计算满足条件的行数，而 AS 关键字用于给结果指定一个别名。
+
+以下是一个示例：
+
+```
+SELECT COUNT(*) AS total_count FROM table_name WHERE condition;
+```
+
+在上述示例中，table_name 是要查询的表名，condition 是满足条件的过滤条件。COUNT(*) 会计算满足条件的行数，并将结果以别名 total_count 返回。
+
+通过为 COUNT(*) 设置别名，可以更好地理解查询结果。别名可以根据具体需求进行命名，以便在后续的数据处理或展示中使用。
+
+需要注意的是，COUNT(*) 会计算包含 NULL 值的行，因此可能会得到不包括 NULL 值的期望结果时，可以使用 COUNT(column_name) 来计算特定列中非 NULL 值的行数。
+
+查询：
+
+```sql
+SELECT TOP 3 WITH TIES 商品类别, COUNT(*) AS 商品数量
+FROM 商品表
+GROUP BY 商品类别
+ORDER BY COUNT(*) DESC;
+```
+
+在上述查询语句中，我们使用了以下步骤：
+
+1. 选择要查询的列：选择了 “商品类别” 列和计算的 “商品数量” 列。
+2. 指定数据来源：使用 “FROM” 关键字指定了数据来源的表名为 “商品表”。
+3. 分组：使用 “GROUP BY” 关键字将结果按 “商品类别” 进行分组。
+4. 计算行数：通过使用 “COUNT(*)” 计算每个商品类别的行数，并将结果命名为 “商品数量”。
+5. 排序：使用 “ORDER BY” 关键字将结果按照 “商品数量” 进行降序排序。
+6. 保留并列出并列的行：通过使用 “TOP 3 WITH TIES”，我们保留了数量前三的行，并且如果有与前三行相同数量的行，则一同列出。
+
 ### 连接查询
 
 ![image-20230802105221314](图片/image-20230802105221314.png)
@@ -306,6 +343,161 @@ INSERT INTO emp values(7902,'FORD','ANALYST',7566,'1981-12-03',3000,NULL,20);
 INSERT INTO emp values(7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
 INSERT INTO emp values(7981,'MILLER','CLERK',7788,'1992-01-23',2600,500,20);
 ```
+
+### 建立查询索引
+
+在 MySQL 中，建立索引可以提高数据库的查询性能。索引可以加快数据的查找速度，特别是在大型数据表中。以下是建立索引的一般步骤：
+
+1. 选择合适的列：首先，确定需要为哪些列创建索引。选择常用于查询的列或经常用于连接（Join）操作的列。
+
+2. 创建索引：使用 `CREATE INDEX` 语句来创建索引。以下是创建索引的一般语法：
+
+   ```sql
+   CREATE INDEX index_name ON table_name (column1, column2, ...);
+   ```
+
+   
+
+   - `index_name` 是索引的名称，可以根据你的需求任意指定。
+   - `table_name` 是要在其上创建索引的表名。
+   - `(column1, column2, ...)` 是要为其创建索引的列名。
+
+   示例：
+
+   ```sql
+   CREATE INDEX idx_name ON customers (last_name, first_name);
+   ```
+
+   
+
+   上述示例创建了一个名为 `idx_name` 的索引，用于 `customers` 表的 `last_name` 和 `first_name` 两列。
+
+3. 查看索引信息：可以使用 `SHOW INDEX` 语句来查看表的索引信息。例如：
+
+   ```sql
+   SHOW INDEX FROM table_name;
+   ```
+
+   这将显示 `table_name` 表的索引信息，包括索引名称、列名、唯一性等。
+
+值得注意的是，索引的创建也会对插入、更新和删除操作产生一定的性能影响，因为每次对表进行更改时，MySQL 需要维护索引的一致性。因此，在设计索引时要平衡查询性能和数据更改性能之间的权衡，并选择适合特定场景的索引策略。
+
+此外，还可以考虑使用 `EXPLAIN` 来分析查询语句的执行计划，以进一步优化查询性能和索引选择。
+
+### check和触发器约束
+
+“CHECK” 约束和触发器都是用于强制实施数据完整性和业务规则的两种方法。下面我将对它们进行简要说明：
+
+1. CHECK 约束：
+
+   - CHECK 约束是在创建表时定义的条件，用于限制列中的值。它可以确保插入或更新的数据满足特定的条件。
+
+   - CHECK 约束可以应用于单个列或多个列，可以使用逻辑运算符（如 AND、OR）和比较操作符（如 =、<>、>、< 等）来定义条件。
+
+   - 当违反 CHECK 约束时，对表的插入或更新操作将失败，并返回错误信息。
+
+   - 示例：
+
+     ```sql
+     CREATE TABLE products (
+       id INT,
+       price DECIMAL(10,2),
+       quantity INT,
+       CONSTRAINT chk_price CHECK (price > 0),
+       CONSTRAINT chk_quantity CHECK (quantity >= 0)
+     );
+     ```
+
+     
+
+     上述示例中，定义了两个 CHECK 约束，确保 “price” 列的值大于 0，“quantity” 列的值大于或等于 0。
+
+2. 触发器 (Triggers)：
+
+   - 触发器是在表上定义的特殊存储过程，当特定的事件（如 INSERT、UPDATE、DELETE）发生时自动触发执行。
+
+   - 触发器可以在表上定义 BEFORE 或 AFTER 事件触发的时间点。
+
+   - 触发器通常用于实现复杂的业务规则、数据验证和数据引用完整性。
+
+   - 示例：
+
+     ```sql
+     CREATE TRIGGER trig_employee_insert
+     BEFORE INSERT ON employees
+     FOR EACH ROW
+     BEGIN
+       IF NEW.age < 18 THEN
+         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Employees must be at least 18 years old';
+       END IF;
+     END;
+     ```
+
+     
+
+     上述示例中，定义了一个 BEFORE INSERT 触发器，当在 “employees” 表中进行插入操作时，如果插入的年龄 “age” 小于 18，则触发器会抛出一个错误。
+
+无论是 CHECK 约束还是触发器，都可以帮助确保数据库中的数据完整性和业务规则的一致性。具体使用哪种方法要根据具体需求和情况来决定。CHECK 约束适用于简单的列级约束，而触发器适用于更复杂的逻辑和跨多个表的约束。
+
+### DENY 限制
+
+“DENY” 是一种用于权限管理的数据库操作。它用于拒绝或阻止用户或角色对数据库对象执行特定的操作或访问权限。
+
+在数据库中，DENY 可以应用于不同级别的权限，如表、列、存储过程、视图等。当 DENY 被应用于一个对象时，具有该对象的 DENY 权限的用户或角色将被禁止执行相应的操作。
+
+以下是 DENY 的一些常见使用场景：
+
+1. 对于表操作：使用 DENY 可以阻止用户或角色对表的特定操作，如 SELECT、INSERT、UPDATE、DELETE 或者对表的具体列执行操作。
+2. 对于存储过程和函数：DENY 可以阻止用户或角色执行特定的存储过程或函数。
+3. 对于视图操作：DENY 可以限制用户或角色对视图的访问，确保只有具有相应权限的用户可以查看或修改视图的数据。
+4. 对于模式或数据库级别的操作：DENY 可以拒绝用户或角色对整个模式或数据库执行操作的权限。
+
+需要注意的是，DENY 是一种较为强制的权限设置，它会覆盖其他的权限授予。即使用户拥有其他对象的权限，如果对该对象应用了 DENY，则用户仍然无法执行相应的操作。
+
+
+要使用 DENY 权限来限制用户或角色对数据库对象的访问和操作，可以按照以下步骤进行操作：
+
+1. 确定对象和权限：首先，确定需要应用 DENY 权限的数据库对象和所需的操作。这可以是表、列、存储过程、视图等。确定想要禁止的操作，如 SELECT、INSERT、UPDATE、DELETE 等。
+
+2. 检查当前权限：使用适当的数据库管理工具或查询语句，检查被授予的权限和当前用户或角色的访问级别。确保在应用 DENY 之前理解当前状态和权限情况。
+
+3. 应用 DENY 权限：根据对象类型和所需的操作，使用相应的权限管理语句来应用 DENY。以下是一些示例：
+
+   - 对于表或列级别的权限：
+
+     ```sql
+     DENY SELECT, INSERT, UPDATE ON table_name TO user_or_role;
+     ```
+
+     
+
+   - 对于存储过程或函数的权限：
+
+     ```sql
+     DENY EXECUTE ON procedure_name TO user_or_role;
+     ```
+
+     
+
+   - 对于视图的权限：
+
+     ```sql
+     DENY SELECT ON view_name TO user_or_role;
+     ```
+
+     
+
+   - 对于模式或数据库级别的权限：
+
+     ```sql
+     DENY CREATE TABLE, CREATE PROCEDURE ON schema_name TO user_or_role;
+     ```
+
+     
+
+   在以上示例中，`table_name`、`procedure_name`、`view_name` 和 `schema_name` 是要应用 DENY 权限的具体对象的名称，`user_or_role` 是要限制的用户或角色名称。
+
+   **注意**：当权限冲突的时候优先执行DENY
 
 # 数据库理论知识
 
@@ -437,4 +629,233 @@ WHERE NOT EXISTS (
 在这个例子中，我们使用子查询和 NOT EXISTS 条件来实现除法运算。首先，在外层查询中选择 R 表的主键 A。然后，在子查询中，我们检查 S 表中是否存在与 R 表中的 A 值相匹配的元组。如果找不到匹配的元组 B，则将 R 表中的 A 返回。
 
 需要注意的是，除法运算在实际应用中相对较少使用，通常需要考虑性能和数据特征。在某些情况下，可能会使用其他查询操作或关系代数运算符来替代除法运算。
+
+```vue
+<template>
+  <div id="menu" style="height:100%;">
+    <MNG_Menu>
+        <div style="width: auto;
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+        ">
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0px;">
+     <div style="display: grid; gap: 10px; width: 100%;"> 
+      <h1 style="display: flex; justify-content: center; align-items: center;">用户评论</h1>
+      <n-input placeholder="标题" v-model:value="custom_title" :disabled="change_open">
+      <template #prefix>
+      </template>
+    </n-input>
+    <n-input placeholder="描述" v-model:value="custom_description" :disabled="change_open">
+      <template #prefix>
+      </template>
+    </n-input>
+              <form  action="http://127.0.0.1:5000/admin/custom/img"  target="result-frame" method="post" enctype="multipart/form-data">
+              <input type="text" name="id"   v-model="custom_ID" style="display: none;"/>
+                <input type="file" name="file" style="display: none;" ref="uploadimg"/>
+                <button type="submit" ref="uploadRef" style="display: none;">隐藏按钮</button>
+          </form>
+          <n-button type="primary"  @click="updateFile" :disabled="change_open" >
+     上传文件
+    </n-button>
+          <n-button type="primary"  @click="update_action" :disabled="change_open" >
+     添加
+    </n-button>
+    <n-button type="primary"  @click="change_open = true" :disabled="change_open" >
+     修改
+    </n-button>
+          <iframe  name="result-frame" style="display: none;"></iframe>
+     </div>
+    </div>
+           <n-loading-bar-provider>
+      <n-message-provider>
+        <n-notification-provider>
+          <n-dialog-provider>
+            <custom_Data :addBannersChange="addBannersChange"/>
+          </n-dialog-provider>
+        </n-notification-provider>
+      </n-message-provider>
+    </n-loading-bar-provider>
+        </div>
+    </MNG_Menu>
+  </div>
+    <Teleport to="#menu">
+  <Transition name="slide-fade">
+  <div v-if="change_open" class="demo modal-demo" style="width: 350px;">
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0px;">
+     <div style="display: grid; gap: 10px; width: 100%;"> 
+      <h1 style="display: flex; justify-content: center; align-items: center;">用户评论</h1>
+      <n-input placeholder="ID" v-model:value="change_custom_ID">
+      <template #prefix>
+      </template>
+    </n-input>
+      <n-input placeholder="标题" v-model:value="change_custom_title">
+      <template #prefix>
+      </template>
+    </n-input>
+    <n-input placeholder="描述" v-model:value="change_custom_description">
+      <template #prefix>
+      </template>
+    </n-input>
+              <form  action="http://127.0.0.1:5000/admin/custom/img"  target="result-frame" method="post" enctype="multipart/form-data">
+              <input type="text" name="id"   v-model="change_custom_ID" style="display: none;"/>
+                <input type="file" name="file" style="display: none;" ref="uploadimg"/>
+                <button type="submit" ref="change_uploadRef" style="display: none;">隐藏按钮</button>
+          </form>
+          <n-button type="primary"  @click="updateFile" >
+     上传文件
+    </n-button>
+          <n-button type="primary"  @click="change_action" >
+     修改
+    </n-button>
+    <n-button type="primary"  @click="change_open = false" >
+     返回
+    </n-button>
+          <iframe  name="result-frame" style="display: none;"></iframe>
+     </div>
+    </div>
+  </div>
+</Transition>
+</Teleport>
+      </template>
+      
+      <script>
+      import custom_Data from "./custom_Data.vue";
+      import { defineComponent,ref,onMounted,nextTick, watch} from 'vue';
+      import { useMessage } from 'naive-ui'
+      import axios from "axios";
+
+      export default defineComponent({
+        data(){
+        return{
+          custom_ID: '',
+          custom_title:'',
+          custom_description:'',
+          change_custom_ID: '',
+          change_custom_title:'',
+          change_custom_description:'',
+          addBannersChange: true,
+          message: useMessage(),
+          change_open: false
+        }
+        },
+        components:{
+          custom_Data
+        },
+        methods:{
+        update_action(){
+          nextTick();
+          //进行提交操作
+          console.log("提交");
+          axios.post('http://127.0.0.1:5000/admin/custom',{
+    title: this.custom_title,
+    description: this.custom_description
+}) .then( (response)=> {
+    if(response.data.status_code != 0){
+      this.message.warning(response.data.status_msg);
+    }else{
+      //取得id提交表单
+      this.custom_ID = ref(response.data.img_id);
+      this.$nextTick(()=>{
+        console.log("dom执行了");
+        this.$refs.uploadRef.click();
+        //刷新页面操作,使得监听器知道改变了状态
+        this.addBannersChange = !this.addBannersChange
+      })
+      this.custom_ID='';
+      this.custom_title='';
+      this.custom_description='';
+      this.message.success(response.data.status_msg);
+    }
+  })
+  .catch(function (error) {
+    this.message.warning(error);
+  });
+        },
+        updateFile(){
+          this.$nextTick(()=>{
+            this.$refs.uploadimg.click();
+          })
+        },
+        //修改操作
+        change_action(){
+          nextTick()
+          axios.post('http://127.0.0.1:5000/admin/custom/change',{
+    id: this.change_custom_ID,
+    title: this.change_custom_title,
+    description: this.change_custom_description
+})
+  .then( (response)=> {
+    if(response.data.status_code != 0){
+      this.message.warning(response.data.status_msg);
+    }else{
+      //提交图片并且刷新页面
+      this.$nextTick(()=>{
+        this.$refs.change_uploadRef.click();
+        //刷新页面操作,使得监听器知道改变了状态
+        this.addBannersChange = !this.addBannersChange
+      })
+      window.location.reload();
+      this.change_custom_ID='';
+      this.change_custom_title='';
+      this.change_custom_description='';
+      this.message.success(response.data.status_msg);
+    }
+  })
+  .catch(function (error) {
+    this.message.warning(error);
+  });
+        }
+        },
+        setup(){
+          const change_uploadRef = ref(null)
+          const uploadRef =ref(null);
+          const uploadimg =ref(null);
+          onMounted (()=>{
+            console.log(change_uploadRef.value);
+            console.log(uploadRef.value);
+            console.log(uploadimg.value);
+          })
+          return {
+            uploadRef,
+            uploadimg,
+            change_uploadRef
+          }
+        }
+      });
+      </script>
+      <style>
+      .demo {
+          padding: 22px 24px;
+          border-radius: 8px;
+          box-shadow: var(--vt-shadow-2);
+          margin-bottom: 1.2em;
+          transition: background-color .5s ease;
+      }
+      .modal-demo {
+          position: fixed;
+          z-index: 999;
+          top: 20%;
+          left: 50%;
+          width: auto;
+          margin-left: -150px;
+          background-color:rgb(255, 255, 255);
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 4px 16px #00000026;
+      }
+      .slide-fade-enter-active {
+        transition: all 0.3s ease-out;
+      }
+      
+      .slide-fade-leave-active {
+        transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+      }
+      
+      .slide-fade-enter-from,
+      .slide-fade-leave-to {
+        transform: translateX(20px);
+        opacity: 0;
+      }
+      </style>
+```
 
