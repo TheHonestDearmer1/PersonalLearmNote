@@ -62,7 +62,7 @@ markdown最全数学公式
 
 | 算式 | markdown |
 | --- | --- |
-| limn→+∞nlimn→+∞nlim\_{n\\rightarrow+\\infty} n | \\lim\_{n\\rightarrow+\\infty} n |
+| $\lim_{n\rightarrow+\infty} n$ | \\lim\_{n\\rightarrow+\\infty} n |
 
 **累加**
 
