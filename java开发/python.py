@@ -3,7 +3,14 @@ import re
 
 print("开始执行")
 directory = os.getcwd()  # 获取当前目录
-md_files = [f for f in os.listdir(directory) if f.endswith('.md')]  # 获取所有以.md结尾的文件
+md_files = []  # 存储以.md结尾的文件
+
+# 遍历目录树
+for root, dirs, files in os.walk(directory):
+    for file in files:
+        if file.endswith('.md'):  # 只处理以.md结尾的文件
+            file_path = os.path.join(root, file)
+            md_files.append(file_path)
 
 replaced = True  # 设置一个标志变量，用于判断是否替换成功
 

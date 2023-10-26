@@ -15,7 +15,7 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
 
 打开软件更新
 
-<img src="https://img-blog.csdnimg.cn/fae3724e93544d2099d6ec85164aae0d.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/fae3724e93544d2099d6ec85164aae0d.png#pic_center](https://img-blog.csdnimg.cn/fae3724e93544d2099d6ec85164aae0d.png#pic_center)
 
 选择Download from-&gt;Other，找到China，选择源。关闭界面等待自动更新源
 
@@ -35,7 +35,7 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
 
 （3）换源：推荐清华或者阿里云的源（根据自己的网去尝试，选择最快的一个）：，选择Ubuntu版本（查看ubuntu版本命令：`cat /etc/issue`）并复制源内容，覆盖`sources.list`文件原来的内容：
 
-<img src="https://img-blog.csdnimg.cn/b1ab9fcd4b9a4ab0a2f19329d0597ffa.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/b1ab9fcd4b9a4ab0a2f19329d0597ffa.png#pic_center](https://img-blog.csdnimg.cn/b1ab9fcd4b9a4ab0a2f19329d0597ffa.png#pic_center)
 
 （4）换过源之后要更新：
 
@@ -50,7 +50,7 @@ wget http://fishros.com/install -O fishros &amp;&amp; . fishros
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/86ba97f1a9ba4177927de8fa8b411318.png#pic_center" alt="在这里插入图片描述"> 选择5一件安装，安装完记得更新：
+![https://img-blog.csdnimg.cn/86ba97f1a9ba4177927de8fa8b411318.png#pic_center](https://img-blog.csdnimg.cn/86ba97f1a9ba4177927de8fa8b411318.png#pic_center) 选择5一件安装，安装完记得更新：
 
 >  
  sudo apt-get update 
@@ -67,9 +67,9 @@ ubuntu-drivers devices
 
 显示电脑上可用的nvidia驱动，只需要安装推荐的版本即可（后面有`recommend`字样）
 
-<img src="https://img-blog.csdnimg.cn/fbbb6953be594c90b6824cf34fcfb827.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/fbbb6953be594c90b6824cf34fcfb827.png#pic_center](https://img-blog.csdnimg.cn/fbbb6953be594c90b6824cf34fcfb827.png#pic_center)
 - 打开电脑里的软件和更新app
-<img src="https://img-blog.csdnimg.cn/63fe91cd11a84ff5b7d692fe59e8879b.png" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/63fe91cd11a84ff5b7d692fe59e8879b.png](https://img-blog.csdnimg.cn/63fe91cd11a84ff5b7d692fe59e8879b.png)
 
 来到附加驱动这个页面，选择刚刚看到的`recommand`的驱动，点击应用更改，等待安装完成。 也可以手动安装：
 
@@ -87,7 +87,7 @@ nvidia-smi
 
 出现下面图中显示則安裝成功：
 
-<img src="https://img-blog.csdnimg.cn/defb6feaa7e04aaca1a3a5722f41d3b9.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/defb6feaa7e04aaca1a3a5722f41d3b9.png#pic_center](https://img-blog.csdnimg.cn/defb6feaa7e04aaca1a3a5722f41d3b9.png#pic_center)
 
 ### 2.1 解决显卡驱动安装的错误
 
@@ -131,7 +131,7 @@ dpkg --get-selections|grep linux
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/aa6c4c0b6f69479a82d1a72c71dd71d4.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/aa6c4c0b6f69479a82d1a72c71dd71d4.png#pic_center](https://img-blog.csdnimg.cn/aa6c4c0b6f69479a82d1a72c71dd71d4.png#pic_center)
 
 删除不需要的内核，后面内容从上图复制
 
@@ -159,7 +159,7 @@ sudo dpkg -P linux-***-*.*.*-**-***
 
 ### 3.1 安装
 
-打开`language support`，第一次进入时可能会提醒你安装一些语言，同意并输入密码等待安装完成即可，默认的输入法是`IBus`： <img src="https://img-blog.csdnimg.cn/c5a69722efec4585b6086c4ddf2ded78.png" alt="请添加图片描述"> 选择`Install/Remove Languages`，找到中文简体勾选并应用： <img src="https://img-blog.csdnimg.cn/366d8d4f4c81482d857f9de704cf578c.png" alt="请添加图片描述"> 打开设置找到`Region&amp;Language`，点击+添加输入法： <img src="https://img-blog.csdnimg.cn/f7c55e6c5c5f4a2b994c58b975aec798.png" alt="请添加图片描述"> 点击Chinese，选择智能拼音添加（如果没有重启电脑就可以），输入法切换快捷键是win+space，而切换语言是shift <img src="https://img-blog.csdnimg.cn/3edafeda80884dd2a32909189f67019b.png" alt="请添加图片描述"> <img src="https://img-blog.csdnimg.cn/577b717b98b4466784047296e85dc9a2.png" alt="请添加图片描述">
+打开`language support`，第一次进入时可能会提醒你安装一些语言，同意并输入密码等待安装完成即可，默认的输入法是`IBus`： ![https://img-blog.csdnimg.cn/c5a69722efec4585b6086c4ddf2ded78.png](https://img-blog.csdnimg.cn/c5a69722efec4585b6086c4ddf2ded78.png) 选择`Install/Remove Languages`，找到中文简体勾选并应用： ![https://img-blog.csdnimg.cn/366d8d4f4c81482d857f9de704cf578c.png](https://img-blog.csdnimg.cn/366d8d4f4c81482d857f9de704cf578c.png) 打开设置找到`Region&amp;Language`，点击+添加输入法： ![https://img-blog.csdnimg.cn/f7c55e6c5c5f4a2b994c58b975aec798.png](https://img-blog.csdnimg.cn/f7c55e6c5c5f4a2b994c58b975aec798.png) 点击Chinese，选择智能拼音添加（如果没有重启电脑就可以），输入法切换快捷键是win+space，而切换语言是shift ![https://img-blog.csdnimg.cn/3edafeda80884dd2a32909189f67019b.png](https://img-blog.csdnimg.cn/3edafeda80884dd2a32909189f67019b.png) ![https://img-blog.csdnimg.cn/577b717b98b4466784047296e85dc9a2.png](https://img-blog.csdnimg.cn/577b717b98b4466784047296e85dc9a2.png)
 
 ### 3.2 解决键盘短暂失灵和延迟的问题
 
@@ -193,7 +193,7 @@ sudo cp -r ibus_hsy.desktop /usr/share/applications
 
 然后就能在软件中心找到它了，在左下角软件列表中将其添加到任务栏：
 
-<img src="https://img-blog.csdnimg.cn/0039e79898294b8ebb72657abdc6bdf3.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/0039e79898294b8ebb72657abdc6bdf3.png#pic_center](https://img-blog.csdnimg.cn/0039e79898294b8ebb72657abdc6bdf3.png#pic_center)
 
 ## 四、双系统时间同步
 
@@ -260,7 +260,7 @@ sudo ./install.sh
 
 ```
 
-按照提示选择主题、颜色和分辨率即可完成安装 <img src="https://img-blog.csdnimg.cn/525d24b2e445401999ac992ed0960deb.png#pic_center" alt="在这里插入图片描述"> 法二：去这个地址：，下载主题，下载解压完成后，执行命令：
+按照提示选择主题、颜色和分辨率即可完成安装 ![https://img-blog.csdnimg.cn/525d24b2e445401999ac992ed0960deb.png#pic_center](https://img-blog.csdnimg.cn/525d24b2e445401999ac992ed0960deb.png#pic_center) 法二：去这个地址：，下载主题，下载解压完成后，执行命令：
 
 ```
 sudo chmod a+x install.sh
@@ -270,7 +270,7 @@ sudo chmod a+x install.sh
 
 我安装的`Vimix-1080p`效果如下
 
-<img src="https://img-blog.csdnimg.cn/4ff69459ce894753b7d9c2c1cc745da2.jpeg#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/4ff69459ce894753b7d9c2c1cc745da2.jpeg#pic_center](https://img-blog.csdnimg.cn/4ff69459ce894753b7d9c2c1cc745da2.jpeg#pic_center)
 
 ## 六、系统卡死的处理办法
 
@@ -289,9 +289,9 @@ sudo apt-get install gnome-shell-extensions
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/4abfd8bb3ecd4559996ec07251e4ac56.png#pic_center" alt="在这里插入图片描述"> 重启gnome：按Alt+F2进入命令窗口，输入r，并回车。点击extensions选项，把User themes打开（若无法打开先重启电脑）。
+![https://img-blog.csdnimg.cn/4abfd8bb3ecd4559996ec07251e4ac56.png#pic_center](https://img-blog.csdnimg.cn/4abfd8bb3ecd4559996ec07251e4ac56.png#pic_center) 重启gnome：按Alt+F2进入命令窗口，输入r，并回车。点击extensions选项，把User themes打开（若无法打开先重启电脑）。
 
-<img src="https://img-blog.csdnimg.cn/d19f5d07869e4acc9937bf31707d8f93.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/d19f5d07869e4acc9937bf31707d8f93.png#pic_center](https://img-blog.csdnimg.cn/d19f5d07869e4acc9937bf31707d8f93.png#pic_center)
 
 下载主题网站，可以选择各种主题、壁纸、鼠标样式、Dock样式、图标主题，将下载好的主题文件解压放到路径：`/usr/share/themes`，图标文件放到`/usr/share/icons`，如：
 
@@ -305,11 +305,11 @@ sudo cp -r macOSCursor /usr/share/icons
 
 下面是我最终的效果
 
-<img src="https://img-blog.csdnimg.cn/3890afda1e284da7b74dd728574b7b62.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/3890afda1e284da7b74dd728574b7b62.png#pic_center](https://img-blog.csdnimg.cn/3890afda1e284da7b74dd728574b7b62.png#pic_center)
 
-<img src="https://img-blog.csdnimg.cn/419af70b1632429a8e05451f54549849.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/419af70b1632429a8e05451f54549849.png#pic_center](https://img-blog.csdnimg.cn/419af70b1632429a8e05451f54549849.png#pic_center)
 
-<img src="https://img-blog.csdnimg.cn/182bc59a41084380a73a4d37a013c083.png#pic_center" alt="在这里插入图片描述"> 如果要卸载某个主题，cd进目录直接删除文件夹就行（sudo） 更多自定义内容等待你去探索吧
+![https://img-blog.csdnimg.cn/182bc59a41084380a73a4d37a013c083.png#pic_center](https://img-blog.csdnimg.cn/182bc59a41084380a73a4d37a013c083.png#pic_center) 如果要卸载某个主题，cd进目录直接删除文件夹就行（sudo） 更多自定义内容等待你去探索吧
 
 ## 八、自动挂载Windows盘
 
@@ -327,7 +327,7 @@ sudo blkid
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/3df720a559054eab9ee82b2e27295ad2.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/3df720a559054eab9ee82b2e27295ad2.png#pic_center](https://img-blog.csdnimg.cn/3df720a559054eab9ee82b2e27295ad2.png#pic_center)
 
 例如我要挂载windows下的两个盘，名称分别为Data和SLAMData，复制他们两个的UUID，在`/etc/fstab`中添加两句（UUID，挂载位置-zard是我的用户名，挂载磁盘类型：linux分区一般为ext4，windows分区一般为ntfs，挂载参数：一般为defaults`后来没有权限修改文件夹，这里又改成了rw-读写`，以及是否进行开机的磁盘检查）：
 
@@ -337,7 +337,7 @@ UUID=B0121BFB121BC56E /media/zard/SLAMData  ntfs     defaults       0       2
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/ad6c42d7bb2b4424b747e5f92d34da31.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/ad6c42d7bb2b4424b747e5f92d34da31.png#pic_center](https://img-blog.csdnimg.cn/ad6c42d7bb2b4424b747e5f92d34da31.png#pic_center)
 
 添加完之后重启就会自动挂载这两个盘
 
@@ -495,7 +495,7 @@ uname -a
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/b3420a49ed22421b844568779c5003a2.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/b3420a49ed22421b844568779c5003a2.png#pic_center](https://img-blog.csdnimg.cn/b3420a49ed22421b844568779c5003a2.png#pic_center)
 
 ## 十三、清理日志以及无用包
 
@@ -704,7 +704,7 @@ sudo apt-get remove com.qq.weixin.deepin:i386
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/085c400c4d38444cbc05bae090651cfc.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/085c400c4d38444cbc05bae090651cfc.png#pic_center](https://img-blog.csdnimg.cn/085c400c4d38444cbc05bae090651cfc.png#pic_center)
 
 `dpkg -l | grep weixin`搜不到就换成`dpkg -l | grep wechat`
 
@@ -724,7 +724,7 @@ sudo apt remove deepin-wine-helper:i386 deepin-wine6-stable deepin-wine6-stable-
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/7935618de2424ef9ac0c806afb5fa5bb.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/7935618de2424ef9ac0c806afb5fa5bb.png#pic_center](https://img-blog.csdnimg.cn/7935618de2424ef9ac0c806afb5fa5bb.png#pic_center)
 
 ### 17.2 安裝与卸载QQ
 
@@ -735,7 +735,7 @@ sudo dpkg -i linuxqq_3.1.1-11223_amd64.deb
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/25c62a311fa54ebeb9db405bfe3dcd67.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/25c62a311fa54ebeb9db405bfe3dcd67.png#pic_center](https://img-blog.csdnimg.cn/25c62a311fa54ebeb9db405bfe3dcd67.png#pic_center)
 
 通过`sudo dpkg -l`查找：
 
@@ -744,7 +744,7 @@ sudo dpkg -l | grep qq
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/5356706ac25a4d82ad2a9a15262c45de.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/5356706ac25a4d82ad2a9a15262c45de.png#pic_center](https://img-blog.csdnimg.cn/5356706ac25a4d82ad2a9a15262c45de.png#pic_center)
 
 然后卸载：
 
@@ -764,11 +764,11 @@ sudo apt-get -f install
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/f0accb8239544c558c806717aacfcba0.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/f0accb8239544c558c806717aacfcba0.png#pic_center](https://img-blog.csdnimg.cn/f0accb8239544c558c806717aacfcba0.png#pic_center)
 
 ### 17.4 安裝VScode
 
-（1）下载安装包 进入VSCode官网 ，下载`Linux x64.deb`版本 <img src="https://img-blog.csdnimg.cn/2af9928b6e3448118310719c6a6a3a54.png" alt="在这里插入图片描述"> （2）双击安装包安装： <img src="https://img-blog.csdnimg.cn/1d48018c8063491ba511f23cc42ee024.png" alt="在这里插入图片描述">
+（1）下载安装包 进入VSCode官网 ，下载`Linux x64.deb`版本 ![https://img-blog.csdnimg.cn/2af9928b6e3448118310719c6a6a3a54.png](https://img-blog.csdnimg.cn/2af9928b6e3448118310719c6a6a3a54.png) （2）双击安装包安装： ![https://img-blog.csdnimg.cn/1d48018c8063491ba511f23cc42ee024.png](https://img-blog.csdnimg.cn/1d48018c8063491ba511f23cc42ee024.png)
 
 （3）安装插件
 
@@ -781,7 +781,7 @@ Prettier-Code formatter、 vscode-drawio
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/80e7e3f2af0941d5ae25f60257a748f7.png" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/80e7e3f2af0941d5ae25f60257a748f7.png](https://img-blog.csdnimg.cn/80e7e3f2af0941d5ae25f60257a748f7.png)
 
 （4）减小Ipch缓存： `Ipch`：这些文件是Visual Studio用来保存预编译版的头文件和Intellisense用的。如果删除后，重新加载项目会重建这些文件，但VSCode中设定范围后就不会产生超过这个数的缓存大小。
 
@@ -801,13 +801,13 @@ sudo apt-get install meld
 
 ```
 
-选择两个文件夹，蓝色会显示代码改动，双击文件会显示具体哪里有改动： <img src="https://img-blog.csdnimg.cn/9e38c26a41d94141a97d0b71446e5d4d.png#pic_center" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/aa8f25901e8b4d4185e3797bf4c9f5ce.png#pic_center" alt="在这里插入图片描述">
+选择两个文件夹，蓝色会显示代码改动，双击文件会显示具体哪里有改动： ![https://img-blog.csdnimg.cn/9e38c26a41d94141a97d0b71446e5d4d.png#pic_center](https://img-blog.csdnimg.cn/9e38c26a41d94141a97d0b71446e5d4d.png#pic_center)![https://img-blog.csdnimg.cn/aa8f25901e8b4d4185e3797bf4c9f5ce.png#pic_center](https://img-blog.csdnimg.cn/aa8f25901e8b4d4185e3797bf4c9f5ce.png#pic_center)
 
 ### 17.6 安裝WPS
 
 （1）打开官网，选择Linux版本（Deb格式For X64）：
 
-<img src="https://img-blog.csdnimg.cn/da950bfa66a344c6a848c4000a0a0a50.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/da950bfa66a344c6a848c4000a0a0a50.png#pic_center](https://img-blog.csdnimg.cn/da950bfa66a344c6a848c4000a0a0a50.png#pic_center)
 
 （2）安装安装包：
 
@@ -834,7 +834,7 @@ sudo cp * /usr/share/fonts
 
 虽然安装了wps，但是Linux的wps无法对PDF进行标注等编辑操作，因此我们安装实用的福昕DPF阅读器 （1）在下载安装文件，点击下载网页会自动获取系统适合的安装包
 
-<img src="https://img-blog.csdnimg.cn/82ed19725d4e4ce198eb489dc5341633.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/82ed19725d4e4ce198eb489dc5341633.png#pic_center](https://img-blog.csdnimg.cn/82ed19725d4e4ce198eb489dc5341633.png#pic_center)
 
 （2）解压文件后运行安装文件（Tab补自己的，不要手打，不要复制我的），选择安装路径之后一路确认：
 
@@ -843,11 +843,11 @@ sudo cp * /usr/share/fonts
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/df8891faabf8422d8c3373825205dbe5.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/df8891faabf8422d8c3373825205dbe5.png#pic_center](https://img-blog.csdnimg.cn/df8891faabf8422d8c3373825205dbe5.png#pic_center)
 
 （3）安装后如果是英文，在help中切换语言并重启，接下来就可以愉快的使用了
 
-<img src="https://img-blog.csdnimg.cn/745e640d06ab4d3fac76649bf2e6458e.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/745e640d06ab4d3fac76649bf2e6458e.png#pic_center](https://img-blog.csdnimg.cn/745e640d06ab4d3fac76649bf2e6458e.png#pic_center)
 
 （4）**注意**，可能会遇到打开pdf文件之后把系统卡死的情况，尤其是学位论文和书籍这种大的PDF，这时候使用上面的方法重启系统，千万不要强制关机。重启之后，到 `~/opt/foxitsoftware/foxitreader/fxplugins` 目录下删除 libupdater.so：
 
@@ -910,7 +910,7 @@ ln -s /opt/zotero/zotero.desktop ~/.local/share/applications/zotero.desktop
 
 ```
 
-（7）接下来就能找到这个软件并使用啦！ <img src="https://img-blog.csdnimg.cn/27d1f9fd389442509d33961089da6530.png#pic_center" alt="在这里插入图片描述"> （8）安装翻译插件 下载地址：，点右侧release下载`*.xpi`文件，然后打开Zotero中 “`Tools -&gt; Add-ons`”，选择 `Install add-on from file…`，选择`.xpi`插件安装完成。当阅读外文文献时，选中内容自动翻译。支持谷歌、有道、百度、Deepl等： <img src="https://img-blog.csdnimg.cn/9befe7b034b54e6095cf756d0aa1a3a6.png#pic_center" alt="在这里插入图片描述"> （9）添加新的引用样式（中国标准GB/T 7714-2015） 首先下载，再选择“编辑——首选项”，弹出“Zotero首选项框”，点击+号添加引文格式： <img src="https://img-blog.csdnimg.cn/2bab77a2c41147abab9d1665ed289e56.png#pic_center" alt="在这里插入图片描述">
+（7）接下来就能找到这个软件并使用啦！ ![https://img-blog.csdnimg.cn/27d1f9fd389442509d33961089da6530.png#pic_center](https://img-blog.csdnimg.cn/27d1f9fd389442509d33961089da6530.png#pic_center) （8）安装翻译插件 下载地址：，点右侧release下载`*.xpi`文件，然后打开Zotero中 “`Tools -&gt; Add-ons`”，选择 `Install add-on from file…`，选择`.xpi`插件安装完成。当阅读外文文献时，选中内容自动翻译。支持谷歌、有道、百度、Deepl等： ![https://img-blog.csdnimg.cn/9befe7b034b54e6095cf756d0aa1a3a6.png#pic_center](https://img-blog.csdnimg.cn/9befe7b034b54e6095cf756d0aa1a3a6.png#pic_center) （9）添加新的引用样式（中国标准GB/T 7714-2015） 首先下载，再选择“编辑——首选项”，弹出“Zotero首选项框”，点击+号添加引文格式： ![https://img-blog.csdnimg.cn/2bab77a2c41147abab9d1665ed289e56.png#pic_center](https://img-blog.csdnimg.cn/2bab77a2c41147abab9d1665ed289e56.png#pic_center)
 
 ### 17.10 安装有道云笔记
 
@@ -921,7 +921,7 @@ sudo dpkg -i *.deb
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/0cf199fb51b34ede991ee9d70b1989c0.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/0cf199fb51b34ede991ee9d70b1989c0.png#pic_center](https://img-blog.csdnimg.cn/0cf199fb51b34ede991ee9d70b1989c0.png#pic_center)
 
 ### 17.11 安装远程控制软件ToDesk
 
@@ -932,11 +932,11 @@ sudo dpkg -i todesk-v4.3.1.0-amd64.deb
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/349bd115e886456eadd15eeee5affa3c.png#pic_center" alt="在这里插入图片描述">
+![https://img-blog.csdnimg.cn/349bd115e886456eadd15eeee5affa3c.png#pic_center](https://img-blog.csdnimg.cn/349bd115e886456eadd15eeee5affa3c.png#pic_center)
 
 ### 17.12 安装画图软件Kolourpaintr和录屏软件Kazam
 
-打开Ubuntu自带的软件商店（software），左上角搜索Kolourpaint： <img src="https://img-blog.csdnimg.cn/94f765c2c01c4925af98c4b40d65c7fd.png#pic_center" alt="在这里插入图片描述">
+打开Ubuntu自带的软件商店（software），左上角搜索Kolourpaint： ![https://img-blog.csdnimg.cn/94f765c2c01c4925af98c4b40d65c7fd.png#pic_center](https://img-blog.csdnimg.cn/94f765c2c01c4925af98c4b40d65c7fd.png#pic_center)
 
 注： 如果报错：报错“unable to install typora: status-code=409 kind=snap-change-conflict，参考： 如果软件商店没了，重新安装：
 
@@ -945,9 +945,9 @@ sudo apt-get install gnome-software
 
 ```
 
-同样地，Kazam： <img src="https://img-blog.csdnimg.cn/166557e3d3fe474b8333b7f27e6dea70.png#pic_center" alt="在这里插入图片描述"> 可以设置录屏范围和准备时间（秒），按Capture开始录制 <img src="https://img-blog.csdnimg.cn/38323e58d45f497b988a3264e51b021f.png#pic_center" alt="在这里插入图片描述">
+同样地，Kazam： ![https://img-blog.csdnimg.cn/166557e3d3fe474b8333b7f27e6dea70.png#pic_center](https://img-blog.csdnimg.cn/166557e3d3fe474b8333b7f27e6dea70.png#pic_center) 可以设置录屏范围和准备时间（秒），按Capture开始录制 ![https://img-blog.csdnimg.cn/38323e58d45f497b988a3264e51b021f.png#pic_center](https://img-blog.csdnimg.cn/38323e58d45f497b988a3264e51b021f.png#pic_center)
 
-打开左上角file-&gt;preferences设置帧率和输出位置： <img src="https://img-blog.csdnimg.cn/780a1b379c88481c9c709016916ac28e.png#pic_center" alt="在这里插入图片描述">
+打开左上角file-&gt;preferences设置帧率和输出位置： ![https://img-blog.csdnimg.cn/780a1b379c88481c9c709016916ac28e.png#pic_center](https://img-blog.csdnimg.cn/780a1b379c88481c9c709016916ac28e.png#pic_center)
 
 ### 17.13 安装Github桌面版
 
@@ -958,4 +958,4 @@ wget http://fishros.com/install -O fishros &amp;&amp; . fishros
 
 ```
 
-选择2自动安装： <img src="https://img-blog.csdnimg.cn/1dbc864f42244b71a00012167a26e3a1.png#pic_center" alt="在这里插入图片描述"> <img src="https://img-blog.csdnimg.cn/a12d181b7be24c2db2b742188252aba9.png#pic_center" alt="在这里插入图片描述">
+选择2自动安装： ![https://img-blog.csdnimg.cn/1dbc864f42244b71a00012167a26e3a1.png#pic_center](https://img-blog.csdnimg.cn/1dbc864f42244b71a00012167a26e3a1.png#pic_center) ![https://img-blog.csdnimg.cn/a12d181b7be24c2db2b742188252aba9.png#pic_center](https://img-blog.csdnimg.cn/a12d181b7be24c2db2b742188252aba9.png#pic_center)
