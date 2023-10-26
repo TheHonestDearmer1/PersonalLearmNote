@@ -82,7 +82,7 @@
 
   测试代码需要在 `test/java` 目录下创建包及测试用例。项目结构如下：
 
-  <img src="assets/image-20210729112907106.png" alt="image-20210729112907106" style="zoom:80%;" />
+  ![assets/image-20210729112907106.png](assets/image-20210729112907106.png)
 
 * 安装 MyBatisX 插件
 
@@ -97,13 +97,13 @@
 
     点击 `file` ，选择 `settings` ，就能看到如下图所示界面
 
-    <img src="assets/image-20210729113304743.png" alt="image-20210729113304743" style="zoom:80%;" />
+    ![assets/image-20210729113304743.png](assets/image-20210729113304743.png)
 
     > 注意：安装完毕后需要重启IDEA
 
   * 插件效果
 
-    <img src="assets/image-20210729164450524.png" alt="image-20210729164450524" style="zoom:70%;" />
+    ![assets/image-20210729164450524.png](assets/image-20210729164450524.png)
 
     红色头绳的表示映射配置文件，蓝色头绳的表示mapper接口。在mapper接口点击红色头绳的小鸟图标会自动跳转到对应的映射配置文件，在映射配置文件中点击蓝色头绳的小鸟图标会自动跳转到对应的mapper接口。也可以在mapper接口中定义方法，自动生成映射配置文件中的 `statement` ，如图所示
 
@@ -111,7 +111,7 @@
 
 ### 1.2  查询所有数据
 
-<img src="assets/image-20210729165724838.png" alt="image-20210729165724838" style="zoom:80%;" />
+![assets/image-20210729165724838.png](assets/image-20210729165724838.png)
 
 如上图所示就页面上展示的数据，而这些数据需要从数据库进行查询。接下来我们就来讲查询所有数据功能，而实现该功能我们分以下步骤进行实现：
 
@@ -121,13 +121,13 @@
 
     查询所有数据功能是不需要根据任何条件进行查询的，所以此方法不需要参数。
 
-    <img src="assets/image-20210729171208737.png" alt="image-20210729171208737" style="zoom:80%;" />
+    ![assets/image-20210729171208737.png](assets/image-20210729171208737.png)
 
   * 结果：List<Brand>
 
     我们会将查询出来的每一条数据封装成一个 `Brand` 对象，而多条数据封装多个 `Brand` 对象，需要将这些对象封装到List集合中返回。
 
-    <img src="assets/image-20210729171146911.png" alt="image-20210729171146911" style="zoom:80%;" />
+    ![assets/image-20210729171146911.png](assets/image-20210729171146911.png)
 
   * 执行方法、测试
 
@@ -208,7 +208,7 @@ public void testSelectAll() throws IOException {
 
 从上面结果可以看到 `brandName` 和 `companyName` 这两个属性的数据没有封装成功，查询 实体类 和 表中的字段 发现，在实体类中属性名是 `brandName` 和 `companyName` ，而表中的字段名为 `brand_name` 和 `company_name`，如下图所示 。那么我们只需要保持这两部分的名称一致这个问题就迎刃而解。
 
-<img src="assets/image-20210729173210433.png" alt="image-20210729173210433" style="zoom:80%;" />
+![assets/image-20210729173210433.png](assets/image-20210729173210433.png)
 
 我们可以在写sql语句时给这两个字段起别名，将别名定义成和属性名一致即可。
 
@@ -316,7 +316,7 @@ public void testSelectAll() throws IOException {
 
 ### 1.3  查询详情
 
-<img src="assets/image-20210729180118287.png" alt="image-20210729180118287" style="zoom:80%;" />
+![assets/image-20210729180118287.png](assets/image-20210729180118287.png)
 
 有些数据的属性比较多，在页面表格中无法全部实现，而只会显示部分，而其他属性数据的查询可以通过 `查看详情` 来进行查询，如上图所示。
 
@@ -324,7 +324,7 @@ public void testSelectAll() throws IOException {
 
 * 编写接口方法：Mapper接口
 
-  <img src="assets/image-20210729180604529.png" alt="image-20210729180604529" style="zoom:80%;" />
+  ![assets/image-20210729180604529.png](assets/image-20210729180604529.png)
 
   * 参数：id
 
@@ -336,7 +336,7 @@ public void testSelectAll() throws IOException {
 
 * 编写SQL语句：SQL映射文件
 
-  <img src="assets/image-20210729180709318.png" alt="image-20210729180709318" style="zoom:80%;" />
+  ![assets/image-20210729180709318.png](assets/image-20210729180709318.png)
 
 * 执行方法、进行测试
 
@@ -396,7 +396,7 @@ public void testSelectById() throws IOException {
 
 执行测试方法结果如下：
 
-<img src="assets/image-20210729182223137.png" alt="image-20210729182223137" style="zoom:70%;" />
+![assets/image-20210729182223137.png](assets/image-20210729182223137.png)
 
 #### 1.3.4  参数占位符
 
@@ -417,7 +417,7 @@ mybatis提供了两种参数占位符：
 
   重新运行查看结果如下：
 
-  <img src="assets/image-20210729184156019.png" alt="image-20210729184156019" style="zoom:70%;" />
+  ![assets/image-20210729184156019.png](assets/image-20210729184156019.png)
 
 > ==注意：==从上面两个例子可以看出，以后开发我们使用 #{} 参数占位符。
 
@@ -436,7 +436,7 @@ mybatis提供了两种参数占位符：
 
 以后肯定会在SQL语句中写一下特殊字符，比如某一个字段大于某个值，如下图
 
-<img src="assets/image-20210729184756094.png" alt="image-20210729184756094" style="zoom:80%;" />
+![assets/image-20210729184756094.png](assets/image-20210729184756094.png)
 
 可以看出报错了，因为映射配置文件是xml类型的问题，而 > < 等这些字符在xml中有特殊含义，所以此时我们需要将这些符号进行转义，可以使用以下两种方式进行转义
 
@@ -444,11 +444,11 @@ mybatis提供了两种参数占位符：
 
   下图的 `&lt;` 就是 `<` 的转义字符。
 
-  <img src="assets/image-20210729185128686.png" alt="image-20210729185128686" style="zoom:60%;" />
+  ![assets/image-20210729185128686.png](assets/image-20210729185128686.png)
 
 * <![CDATA[内容]]>
 
-  <img src="assets/image-20210729185030318.png" alt="image-20210729185030318" style="zoom:60%;" />
+  ![assets/image-20210729185030318.png](assets/image-20210729185030318.png)
 
 ### 1.4  多条件查询
 
@@ -461,7 +461,7 @@ mybatis提供了两种参数占位符：
 
 条件字段 `企业名称`  和 `品牌名称` 需要进行模糊查询，所以条件应该是：
 
-<img src="assets/image-20210729204458815.png" alt="image-20210729204458815" style="zoom:70%;" />
+![assets/image-20210729204458815.png](assets/image-20210729204458815.png)
 
 简单的分析后，我们来看功能实现的步骤：
 
@@ -667,7 +667,7 @@ select * from tb_brand where status = #{status} and company_name like #{companNa
 
 ### 1.5 单个条件（动态SQL，choose标签）
 
-<img src="assets/image-20210729213613029.png" alt="image-20210729213613029" style="zoom:80%;" />
+![assets/image-20210729213613029.png](assets/image-20210729213613029.png)
 
 如上图所示，在查询时只能选择 `品牌名称`、`当前状态`、`企业名称` 这三个条件中的一个，但是用户到底选择哪儿一个，我们并不能确定。这种就属于单个条件的动态SQL语句。 
 
@@ -753,23 +753,23 @@ public void testSelectByConditionSingle() throws IOException {
 
 执行测试方法结果如下：
 
-<img src="assets/image-20210729214548756.png" alt="image-20210729214548756" style="zoom:70%;" />
+![assets/image-20210729214548756.png](assets/image-20210729214548756.png)
 
 ### 1.6  添加数据
 
-<img src="assets/image-20210729214917317.png" alt="image-20210729214917317" style="zoom:70%;" />
+![assets/image-20210729214917317.png](assets/image-20210729214917317.png)
 
 如上图是我们平时在添加数据时展示的页面，而我们在该页面输入想要的数据后添加 `提交` 按钮，就会将这些数据添加到数据库中。接下来我们就来实现添加数据的操作。
 
 * 编写接口方法
 
-  <img src="assets/image-20210729215351651.png" alt="image-20210729215351651" style="zoom:80%;" />
+  ![assets/image-20210729215351651.png](assets/image-20210729215351651.png)
 
   参数：除了id之外的所有的数据。id对应的是表中主键值，而主键我们是 ==自动增长== 生成的。
 
 * 编写SQL语句
 
-  <img src="assets/image-20210729215537167.png" alt="image-20210729215537167" style="zoom:80%;" />
+  ![assets/image-20210729215537167.png](assets/image-20210729215537167.png)
 
 * 编写测试方法并执行
 
@@ -847,17 +847,17 @@ public void testAdd() throws IOException {
 
 比如：添加订单和订单项，如下图就是京东上的订单
 
-<img src="assets/image-20210729221207962.png" alt="image-20210729221207962" style="zoom:80%;" />
+![assets/image-20210729221207962.png](assets/image-20210729221207962.png)
 
 订单数据存储在订单表中，订单项存储在订单项表中。
 
 * 添加订单数据
 
-  <img src="assets/image-20210729221049462.png" alt="image-20210729221049462" style="zoom:80%;" />
+  ![assets/image-20210729221049462.png](assets/image-20210729221049462.png)
 
 * 添加订单项数据，订单项中需要设置所属订单的id
 
-  <img src="assets/image-20210729221058898.png" alt="image-20210729221058898" style="zoom:80%;" />
+  ![assets/image-20210729221058898.png](assets/image-20210729221058898.png)
 
 明白了什么时候 `主键返回` 。接下来我们简单模拟一下，在添加完数据后打印id属性值，能打印出来说明已经获取到了。
 
@@ -877,7 +877,7 @@ public void testAdd() throws IOException {
 
 ### 1.7  修改
 
-<img src="assets/image-20210729222642700.png" alt="image-20210729222642700" style="zoom:80%;" />
+![assets/image-20210729222642700.png](assets/image-20210729222642700.png)
 
 如图所示是修改页面，用户在该页面书写需要修改的数据，点击 `提交` 按钮，就会将数据库中对应的数据进行修改。注意一点，如果哪儿个输入框没有输入内容，我们是将表中数据对应字段值替换为空白还是保留字段之前的值？答案肯定是保留之前的数据。
 
@@ -1036,7 +1036,7 @@ public void testDeleteById() throws IOException {
 
 ### 1.9  批量删除
 
-<img src="assets/image-20210729225713894.png" alt="image-20210729225713894" style="zoom:70%;" />
+![assets/image-20210729225713894.png](assets/image-20210729225713894.png)
 
 
 
@@ -1200,7 +1200,7 @@ User select(@Param("username") String username,@Param("password") String passwor
 
 * 运行代码结果如下
 
-  <img src="assets/image-20210805230303461.png" alt="image-20210805230303461" style="zoom:80%;" />
+  ![assets/image-20210805230303461.png](assets/image-20210805230303461.png)
 
   在映射配合文件的SQL语句中使用用 `arg` 开头的和 `param` 书写，代码的可读性会变的特别差，此时可以使用 `@Param` 注解。
 
@@ -1326,11 +1326,11 @@ Mybatis 针对 CURD 操作都提供了对应的注解，已经做到见名知意
 
 * 将之前案例中 `UserMapper.xml` 中的 根据id查询数据 的 `statement` 注释掉
 
-  <img src="assets/image-20210805235229938.png" alt="image-20210805235229938" style="zoom:70%;" />
+  ![assets/image-20210805235229938.png](assets/image-20210805235229938.png)
 
 * 在 `UserMapper` 接口的 `selectById` 方法上添加注解
 
-  <img src="assets/image-20210805235405070.png" alt="image-20210805235405070" style="zoom:70%;" />
+  ![assets/image-20210805235405070.png](assets/image-20210805235405070.png)
 
 * 运行测试程序也能正常查询到数据
 
@@ -1344,7 +1344,7 @@ Mybatis 针对 CURD 操作都提供了对应的注解，已经做到见名知意
 
 而我们之前写的动态 SQL 就是复杂的功能，如果用注解使用的话，就需要使用到 Mybatis 提供的SQL构建器来完成，而对应的代码如下：
 
-<img src="assets/image-20210805234842497.png" alt="image-20210805234842497" style="zoom:70%;" />
+![assets/image-20210805234842497.png](assets/image-20210805234842497.png)
 
 上述代码将java代码和SQL语句融到了一块，使得代码的可读性大幅度降低。
 

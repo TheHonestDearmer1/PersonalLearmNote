@@ -15,7 +15,7 @@
 >   通过Java语言操作数据库，操作表中的数据 
  oracle公司为**了简化、**统一对数据库的操作，定义了一套Java操作数据库的规范，称之为JDBC 
  连接不同的数据库，需要不同的jar包。 
- <img src="assets/image-20211119101546036.png" alt="image-20211119101546036"> 
+ ![assets/image-20211119101546036.png](assets/image-20211119101546036.png) 
 
 
 ### JDBC的本质
