@@ -1198,3 +1198,627 @@ Electron 程序是通过 npm 包创建的。 您应将 Electron 依赖安装到 
 **渲染器进程**(简称渲染器) 负责展示图形内容。 您可以将渲染的网页指向 web 地址或本地 HTML 文件。 渲染器和常规的网页行为很相似，访问的 web API 也相同。
 
 在教程下一节，我们将会学习如何使用 API 给渲染器提权，以及如何在进程间通信。
+
+# 使用预加载脚本
+
+教程目录
+
+这是 Electron 教程的**第三部分**。
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. **[使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)**
+4. [添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)
+5. [打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)
+6. [发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)
+
+## 学习目标
+
+在这部分的教程中，你将会了解什么是预加载脚本，并且学会如何使用预加载脚本来安全地将特权 API 暴露至渲染进程中。 不仅如此，你还会学到如何使用 Electron 的进程间通信 (IPC) 模组来让主进程与渲染进程间进行通信。
+
+## 什么是预加载脚本？
+
+Electron 的主进程是一个拥有着完全操作系统访问权限的 Node.js 环境。 除了 [Electron 模组](https://www.electronjs.org/zh/docs/latest/api/app) 之外，您也可以访问 [Node.js 内置模块](https://nodejs.org/dist/latest/docs/api/) 和所有通过 npm 安装的包。 另一方面，出于安全原因，渲染进程默认跑在网页页面上，而并非 Node.js里。
+
+为了将 Electron 的不同类型的进程桥接在一起，我们需要使用被称为 **预加载** 的特殊脚本。
+
+## 使用预加载脚本来增强渲染器
+
+BrowserWindow 的预加载脚本运行在具有 HTML DOM 和 Node.js、Electron API 的有限子集访问权限的环境中。
+
+::: info 预加载脚本沙盒化
+
+从 Electron 20 开始，预加载脚本默认 **沙盒化** ，不再拥有完整 Node.js 环境的访问权。 实际上，这意味着你只拥有一个 polyfilled 的 `require` 函数，这个函数只能访问一组有限的 API。
+
+| 可用的 API            | 详细信息                                                     |
+| --------------------- | ------------------------------------------------------------ |
+| Electron 模块         | 渲染进程模块                                                 |
+| Node.js 模块          | [`events`](https://nodejs.org/api/events.html)、[`timers`](https://nodejs.org/api/timers.html)、[`url`](https://nodejs.org/api/url.html) |
+| Polyfilled 的全局模块 | [`Buffer`](https://nodejs.org/api/buffer.html)、[`process`](https://www.electronjs.org/zh/docs/latest/api/process)、[`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate)、[`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) |
+
+有关详细信息，请阅读 [沙盒进程](https://www.electronjs.org/zh/docs/latest/tutorial/sandbox) 教程。
+
+:::
+
+与 Chrome 扩展的[内容脚本](https://developer.chrome.com/docs/extensions/mv3/content_scripts/)（Content Script）类似，预加载脚本在渲染器加载网页之前注入。 如果你想为渲染器添加需要特殊权限的功能，可以通过 [contextBridge](https://www.electronjs.org/zh/docs/latest/api/context-bridge) 接口定义 [全局对象](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)。
+
+为了演示这一概念，你将会创建一个将应用中的 Chrome、Node、Electron 版本号暴露至渲染器的预加载脚本
+
+新建一个 `preload.js` 文件。该脚本通过 `versions` 这一全局变量，将 Electron 的 `process.versions` 对象暴露给渲染器。
+
+preload.js
+
+```js
+const { contextBridge } = require('electron')
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron
+  // 除函数之外，我们也可以暴露变量
+})
+```
+
+
+
+为了将脚本附在渲染进程上，在 BrowserWindow 构造器中使用 `webPreferences.preload` 传入脚本的路径。
+
+main.js
+
+```js
+const { app, BrowserWindow } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+})
+```
+
+
+
+INFO
+
+这里使用了两个Node.js概念：
+
+- [`__dirname`](https://nodejs.org/api/modules.html#modules_dirname) 字符串指向当前正在执行的脚本的路径(在本例中，它指向你的项目的根文件夹)。
+- [`path.join`](https://nodejs.org/api/path.html#path_path_join_paths) API 将多个路径联结在一起，创建一个跨平台的路径字符串。
+
+现在渲染器能够全局访问 `versions` 了，让我们快快将里边的信息显示在窗口中。 这个变量不仅可以通过 `window.versions` 访问，也可以很简单地使用 `versions` 来访问。 新建一个 `renderer.js` 脚本， 使用 [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) DOM API 来替换 `id` 属性为 `info` 的 HTML 元素的文本。
+
+renderer.js
+
+```js
+const information = document.getElementById('info')
+information.innerText = `本应用正在使用 Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), 和 Electron (v${versions.electron()})`
+```
+
+
+
+然后请修改你的 `index.html` 文件。加上一个 `id` 属性为 `info` 的全新元素，并且记得加上你的 `renderer.js` 脚本：
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>来自 Electron 渲染器的问好！</title>
+  </head>
+  <body>
+    <h1>来自 Electron 渲染器的问好！</h1>
+    <p>👋</p>
+    <p id="info"></p>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
+```
+
+
+
+做完这几步之后，你的应用应该长这样：
+
+![Electron 应用显示这个应用正在使用 Chrome (v102.0.5005.63)、Node.js (v16.14.2) 和 Electron (v19.0.3)。](img/preload-example-f77948d27686974e427084fa94fe620c.png)
+
+你的代码应该长这样：
+
+[DOCS/FIDDLES/TUTORIAL-PRELOAD (27.0.2)](https://github.com/electron/electron/tree/v27.0.2/docs/fiddles/tutorial-preload)[Open in Fiddle](https://fiddle.electronjs.org/launch?target=electron/v27.0.2/docs/fiddles/tutorial-preload)
+
+- main.js
+- preload.js
+- index.html
+- renderer.js
+
+```js
+const { app, BrowserWindow } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+```
+
+
+
+## 在进程之间通信
+
+我们之前提到，Electron 的主进程和渲染进程有着清楚的分工并且不可互换。 这代表着无论是从渲染进程直接访问 Node.js 接口，亦或者是从主进程访问 HTML 文档对象模型 (DOM)，都是不可能的。
+
+解决这一问题的方法是使用进程间通信 (IPC)。可以使用 Electron 的 `ipcMain` 模块和 `ipcRenderer` 模块来进行进程间通信。 为了从你的网页向主进程发送消息，你可以使用 `ipcMain.handle` 设置一个主进程处理程序（handler），然后在预处理脚本中暴露一个被称为 `ipcRenderer.invoke` 的函数来触发该处理程序（handler）。
+
+我们将向渲染器添加一个叫做 `ping()` 的全局函数来演示这一点。这个函数将返回一个从主进程翻山越岭而来的字符串。
+
+首先，在预处理脚本中设置 `invoke` 调用：
+
+preload.js
+
+```js
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  ping: () => ipcRenderer.invoke('ping')
+  // 除函数之外，我们也可以暴露变量
+})
+```
+
+
+
+IPC 安全
+
+可以注意到我们使用了一个辅助函数来包裹 `ipcRenderer.invoke('ping')` 调用，而并非直接通过 context bridge 暴露 `ipcRenderer` 模块。 你**永远**都不会想要通过预加载直接暴露整个 `ipcRenderer` 模块。 这将使得你的渲染器能够直接向主进程发送任意的 IPC 信息，会使得其成为恶意代码最强有力的攻击媒介。
+
+然后，在主进程中设置你的 `handle` 监听器。 我们在 HTML 文件加载*之前*完成了这些，所以才能保证在你从渲染器发送 `invoke` 调用之前处理程序能够准备就绪。
+
+main.js
+
+```js
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+  win.loadFile('index.html')
+}
+app.whenReady().then(() => {
+  ipcMain.handle('ping', () => 'pong')
+  createWindow()
+})
+```
+
+
+
+将发送器与接收器设置完成之后，现在你可以将信息通过刚刚定义的 `'ping'` 通道从渲染器发送至主进程当中。
+
+renderer.js
+
+```js
+const func = async () => {
+  const response = await window.versions.ping()
+  console.log(response) // 打印 'pong'
+}
+
+func()
+```
+
+
+
+INFO
+
+要了解更详细的关于使用 `ipcRenderer` 和 `ipcMain` 模块的详细说明，请查阅完整的 [进程间通信](https://www.electronjs.org/zh/docs/latest/tutorial/ipc) 指南。
+
+## 摘要
+
+预加载脚本包含在浏览器窗口加载网页之前运行的代码。 其可访问 DOM 接口和 Node.js 环境，并且经常在其中使用 `contextBridge` 接口将特权接口暴露给渲染器。
+
+由于主进程和渲染进程有着完全不同的分工，Electron 应用通常使用预加载脚本来设置进程间通信 (IPC) 接口以在两种进程之间传输任意信息。
+
+在下一部分的教程中，我们将向你展示如何向你的应用中添加更多的功能，之后将向你传授如何向用户分发你的应用。
+
+# 添加功能
+
+教程目录
+
+这是 Electron 教程的 **第四部分**
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. [使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)
+4. **[添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)**
+5. [打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)
+6. [发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)
+
+## 增加应用复杂度
+
+如果你一路跟随本教程下来，你应该已经建立了一个拥有静态用户界面的功能性 Electron 程序。 从这里开始，你可以大概从两个大方向上进行开发：
+
+1. 增加渲染进程的网页应用代码复杂度
+2. 深化与操作系统和 Node.js 的集成
+
+了解这两个大概念之间的区别十分重要。 就第一点而言，Electron 特供的资源是非必要的。 在 Electron 中建立一个漂亮的待办列表只是将你的 Electron BrowserWindow 指向一个漂亮的待办列表网络应用。 说到底，你还是使用在 Web 开发中相同的工具 (HTML, CSS, JavaScript) 来构建你的渲染器 UI。 因此，Electron 的文档不会很详细的探讨如何使用标准的 Web 工具进行开发。
+
+另一方面，Electron 同时提供了丰富的工具集，可以让你和桌面环境整合起来。从建立托盘图标到添加全局的快捷方式，再到显示原生的菜单，都不在话下。 Electron 还赋予你在主进程中访问 Node.js 环境的所有能力。 这组能力使得 Electron 应用能够从浏览器运行网站中脱胎换骨，并且是 Electron 文档的重点。
+
+## How-to 示例
+
+Electron 的文档有着许多教程来帮助你处理更高级的主题和更深的操作系统集成。 要开始使用，请查看 [操作方法示例](https://www.electronjs.org/zh/docs/latest/tutorial/examples) 文档。
+
+请告诉我们哪里有遗漏！
+
+如果你找不到你想找的东西，请在 [GitHub](https://github.com/electron/website/issues/new) 或者是 [Discord 服务器](https://discord.gg/electronjs) 上告诉我们！
+
+## 下一步
+
+在教程的剩余部分，我们将从应用代码转向如何让你的应用从开发者的机器上转移到终端用户的手中。
+
+# 打包您的应用程序
+
+教程目录
+
+以下是 Electron 教程的 **第五部分**
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. [使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)
+4. [添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)
+5. **[打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)**
+6. [发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)
+
+## 学习目标
+
+在本教程的这一部分中，我们将介绍使用 [Electron Forge](https://www.electronforge.io/) 打包和分发应用的基础知识。
+
+## 使用 Electron Forge
+
+Electron 的核心模块中没有捆绑任何用于打包或分发文件的工具。 如果您在开发模式下完成了一个 Electron 应用，需要使用额外的工具来打包应用程序 (也称为**可分发文件**) 并分发给用户 。 可分发文件可以是安装程序 (例如 Windows 上的 MSI) 或者绿色软件 (例如 macOS 上的 `.app` 文件)。
+
+Electron Forge 是一个处理 Electron 应用程序打包与分发的一体化工具。 在工具底层，它将许多现有的 Electron 工具 (例如 [`electron-packager`](https://github.com/electron/electron-packager)、 [`@electron/osx-sign`](https://github.com/electron/osx-sign)、[`electron-winstaller`](https://github.com/electron/windows-installer) 等) 组合到一起，因此您不必费心处理不同系统的打包工作。
+
+### 导入你的项目到 Forge
+
+将 Electron Forge 的 CLI 工具包安装到项目的 `devDependencies` 依赖中，然后使用现成的转化脚本将项目导入至 Electron Forge。
+
+- npm
+- Yarn
+
+```sh
+npm install --save-dev @electron-forge/cli
+npx electron-forge import
+```
+
+
+
+转换脚本完成后，Forge 会将一些脚本添加到您的 `package.json` 文件中。
+
+package.json
+
+```json
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  //...
+```
+
+
+
+CLI 文档
+
+有关 `make` 或其他 Forge API 的更多信息，请查看 [Electron Forge CLI 文档](https://www.electronforge.io/cli#commands)。
+
+您还应该注意到您的 package.json 现在安装了更多的包 在 `devDependencies` 下，以及一个导出配置的新 `forge.config.js` 文件 目的。 您应该在预填充的配置中看到多个makers（生成可分发应用程序包的包），每个目标平台一个。
+
+### 创建一个可分发版本
+
+要创建可分发文件，请使用项目中的 `make` 脚本，该脚本最终运行了 `electron-forge make` 命令。
+
+- npm
+- Yarn
+
+```sh
+npm run make
+```
+
+
+
+该 `make` 命令包含两步：
+
+1. 它将首先运行 `electron-forge package` ，把您的应用程序 代码与 Electron 二进制包结合起来。 完成打包的代码将会被生成到一个特定的文件夹中。
+2. 然后它将使用这个文件夹为每个 maker 配置生成一个可分发文件。
+
+在脚本运行后，您应该看到一个 `out` 文件夹，其中包括可分发文件与一个包含其源码的文件夹。
+
+macOS output example
+
+```plain
+out/
+├── out/make/zip/darwin/x64/my-electron-app-darwin-x64-1.0.0.zip
+├── ...
+└── out/my-electron-app-darwin-x64/my-electron-app.app/Contents/MacOS/my-electron-app
+```
+
+
+
+`out/make` 文件夹中的应用程序应该可以启动了！ 现在，您已经创建了你的第一个 Electron 程序。
+
+可分发文件格式
+
+Electron Forge 通过配置可以为不同的操作系统创建特定格式的可分发文件 (例如 DMG、deb、MSI 等)。 相关配置选项详情，请参阅 Forge 的 [Makers](https://www.electronforge.io/config/makers) 文档。
+
+创建和添加应用程序图标
+
+设置自定义的应用程序图标，需要添加一些额外的配置。 查看 [Forge 的图标教程](https://www.electronforge.io/guides/create-and-add-icons) 了解更多信息。
+
+不使用 ELECTRON FORGE 打包
+
+如果您想手动打包代码，或者是想了解 Electron 的打包机制，可以查看完整的 [应用程序打包](https://www.electronjs.org/zh/docs/latest/tutorial/application-distribution) 文档。
+
+## 重要提示：对代码进行签名
+
+为了将桌面应用程序分发给最终用户，我们 *强烈建议* 您对 Electron 应用进行 **代码签名**。 代码签名是交付桌面应用程序的重要组成部分，并且它对于应用程序的自动更新功能 (将会在教程最后部分讲解) 来说是必需的。
+
+代码签名是一种可用于证明桌面应用程序是由已知来源创建的安全技术。 Windows 和 macOS 拥有其特定的代码签名系统，这将使用户难以下载或启动未签名的应用程序。
+
+在 macOS 上，代码签名是在应用程序打包时完成的。 而在 Windows 中，则是对可分发文件进行签名操作。 如果您已经拥有适用于 Windows 和 macOS 的代码签名证书，可以在 Forge 配置中设置您的凭据。
+
+INFO
+
+欲了解更多代码签名的信息，请参阅Forge文档中的 [签署 macOS 应用程序](https://www.electronforge.io/guides/code-signing) 指南。
+
+- macOS
+- Windows
+
+forge.config.js
+
+```js
+module.exports = {
+  packagerConfig: {
+    osxSign: {},
+    // ...
+    osxNotarize: {
+      tool: 'notarytool',
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_PASSWORD,
+      teamId: process.env.APPLE_TEAM_ID
+    }
+    // ...
+  }
+}
+```
+
+
+
+## 摘要
+
+Electron 应用程序需要打包后分发给用户。 在本教程中，您将应用程序导入 Electron Forge 并对其进行配置以打包您的应用程序并生成安装程序。
+
+为了让应用程序受到用户系统的信任，您需要以数字签名证明可分发文件的内容是真实的并且未被代码签名篡改。 只要在应用配置中添加签名证书信息，您就可以通过 Forge 对其进行签名。
+
+# 发布和更新
+
+教程目录
+
+这是 Electron 教程的 **第六部分**
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. [使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)
+4. [添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)
+5. [打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)
+6. **[发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)**
+
+## 学习目标
+
+请注意，这是本教程的最后一步！ 在这一部分，你将发布应用到 GitHub 版本中心，并将自动更新功能整合到应用代码中。
+
+## 使用 update.electronjs.org
+
+Electron 官方在 [https://update.electronjs.org](https://update.electronjs.org/) 上为开源应用程序提供了免费的自动更新服务。 使用它有以下几点要求：
+
+- 你的应用在 macOS 或 Windows 上运行
+- 你的应用有一个公开的 GitHub 仓库
+- 应用程序需要发布到 [GitHub releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) 中
+- 应用程序需要完成 [签名](https://www.electronjs.org/zh/docs/latest/tutorial/code-signing)
+
+至此，我们假设你已将所有代码推送到公开的 GitHub 仓库。
+
+替代更新服务
+
+如果您使用了其他存储库主机 (例如 GitLab 或 Bitbucket)，或者如果您你的代码仓库不能公开，请参阅 [更新应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/updates) 教程以托管您自己的 Electron 更新服务器。
+
+## 发布一个 GitHub 版本
+
+Electron Forge 的 [Publisher](https://www.electronforge.io/config/publishers) 插件可以自动将打包的应用程序分发到各种来源。 在本教程中，我们将演示使用 GitHub Publisher 将代码发布到 GitHub releases 中。
+
+### 生成个人访问令牌
+
+未经许可，Forge无法向GitHub 上的任何仓库发布。 你需要通过一个认证令牌，授权 Forge 使用 GitHub 的发布功能。 最简单的方法是 [创建一个新的个人访问令牌 (PAT)](https://github.com/settings/tokens/new) 范围为 `public_repo`, 它将给你的公共资源库提供写访问权限。 **请确保此令牌不外泄。**
+
+### 设置 GitHub 发布者
+
+#### 安装模块
+
+Forge 的 [GitHub Publisher](https://www.electronforge.io/config/publishers/github) 是一个插件, 它需要被安装到你的项目的 `devDependencies` 里面去:
+
+- npm
+- Yarn
+
+```sh
+npm install --save-dev @electron-forge/publisher-github
+```
+
+
+
+#### 在 Forge 中配置发布者
+
+一旦安装完毕，你需要在 Forge 配置中设置它。 完整的选项列表在 Forge 的 [`PublisherGitHubConfig`](https://js.electronforge.io/interfaces/_electron_forge_publisher_github.PublisherGitHubConfig.html) API 文档中。
+
+forge.config.js
+
+```js
+module.exports = {
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'github-user-name',
+          name: 'github-repo-name'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ]
+}
+```
+
+发布前的草案版本
+
+请注意，你已配置 Forge 来发布你的项目作为草稿版本。 这将使您能够看到其生成的结果而无需实际发布给你的最终用户。 当你写下版本说明和并多次检查分发的工作内容后, 就可以手动在 Github 上发布你的应用.
+
+#### 设置身份验证 token
+
+你还需要让发布器了解你的身份验证令牌。 默认情况下，它将使用存储在 `GITHUB_TOKEN` 环境变量的值。
+
+### 运行发布命令
+
+将 Forge 的 [发布命令](https://www.electronforge.io/cli#publish) 添加到 npm 脚本内。
+
+package.json
+
+```json
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  //...
+```
+
+此命令将运行你配置的创建方法并将输出的可分发文件发布到新的 GitHub 版本。
+
+- npm
+- Yarn
+
+```sh
+npm run publish
+```
+
+
+
+默认情况下，这只会为你当前的主机操作系统架构发布一个单一的可分发文件。 你可以通过将 `--arch` 参数传递给 Forge 命令来发布不同的架构。
+
+版本的名称将对应于项目的 package.json 文件中的 `version` 字段。
+
+发布时打上标签
+
+可选的, 你也可以 [在Git上对版本打标签](https://git-scm.com/book/en/v2/Git-Basics-Tagging), 这样你的版本将关联到一个代码历史中的标签点. npm附带了一个方便的 [`npm version`](https://docs.npmjs.com/cli/v8/commands/npm-version) 命令，可以为你处理版本碰撞或打标签.
+
+#### 小技巧：在 GitHub Actions 中发布
+
+本地发布的版本可能很单一，因为只能为你的主机操作系统创建一种版本 (比如, 你不能从 macOS 系统上发布 Window 系统的 `.exe` 文件)。
+
+一种解决方案是通过自动化工作流来发布你的应用比如 [GitHub Actions](https://github.com/features/actions), 通过它可以在各种云系统内包括 Ubuntu, macOS 和 Windows 上运行任务. 这是 [Electron Fiddle](https://www.electronjs.org/fiddle) 采用的精确方法. 你可以参考 Fiddle 的 [构建和发布一条龙 ](https://github.com/electron/fiddle/blob/main/.github/workflows/build.yaml)以及 [Forge 配置](https://github.com/electron/fiddle/blob/main/forge.config.js) 了解更多详情。
+
+## 检测更新程序代码
+
+至此我们有了一个通过 GitHub 发布的功能性发布系统， 我们现在需要告诉我们的 Electron 应用来下载更新，而且是每当新版本出现时都需要更新。 Electron 应用通过 [autoUpdater](https://www.electronjs.org/zh/docs/latest/api/auto-updater) 模块来实现此功能, 此模块可以从更新服务源中读取信息, 并检查是否有一个新版本可供下载.
+
+网址是 update.electronjs.org 的服务器提供了一个兼容更新源. 比如, Electron Fiddle v0.28.0 将会检查接口 https://update.electronjs.org/electron/fiddle/darwin/v0.28.0 来查看是否有新的 GitHub 版本可用.
+
+一旦你的发布版本被推送到 GitHub, 对应的更新服务 update.electronjs.org 将会自动对接你的应用. 剩下的唯一步骤是使用 autoUpdater 模块配置源。
+
+为了让整个过程更加简单, Electron 团队维护 [`update-electron-app`](https://github.com/electron/update-electron-app) 模块, 它在一次函数调用中为 update.electronjs.org 设置了 autoUpdater 样板，无需配置。 这个模块将搜索 update.electronjs.org 源中与项目内 package.json 的`"repository"` 字段匹配的部分。
+
+首先，安装模块作为运行时的依赖项
+
+- npm
+- Yarn
+
+```sh
+npm install update-electron-app
+```
+
+
+
+然后导入模块并在主进程中立即调用
+
+main.js
+
+```js
+require('update-electron-app')()
+```
+
+
+
+这是需要做的事情！ 一旦你的应用程序被打包，它将在你发布每个新的 GitHub 版本时更新自己。
+
+## 摘要
+
+在这个教程中，我们配置 Electron Forge 的 GitHub Publisher 来上传你的应用的 发行版到 GitHub releases。 由于可分发文件不能总是在不同的平台之间生成 构建和发布流程，如果你不能访问机器，我们建议将你的构建和发布流程设置在持续集成管道中。
+
+Electron 应用程序可以通过将 autoUpdater 模块指向一个更新服务器来进行自我更新。 update.electronjs.org 是一个 Electron 为开源应用程序 免费提供的更新服务器，发布在 GitHub Releases 上。 配置你的Electron应用来使用这个服务是很容易的，就像 安装并导入 `update-electron-app` 模块一样。
+
+如果你的应用程序不适合使用 update.electronijs.org，你应该自己部署 一个更新服务器，并配置自己的自动 autoUpdater 模块。
+
+🌟 你完成了
+
+从这里开始，您已经正式完成了我们的 Electron 教程。 请自由的探索我们的剩余文档并快乐的开发！ 如果您有疑问，请前往我们的社区 [Discord 服务器](https://discord.gg/electronjs) 。
+
