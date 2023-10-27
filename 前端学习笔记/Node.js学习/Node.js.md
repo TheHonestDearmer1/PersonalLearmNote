@@ -35,17 +35,17 @@
 
 1. 先在VSCode里面安装两个插件，一个是负责运行的Code Runner，一个是JS的语法提示JavaScript(ES6) code snippets。
 
-   ![在这里插入图片描述](img/647c3363fbdb4eb7abd6d95f1968e9d2.png)
+   ![](img/647c3363fbdb4eb7abd6d95f1968e9d2.png)
    
    2. 创建配置文件，打开代码文件夹，先创建一个test.js，随便写几句测试代码。然后点击左边侧边栏的调试工具，选择创建launch.json文件。选择node.js调试环境。
    
       
 
-![在这里插入图片描述](img/fd6956ef4eed4b248a0653ae0cdd0271.png)
+![](img/fd6956ef4eed4b248a0653ae0cdd0271.png)
 
 3.此时配置文件会自动生成，注意重点要修改一个地方，这里不要写死。将program属性改成${file}，这样可以识别当前调试的文件，不需要每次都在这里更换文件名，调试哪个文件直接F5就OK。
 
-![在这里插入图片描述](img/44c4eda523d84cc088027b821afc898f.png)
+![](img/44c4eda523d84cc088027b821afc898f.png)
 
 ```
 代码运行： node 文件名.js
@@ -54,7 +54,7 @@
 ## <font color= "#0000dd">2.第二节 NodeJS搭建服务器</font>
 
 
-<div align="center"> <img src="https://img2.baidu.com/it/u=2136796389,1472802855&fm=253&fmt=auto&app=138&f=JPEG?w=637&h=132" width = 1000  /> </div>
+<div align="center"> ![](https://img2.baidu.com/it/u=2136796389,1472802855&fm=253&fmt=auto&app=138&f=JPEG?w=637&h=132) </div>
 
 1. **request**  请求    输入-请求的信息
 2. **response** 响应    输出-输出给浏览器的东西
@@ -99,7 +99,7 @@ server.listen(8080);
 
 * 文件操作是异步操作
 
-<div align="center"> <img src="https://img-blog.csdnimg.cn/20200724093122606.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MjkwMQ==,size_16,color_FFFFFF,t_70" width = 1000  /> </div>
+<div align="center"> ![](https://img-blog.csdnimg.cn/20200724093122606.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzM1MjkwMQ==,size_16,color_FFFFFF,t_70) </div>
 
 
 ### 3.1 读写文件代码
@@ -291,7 +291,7 @@ http.createServer(function(req,res){
 
 ### 5.2 HTTP请求的两种基本方法汇总
 
-<div align="center"> <img src="https://img0.baidu.com/it/u=3029409735,2185981324&fm=253&fmt=auto&app=138&f=JPEG?w=1102&h=485" width = 1000 /> </div>
+<div align="center"> ![](https://img0.baidu.com/it/u=3029409735,2185981324&fm=253&fmt=auto&app=138&f=JPEG?w=1102&h=485) </div>
 
 - [x] GET方法
 - [x] POST方法
@@ -551,7 +551,7 @@ module.exports={
 
 ## <font color= "#0000dd">1.第一节 express框架</font>
 
-<div align="center"> <img src="https://i0.hdslb.com/bfs/archive/0420770f33324536bef2ddde1d7b7befd5d5a41c.jpg" width = 700 /> </div>
+<div align="center"> ![](https://i0.hdslb.com/bfs/archive/0420770f33324536bef2ddde1d7b7befd5d5a41c.jpg) </div>
 
 * express依赖中间件
 
@@ -761,7 +761,7 @@ server.use(expressStatic('./www'));
 
 ## <font color= "#0000dd">2.第二节 express中间件</font>
 
-<div align="center"> <img src="https://images2015.cnblogs.com/blog/541453/201512/541453-20151218162536974-962258204.png" width = 300 /> </div>
+<div align="center"> ![](https://images2015.cnblogs.com/blog/541453/201512/541453-20151218162536974-962258204.png) </div>
 
 * GET-无需中间件：req.query
 * POST-需要body-parser
@@ -858,7 +858,7 @@ server.use('/',function(req,res){
 
 ## <font color= "#0000dd">3.第三节 cookie和session </font>
 
-<div align="center"> <img src="https://blog.mimvp.com/wp-content/uploads/2015/08/cookie-and-php-session-details-03.png"  width = 800/> </div>
+<div align="center"> ![](https://blog.mimvp.com/wp-content/uploads/2015/08/cookie-and-php-session-details-03.png) </div>
 
 * http是无状态的，两次访问无法识别为同一个访问
 * session不能独立存在，是基于cookie实现的
@@ -880,7 +880,7 @@ server.use('/',function(req,res){
 npm install cookie-parser
 ```
 
-<img src="C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913111924663.png" alt="image-20230913111924663" style="zoom:50%;" />
+![](C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913111924663.png)
 
 
 
@@ -975,7 +975,7 @@ server.listen(8080);
   * **根据缩进，规定层级**
   * **属性放在()里面，逗号分隔** 
   * **需要输入内容的话要空个格**
-  * <img src="C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913133324974.png" alt="image-20230913133324974" style="zoom: 50%;" />
+  * ![](C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913133324974.png)
 
 ### 4.1 jade基本操作
 
@@ -983,7 +983,7 @@ server.listen(8080);
 npm install jade
 ```
 
-![image-20230913133408630](C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913133408630.png)
+![](C:/Users/11011/Desktop/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/image-20230913133408630.png)
 
 ```js {.line-numbers}
 const jade = require('jade');
@@ -1302,14 +1302,14 @@ Server.listen(8080);
 
 ## <font color= "#0000dd">9.第九节 数据库</font>
 
-<div align="center"> <img src="https://img-blog.csdnimg.cn/20201102112531696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4OTYwMTU1,size_16,color_FFFFFF,t_70#pic_center"  width = 800/> </div>
+<div align="center"> ![](https://img-blog.csdnimg.cn/20201102112531696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4OTYwMTU1,size_16,color_FFFFFF,t_70#pic_center) </div>
 
-<div align="center"><img src="https://img-blog.csdnimg.cn/2020021416014766.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poenNkaWxpZ2VuY2U=,size_16,color_FFFFFF,t_70"  width = 1200/> </div>
+<div align="center">![](https://img-blog.csdnimg.cn/2020021416014766.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poenNkaWxpZ2VuY2U=,size_16,color_FFFFFF,t_70) </div>
 
 ### <font color= " #FF0000"><center>客户端数据库    服务端数据库</center> </font>
 
 <br>
-<div align="center"><img src="https://img1.baidu.com/it/u=682136223,3802892847&fm=253&fmt=auto&app=138&f=JPEG?w=892&h=500"  width = 1200/> </div>
+<div align="center">![](https://img1.baidu.com/it/u=682136223,3802892847&fm=253&fmt=auto&app=138&f=JPEG?w=892&h=500) </div>
 
 ---
 
@@ -1485,7 +1485,7 @@ class	COUNT(class)
 
 然后就可以在navicat中制表
 <br>
-<div align="center"><img src="https://img0.baidu.com/it/u=3468020826,4060979510&fm=253&fmt=auto&app=138&f=JPG?w=500&h=409"  width = 1200/> </div>
+<div align="center">![](https://img0.baidu.com/it/u=3468020826,4060979510&fm=253&fmt=auto&app=138&f=JPG?w=500&h=409) </div>
 
 ---
 
@@ -1634,7 +1634,7 @@ server.use(static('./day3/part12/www'));
 ```js {.line-numbers}
 <% for(var i=0;i<banners.length;i++){ %>
         <li>
-          <img src="<%= banners[i].src %>" alt=""/>
+          ![](<%= banners[i].src %>)
           <div class="text-box">
             <h2><%= banners[i].title %></h2>
             <p><%= banners[i].sub_title %></p>
@@ -1644,10 +1644,10 @@ server.use(static('./day3/part12/www'));
 ```
 ```js {.line-numbers}
 <div class="content">
-	<div class="header clear"><h2><img src="<%= article_data.author_src %>" alt=""/></h2><p><%= article_data.author%></p></div>
+	<div class="header clear"><h2>![](<%= article_data.author_src %>)</h2><p><%= article_data.author%></p></div>
     <div class="cont">
     	<h3>智能社</h3>
-        <div class="time"><p><%= article_data.sDate %> <span><img src="img/zan.png" alt=""/></span></p></div>
+        <div class="time"><p><%= article_data.sDate %> <span>![](img/zan.png)</span></p></div>
         <div class="text-box">
             <%-article_data.content%> 
         </div>

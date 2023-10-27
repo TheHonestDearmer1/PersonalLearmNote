@@ -1,6 +1,6 @@
 # Sass 教程
 
-![img](img/sass.png)
+![](img/sass.png)
 
 
 
@@ -809,7 +809,7 @@ h1 {
 
 # Sass String(字符串) 函数
 
-[![Sass 函数](img/up.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass String(字符串) 函数用于处理字符串并获取相关信息。
 
@@ -831,7 +831,7 @@ Sass 字符串的起始索引值从 1 开始，记住不是 0。
 
 # Sass 数字函数
 
-[![Sass 函数](img/up-16981418525203.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-16981418525203.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass 数字函数用于处理一些数值。
 
@@ -852,7 +852,7 @@ Sass 数字函数用于处理一些数值。
 
 # Sass 列表(List)函数
 
-[![Sass 函数](img/up-16981418717436.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-16981418717436.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass 列表(List)函数用于处理列表，可以访问列表中的值，向列表添加元素，合并列表等。
 
@@ -876,7 +876,7 @@ Sass 列表是不可变的，因此在处理列表时，返回的是一个新的
 
 # Sass Map(映射)函数
 
-[![Sass 函数](img/up-16981418874089.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-16981418874089.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass Map(映射)对象是以一对或多对的 key/value 来表示。
 
@@ -895,7 +895,7 @@ Sass Map 是不可变的，因此在处理 Map 对象时，返回的是一个新
 
 # Sass 选择器函数
 
-[![Sass 函数](img/up-169814190372912.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-169814190372912.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass 选择器函数用于查看与处理选择器。
 
@@ -914,7 +914,7 @@ Sass 选择器函数用于查看与处理选择器。
 
 # Sass Introspection 函数
 
-[![Sass 函数](img/up-169814193810615.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-169814193810615.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass Introspection 函数比较少用于构建样式表，一般用于代码的调试上。
 
@@ -937,7 +937,7 @@ Sass Introspection 函数比较少用于构建样式表，一般用于代码的�
 
 # Sass 颜色函数
 
-[![Sass 函数](img/up-169814195817718.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
+[![](img/up-169814195817718.gif) Sass 函数](https://www.runoob.com/sass/sass-functions.html)
 
 Sass 颜色函数可以分为三个部分：颜色设置、颜色获取以及颜色操作。
 

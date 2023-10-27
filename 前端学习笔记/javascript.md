@@ -598,7 +598,7 @@ element.style.backgroundColor = "red";
 
 **想要更改样式更方便的方法是修改标签的id或者class进行样式切换**
 
-![image-20230911114056256](img/image-20230911114056256.png)
+![](img/image-20230911114056256.png)
 
 
 

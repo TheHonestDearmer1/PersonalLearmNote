@@ -55,7 +55,7 @@ $ sudo dpkg -r teamviewer [删除包]
 $ sudo dpkg --purge teamviewer [删除包含配置文件的包]
 ```
 
-![img](img/v2-da8875941c7ceb48ae72c3b853e806da_1440w.webp)
+![](img/v2-da8875941c7ceb48ae72c3b853e806da_1440w.webp)
 
 ### 2.使用apt命令安装.deb包
 
@@ -72,9 +72,9 @@ $ sudo apt install ./teamviewer_amd64.deb
 $ sudo apt-get install ./teamviewer_amd64.deb
 ```
 
-![img](img/v2-65963a9516650ce3159a158a36f8c590_1440w.webp)
+![](img/v2-65963a9516650ce3159a158a36f8c590_1440w.webp)
 
-![img](img/v2-6f5e253f17b75778de46848bc08f4c54_1440w.webp)
+![](img/v2-6f5e253f17b75778de46848bc08f4c54_1440w.webp)
 
 ### 使用 apt 命令删除 Deb 包
 
