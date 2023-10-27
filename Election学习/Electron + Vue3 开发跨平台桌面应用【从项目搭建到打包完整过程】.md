@@ -18,7 +18,7 @@ Electron笔记本
 
 # 案例效果
 
-![mainWindow.gif](img/cb6c2c2293274a7c979b1fb9ff2dfc7etplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/cb6c2c2293274a7c979b1fb9ff2dfc7etplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 **功能分析：**
 
@@ -32,7 +32,7 @@ Electron笔记本
 
 5、设定的时间到了，会在右下角弹出提醒框，如下图所示。
 
-![image.png](img/9eefb77cd4b646789d92d30c452af7cdtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/9eefb77cd4b646789d92d30c452af7cdtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 虽然是原有功能，但技术栈有原生js换成Vue后，基本上算是重写了整个项目，项目架构和编码逻辑都是全新的，那么让我们以全新的视角开启学习吧！
 
@@ -90,7 +90,7 @@ npm run electron:serve
 
 运行效果如下：
 
-![image.png](img/542aa77818a54c0d94b3aa2b418e2aa7tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/542aa77818a54c0d94b3aa2b418e2aa7tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 ## 初始的项目目录
 
@@ -98,7 +98,7 @@ npm run electron:serve
 
 渲染进程的页面交给了vue进行渲染，开发过程和我们平时使用vue开发web页面相差无几。而electron主进程的代码是放在`background.js`中。
 
-![image.png](img/0b6319a79b6643e5a2c4ba4cd71682cdtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/0b6319a79b6643e5a2c4ba4cd71682cdtplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 # Coding
 
@@ -106,7 +106,7 @@ npm run electron:serve
 
 ## Vue项目架构分析
 
-![image.png](img/517a5fdc4e514647b4f90ea6f51a2063tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp) 项目主要有两个渲染进程，对应两个页面（main和remind），因此，这里我们采用多页面打包的方式。
+![](img/517a5fdc4e514647b4f90ea6f51a2063tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp) 项目主要有两个渲染进程，对应两个页面（main和remind），因此，这里我们采用多页面打包的方式。
 
 vue-cli构建的包默认是单页面打包，所以，我们在`vue.config.js`中进行改造：
 
@@ -133,7 +133,7 @@ arduino复制代码module.exports = { //多页面打包
 }
 ```
 
-这时候的项目目录： ![image.png](img/fe9d698029b9496c96ea092ff8a4b879tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp) 以`main页面`为例，它的`main.js`和`Main.vue`内容如下：
+这时候的项目目录： ![](img/fe9d698029b9496c96ea092ff8a4b879tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp) 以`main页面`为例，它的`main.js`和`Main.vue`内容如下：
 
 - `main.js`
 
@@ -188,7 +188,7 @@ export default {
 
 主窗口的页面架构主要是三个Tab，分别对应三个vue组件。
 
-![image.png](img/1bc939d11f6e4bd1bf8284aea9fdc538tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/1bc939d11f6e4bd1bf8284aea9fdc538tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 使用`vue-router`的代码如下：
 
@@ -279,7 +279,7 @@ export default createStore({
 
 并且在待完成（Todo.vue）、已完成（Finished.vue）、新增任务（Add.vue）这三个组件都有对数据的操作。
 
-![image.png](img/c338367d9a5a4642a12bb669236985a9tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/c338367d9a5a4642a12bb669236985a9tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 如果不使用Composition Api，就要在每个组件中定义获取和更新每个数据数据的方法。而使用Composition Api后，我们将所有数据操作写在一个文件中（useData.js），组件中若有需要，可以引入这个文件。
 
@@ -386,11 +386,11 @@ arduino
 
 打包生成的内容在 dist_electron 文件夹，直接基于默认配置打包，生成的dist_electron 文件夹内容如下：
 
-![image.png](img/af784480a20f40ffa80439a020ff9a45tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/af784480a20f40ffa80439a020ff9a45tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 点击`tasky-vue Setup 0.1.0`默认是直接一键安装，可以看到在桌面的应用图标也是默认的。
 
-![image.png](img/3e4434dbc12b466084bb58e2c63198b1tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
+![](img/3e4434dbc12b466084bb58e2c63198b1tplv-k3u1fbpfcp-zoom-in-crop-mark1512000.webp)
 
 怎样定制打包，如制作图标、打包格式、安装行为等等，可以参考[Electron应用的打包和自动更新--案例实战，非常详细](https://juejin.cn/post/6980105328801087518) 。
 

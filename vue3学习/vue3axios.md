@@ -64,7 +64,7 @@ this.$http.get(api).then((response) => {
 
 浏览器支持情况
 
-![img](img/2C4AD21F-C1DE-471F-A4A5-66AA01E11FFC.jpg)
+![](img/2C4AD21F-C1DE-471F-A4A5-66AA01E11FFC.jpg)
 
 ------
 

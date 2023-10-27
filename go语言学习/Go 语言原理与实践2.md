@@ -1,8 +1,8 @@
 ## 高质量编程简介及编码规范
 
-![image-20230728150912649](图片/40.png)
+![](图片/40.png)
 
-![image-20230728151131585](图片/41.png)
+![](图片/41.png)
 
 什么是高质量？
 
@@ -79,7 +79,7 @@ goimports
 - 无论长度或复杂成都如何，对库中的任何函数都必须进行注释
 - 例外：不需要注释接线接口的方法。。
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f5abc1a5fe204d2ba28e368eb7f5ce9a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f5abc1a5fe204d2ba28e368eb7f5ce9a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 注释很重要，能够快速理解代码的含义，那注释应该怎么做呢？
 
@@ -92,7 +92,7 @@ goimports
 
 适合注释公共符号，比如公共的常量、函数。如果一个函数通过名字就能知道他的作用，那么这样的函数可以不用加注释。
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/efbb1c284769463caceb83c904bc4041~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/efbb1c284769463caceb83c904bc4041~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 ##### 解释代码如何做的
 
@@ -100,19 +100,19 @@ goimports
 
 对一些实现逻辑复杂的代码、调用函数功能不是很明显的代码逻辑加上注释。
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51cde7b115be468eb6f7d9edb631b652~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51cde7b115be468eb6f7d9edb631b652~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 ##### 解释代码实现的原因
 
 适合解析代码的外部因素，提供额外上下文，让人知道为什么这样做，要不然后续再维护代码时，会让人很难理解。
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b98d116efb14b20a4f897a54474fdea~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b98d116efb14b20a4f897a54474fdea~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 ##### 解释出错情况
 
 适合解释代码的限制条件，通过注释可以知道在使用的过程中应该有哪些注意的点，以防在使用的过程中，产生错误。
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fba8c56f7408427cb699a02d0c6ab5bb~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fba8c56f7408427cb699a02d0c6ab5bb~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 ### 命名规范
 
@@ -228,7 +228,7 @@ error尽可能提供简明的上下文信息链，方便定位问题，panic用�
 - 优先使用`errors.New`来创建匿名变量来直接表示简单错误
 - 如果有格式化的需求，使用`fmt.Errorf`
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/59ea90b0a70944c884914328471b1f4a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/59ea90b0a70944c884914328471b1f4a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 #### 错误的Wrap和Unwrap
 
@@ -274,52 +274,52 @@ error尽可能提供简明的上下文信息链，方便定位问题，panic用�
 >性能表现需要实际数据衡量
 >Go 语言提供了支持基准性能测试的 benchmark 工具
 
-![image-20230728175546500](图片/42)
+![](图片/42)
 
-![image-20230728175731155](图片/43.png)
+![](图片/43.png)
 
 ### 1.3.2 性能优化建议-Slice
 
-![image-20230728175834040](图片/44.png)
+![](图片/44.png)
 
-![image-20230728180044407](图片/45.png)
+![](图片/45.png)
 
 - 切片本质是一个数组片段的描述
 - 包括数组指针
 - 片段的长度
 - 片段的容量(不改变内存分配情况下的最大长度)切片操作并不复制切片指向的元素创建一个新的切片会复用原来切片的底层数组
 
-![image-20230728180327354](图片/46.png)
+![](图片/46.png)
 
 ### 性能优化建议-Map
 
-![image-20230728180415981](图片/47.png)
+![](图片/47.png)
 
-![image-20230728180549156](图片/48.png)
+![](图片/48.png)
 
 ### 性能优化建议-字符串处理
 
-![image-20230728180621014](图片/49.png)
+![](图片/49.png)
 
-![image-20230728180704918](图片/50.png)
+![](图片/50.png)
 
-![image-20230728180811578](图片/51.png)
+![](图片/51.png)
 
 ### 性能优化建议—空结构体
 
-![image-20230728183142991](图片/52.png)
+![](图片/52.png)
 
-![image-20230728183254147](图片/53.png)
+![](图片/53.png)
 
 ###  性能优化建议-atomic 包
 
-![image-20230728183441026](图片/54.png)
+![](图片/54.png)
 
-![image-20230728183609065](图片/55.png)
+![](图片/55.png)
 
 ### 性能优化指南
 
-![image-20230728183841103](图片/56.png)
+![](图片/56.png)
 
 
 
@@ -334,15 +334,15 @@ error尽可能提供简明的上下文信息链，方便定位问题，panic用�
 
 ### 性能分析工具 pprof
 
-![image-20230728190136236](图片/57.png)
+![](图片/57.png)
 
 #### 功能简介
 
-![image-20230728190326804](图片/58.png)
+![](图片/58.png)
 
 #### 搭建 pprof 实践项目
 
-![image-20230728190548843](图片/59.png)
+![](图片/59.png)
 
 运行项目之后，在浏览器中打开：
 
@@ -350,21 +350,21 @@ error尽可能提供简明的上下文信息链，方便定位问题，panic用�
 http://localhost:6060/debug/pprof/
 ```
 
-![image-20230728191340234](图片/60.png)
+![](图片/60.png)
 
 ####  性能分析工具 pprof-排查实战
 
-![image-20230728191518119](图片/61.png)
+![](图片/61.png)
 
-![image-20230728193020774](图片/62.png)
+![](图片/62.png)
 
 go tool pprof "http://localhost:6060/debug/pprof/profile?seconds=10"
 
 #### 采样十秒的数据分析性能
 
-![image-20230728193340365](图片/63.png)
+![](图片/63.png)
 
-在运行时候，输入top指令获得一下数据![image-20230728193422899](图片/64.png)
+在运行时候，输入top指令获得一下数据![](图片/64.png)
 
 > flat 当前函数本身的执行耗时
 > flat% flat 占 CPU 总时间的比例
@@ -376,15 +376,15 @@ go tool pprof "http://localhost:6060/debug/pprof/profile?seconds=10"
 
 #### *CPU
 
-![image-20230728193945292](图片/65.png)
+![](图片/65.png)
 
-![image-20230728194144320](图片/66.png)
+![](图片/66.png)
 
 #### 关系图web
 
 不是很直观，可以使用web命令，自动生成调用关系图，并使用浏览器打开
 
-![image-20230728194319097](图片/67.png)
+![](图片/67.png)
 
 我们输入web后应该会弹出web可使界面，**但是如果没有安装过gvedit会报错**：
 Failed to execute dot. Is Graphviz installed? Error: exec: "dot": executable file not found in %PATH%
@@ -394,69 +394,69 @@ gvedit官网：https://graphviz.gitlab.io/_pages/Download/Download_windows.html
 按照提示安装即可。注意配置环境变量。
 安装结束后需要进入到安装目录，以管理员模式打开cmd输入dot -c安装插件，重启cmd。
 
-![image-20230728194708824](图片/68.png)
+![](图片/68.png)
 
 注释掉占用最多的代码，重新运行，看看占用效果
 
 cpu占用和时间降低，但内存没有降低多少
 
-![image-20230728195201112](图片/69.png)
+![](图片/69.png)
 
 #### *heap堆内存
 
-![image-20230728195516710](图片/70.png)
+![](图片/70.png)
 
 运行命令go tool pprof -http=:8080 "http://localhost:6060/debug/pprof/heap"
 
 就会打开一个分析内存占用的窗口：
 
-![image-20230728200034375](图片/71.png)
+![](图片/71.png)
 
 http://localhost:8080/ui/ 可以看到所有参数列表
 
-![image-20230728200752761](图片/72.png)
+![](图片/72.png)
 
-![image-20230728201503594](图片/73.PNG)
+![](图片/73.PNG)
 
-![image-20230728201559774](图片/74.png)
+![](图片/74.png)
 
 #### *105个协程，排查协程 goroutine
 
-![image-20230728201649186](图片/75.png)
+![](图片/75.png)
 
-![image-20230728201726456](图片/76.png)
+![](图片/76.png)
 
 go tool pprof -http=:8080 "http://localhost:6060/debug/pprof/goroutine"
 
-![image-20230728201952188](图片/77.png)
+![](图片/77.png)
 
 #### mutex锁
 
-![image-20230729013756225](图片/78.png)
+![](图片/78.png)
 
 block 阻塞
 
-![image-20230729014315470](图片/79.png)
+![](图片/79.png)
 
 #### block阻塞
 
-![image-20230729014447343](图片/80.png)
+![](图片/80.png)
 
-![image-20230729014505502](图片/81.png)
+![](图片/81.png)
 
-![image-20230729015037207](图片/82.png)
+![](图片/82.png)
 
 ## 性能调优实战案例
 
 CPU
 
-![image-20230729015705008](图片/83.png)
+![](图片/83.png)
 
-![image-20230729015731626](图片/84.png)
+![](图片/84.png)
 
 Heap-堆内存
 
-![image-20230729015906857](图片/85.png)
+![](图片/85.png)
 
 ### 前言
 
@@ -473,7 +473,7 @@ Heap-堆内存
 - 调用链路：能支持一个接口请求的相关服务集合及其相互之间的依赖关系
 - 基础库：公共的工具包、中间件
 
-![image.png](图片/d09fb20d3e10463b9953fb677169685ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/d09fb20d3e10463b9953fb677169685ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 上图是系统部署的简单示意图，客户端请求经过网关转发，由不同的业务服务处理，业务服务可能依赖其他的服务，也可能会依赖存储、消息队列等组件。
 
@@ -519,13 +519,13 @@ Heap-堆内存
 
 比如下面代码，每次使用配置时都会进行json解析，拿到配置项，实际组件内部提供了缓存机制，只有数据变更的时候才需要重新解析json。
 
-![image.png](图片/c85dfb0d91f74ec985542bd684f91624tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/c85dfb0d91f74ec985542bd684f91624tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 还有可能是：**高并发场景优化不足**
 
-![image.png](图片/0e16984202f8445bbaf3a6b9b17cb205tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/0e16984202f8445bbaf3a6b9b17cb205tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![image.png](图片/9bba88a4fd77498f967a39c364323873tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/9bba88a4fd77498f967a39c364323873tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 上边是服务高峰期的火焰图，下边是低峰期的火焰图，可以发现metrics，即监控组件的CPU资源占用变化较大，主要原因是监控数据上报是同步请求，在请求量上涨，监控打点数据量增加时，达到性能瓶颈，造成阻塞，影响业务逻辑的处理，后续是改成异步上报的机制提升了性能。
 
@@ -777,7 +777,7 @@ Go语言优化主要是编译器和运行时的优化，主要包括：
 3. 开发示例：即简单的成品DEMO展示，包括源代码。
 4. 实用工具：通常是指用来协助用户进行二次开发的工具，比如二次开发向导、API 搜索工具、软件打包工具等。
 
-![avatar](图片/e2128df7d46049bfa2244489bfda17e2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/e2128df7d46049bfa2244489bfda17e2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ------
 
@@ -808,9 +808,9 @@ Go语言优化主要是编译器和运行时的优化，主要包括：
 - Parallel GC：支持多个collectors同时回收的GC算法
 - Concurrent GC：mutator(s) 和 collector(s) 可以**同时执行**
 
-![avatar](图片/fdfe50fcb00c45df99a4d87318bca2d1tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/fdfe50fcb00c45df99a4d87318bca2d1tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![avatar](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/abd892a3d20548aa99975ff4840e5fba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/abd892a3d20548aa99975ff4840e5fba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 特别地，Collectors 必须感知对象指向关系的改变；
 
@@ -839,7 +839,7 @@ GC算法的一些补充：
   - 移动并整理存活对象 (Mark-compact GC)
 - **根据对象的生命周期，使用不同的标记和清理策略**
 
-![avatar](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/619d4b7831c544a6af7ca2fd07766939~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/619d4b7831c544a6af7ca2fd07766939~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 #### 分代GC (Generational GC)
 
@@ -899,7 +899,7 @@ GC算法的一些补充：
 
 一图以释之：
 
-![avatar](图片/c2dd0a138b724a30af145f386d992742tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/c2dd0a138b724a30af145f386d992742tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Go内存管理优化
 
@@ -933,7 +933,7 @@ GC算法的一些补充：
     }
     ```
 
-  ![avatar](图片/0c0d6ed998434d35a1b508e12d5f909ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+  ![](图片/0c0d6ed998434d35a1b508e12d5f909ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 Balanced GC的**一些细节**：
 
@@ -945,13 +945,13 @@ Balanced GC的**一些细节**：
   - 原先的GAB可以释放，避免内存泄漏
   - 本质：用copying GC的算法管理小对象（根据对象的生命周期，使用不同的标记和清理策略）
 
-![avatar](图片/dca47b9439404499bc1c33f0adab9a49tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/dca47b9439404499bc1c33f0adab9a49tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 3. 编译器和静态分析
 
 #### 编译器的**结构**：
 
-![avatar](图片/a771200d2aa44ba29576c2f18acdcca6tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/a771200d2aa44ba29576c2f18acdcca6tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 重要的系统软件
   - 识别符合语法和非法的程序
@@ -978,7 +978,7 @@ Balanced GC的**一些细节**：
 
 控制流图示：
 
-![avatar](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/953af67d91d6450fbf7336ebe15ab78a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/953af67d91d6450fbf7336ebe15ab78a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 通过分析控制流和数据流，我们可以知道更多关于**程序的性质（properties）**，根据这些性质优化代码。
 
@@ -1072,7 +1072,7 @@ func addNoInline(a, b int) int {
 
 该种方法下的逃逸分析大致思路：
 
-![avatar](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c263fd9070140d0b8a24b6c81032bca~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c263fd9070140d0b8a24b6c81032bca~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ------
 
@@ -1127,17 +1127,17 @@ func main( ){
 }
 ```
 
-![image-20230730160916968](图片/87.png)
+![](图片/87.png)
 
 > 请确保将代码中的`user:password`替换为你的实际MySQL用户名和密码，并将`127.0.0.1:3306`替换为你的MySQL服务器地址和端口号。如果你的代码中未使用到User类型，请自行移除相关代码。
 
 #### 1.2 设计原理
 
-![image-20230730162634066](图片/88.png)
+![](图片/88.png)
 
-![image-20230730163019892](图片/89.png)
+![](图片/89.png)
 
-![image-20230730163457615](图片/90.png)
+![](图片/90.png)
 
 操作过程伪实现：
 
@@ -1241,7 +1241,7 @@ db := sql.OpenDB(connector) //传给数据接口
 
 #### 操作接口：
 
-![image-20230730171055520](图片/91.png)
+![](图片/91.png)
 
 DB连接的几种类型：
 
@@ -1259,7 +1259,7 @@ DB连接的几种类型：
 >
 > Query / QueryRowContext ->Row(Rows 简化)
 
-![image-20230730174650260](图片/92.png)
+![](图片/92.png)
 
 ## GORM 基础使用
 
@@ -1271,17 +1271,17 @@ DB连接的几种类型：
 
 Go英文手册：[gorm.io/docs](https://link.juejin.cn?target=https%3A%2F%2Fgorm.io%2Fdocs%2Fmodels.html%23embedded_struct) 
 
-![image-20220516195027675](图片/b90aee17850e4802b4f1f358255d286ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/b90aee17850e4802b4f1f358255d286ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 Go中文手册：[learnku.com/docs ](https://link.juejin.cn?target=https%3A%2F%2Flearnku.com%2Fdocs%2Fgorm%2Fv2%2Findex%2F9728%23e655a4) 用法在里面有介绍
 
-![image-20220516194947641](图片/e89ecd4f362a41b7bb6c1feb6659ac14tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/e89ecd4f362a41b7bb6c1feb6659ac14tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 原本我尝试按照文档做了一些操作的案例，但中途认为，这样做的意义并不是很大，加上上面已经罗列了使用原生database/sql进行CRUD的步骤。GORM文档已经十分清爽完备，最终决定不再笔记中二次赘述。
 
 ### 小结
 
-![image-20220516195755096](图片/321799055f504d4fbb4f57b13d65a71ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/321799055f504d4fbb4f57b13d65a71ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 GORM还是原生database/sql，都是在应用程序层面，向用户隐藏了底层连接数据库，操作数据库的实现细节。使得开发者通过API就可以实现和数据库进程的通信，而数据库进程才是直接操作数据库文件的，而非应用程序。
 
@@ -1307,7 +1307,7 @@ GORM还是原生database/sql，都是在应用程序层面，向用户隐藏了�
   - 上面连接中，连接信息是很长的字符串，有的时候字符串转义等会出现问题，为了解决这个问题，后来Go语言官方提供了一个新的方式连接
   - 新的方式使用**结构体**的方式连接
 
-  ![img](图片/3d66428dc7f342fab8c016f0b16a0527tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+  ![](图片/3d66428dc7f342fab8c016f0b16a0527tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
   
 
@@ -1327,23 +1327,23 @@ GORM还是原生database/sql，都是在应用程序层面，向用户隐藏了�
 
 具体实现
 
-![img](图片/53537ea0776e45d69edd60ffdb6a4b8etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/53537ea0776e45d69edd60ffdb6a4b8etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 二、Gorm基础使用
 
 #### 基本用法
 
-![img](图片/097382f712f1402f9b934366ae51b18atplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/097382f712f1402f9b934366ae51b18atplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![img](图片/4e34a98733ef4d6a97bcbe6f90b54438tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/4e34a98733ef4d6a97bcbe6f90b54438tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 模型定义
 
-![img](图片/53ae7c2e7857494591e37640191936dctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/53ae7c2e7857494591e37640191936dctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![img](图片/de154c2a638b46ff99a361270d6658adtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/de154c2a638b46ff99a361270d6658adtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![img](图片/aed4cd763fe94f34925e5b1acacfe367tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/aed4cd763fe94f34925e5b1acacfe367tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 **软件设计范式：约定优于配置**
 
@@ -1361,18 +1361,18 @@ GORM还是原生database/sql，都是在应用程序层面，向用户隐藏了�
 - 多态 has many
 - ...
 
-![img](图片/8c357bdb082147c1b753db2eac3e2eadtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/8c357bdb082147c1b753db2eac3e2eadtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 关联操作
 
-![img](图片/22b66657698d410abbfcaf2411db0efftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/22b66657698d410abbfcaf2411db0efftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Preload/Joins预加载
 
 - 一条sql不一定比三条sql性能好
 - 所以要测试preload和join的性能比较
 
-![img](图片/f21f828f4fe9409bb336f177920597b2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/f21f828f4fe9409bb336f177920597b2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 级联删除
 
@@ -1381,19 +1381,19 @@ GORM还是原生database/sql，都是在应用程序层面，向用户隐藏了�
 - 使用数据库约束
 - 使用 select 实现级联删除，不依赖数据库约数和软删除功能
 
-![img](图片/68e80626269b4c75a8d0c42301054431tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/68e80626269b4c75a8d0c42301054431tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 三、Gorm设计原理
 
 Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
-![img](图片/56da725697f64ad9932898e7e901b3c2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/56da725697f64ad9932898e7e901b3c2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### SQL是怎么生成的
 
 - “找出35岁以上不是管理者的打工人”
 
-![img](图片/bf66b822e4a64ee1a48191f9784a186etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/bf66b822e4a64ee1a48191f9784a186etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - Chain Method：可以添加字句的
 
@@ -1401,15 +1401,15 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
   **GORM转SQL**：
 
-![img](图片/0456aa4acafe48dc80adc94ca7660b58tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/0456aa4acafe48dc80adc94ca7660b58tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Chain Method实现
 
-![img](图片/901674c1b32b48269bb504ddaa63859ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/901674c1b32b48269bb504ddaa63859ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Finish Method 实现
 
-![img](图片/817ceae1e67544a6bd802042da410cd0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/817ceae1e67544a6bd802042da410cd0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 为什么这么设计
 
@@ -1421,29 +1421,29 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
 - 根据不同版本来实现
 
-![img](图片/2388ef48d80b405387602d89bffc2e39tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/2388ef48d80b405387602d89bffc2e39tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 扩展子句
 
-![img](图片/6b1a326384d643d1b502d5e3b0c69480tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/6b1a326384d643d1b502d5e3b0c69480tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 选择子句
 
-![img](图片/05c37ccb6e31495a83341d4a28327836tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/05c37ccb6e31495a83341d4a28327836tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 \
 
 ### 插件是怎么工作的
 
-![img](图片/a9912419a4fd4bb693cb8e9af3c400f6tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/a9912419a4fd4bb693cb8e9af3c400f6tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Create的callback设计
 
-![img](图片/bab6622462e44e20b7f1aff901b15f34tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/bab6622462e44e20b7f1aff901b15f34tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 修改callback
 
-#### ![img](图片/3784280966554edba5f2f5573976429atplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+#### ![](图片/3784280966554edba5f2f5573976429atplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 为什么要这么设计
 
@@ -1457,19 +1457,19 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
 **查询的时候往往加上id等过滤条件，希望查询的时候自动加上这些条件**
 
-![img](图片/ccdd03fdf70b45f5a9b76f8ddf1163a9tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/ccdd03fdf70b45f5a9b76f8ddf1163a9tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 多数据库，读写分离
 
-![img](图片/a443d888effa4e0581e40ca66e69ec55tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/a443d888effa4e0581e40ca66e69ec55tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### ConnPool是什么
 
 - 重新定义了一个接口interface ConnPool 在Gorm和数据库之间
 
-![img](图片/8635a8418a474030885a5de2d0e4a998tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/8635a8418a474030885a5de2d0e4a998tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![img](图片/9ab0bf5c765e4d0282b62eba04c42750tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/9ab0bf5c765e4d0282b62eba04c42750tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### PrepareStmt模式：
 
@@ -1478,7 +1478,7 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
 - 会话模式：后续的会话操作都会预编译并缓存
 
-![img](图片/6b1c786d466240f6b4e26606cada953ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/6b1c786d466240f6b4e26606cada953ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 查找缓存的预编译 SQL
 - 未找到,将收到的SQL和Vars预编译
@@ -1486,11 +1486,11 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
 #### 通过ConnPool接口更改下游数据库
 
-![img](图片/fdfce9ed9bb340ffb90518c066862819tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/fdfce9ed9bb340ffb90518c066862819tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 利用ConnPool 开发缓存插件
 
-![img](图片/b9f1d7fb43fe422f86f9b292292b25eatplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/b9f1d7fb43fe422f86f9b292292b25eatplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 通过一行配置提升性能
 
@@ -1499,21 +1499,21 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 - **这个为了解决多编码环境下的注入问题，一般情况下不会有这个情况**
 - **可以试着关闭这个参数**
 
-![img](图片/1bec807cc5fb41d480dccadf30812370tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/1bec807cc5fb41d480dccadf30812370tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 字节内部封装了一些默认配置 bytedgorm
 
-![img](图片/aa1af376ea684e76bf44b0f9b8dbb6ectplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/aa1af376ea684e76bf44b0f9b8dbb6ectplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### Dialector是什么
 
 - 不同语言的实现
 
-![img](图片/c34df96cdfba44e3a094d810504398f2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/c34df96cdfba44e3a094d810504398f2tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 #### 功能
 
-![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dfd726d9f4494a2788fbc53d803e95ba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dfd726d9f4494a2788fbc53d803e95ba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ### 四、Gorm最佳实践
 
@@ -1525,7 +1525,7 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 - 使用GormValue
 - 使用子查询SubQuery
 
-![img](图片/876ad03f4c2f4f85bc9b57f53aae6053tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/876ad03f4c2f4f85bc9b57f53aae6053tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 查询
 
@@ -1534,13 +1534,13 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 - 自定义查询SQL实现接口
 - SubQuery
 
-![img](图片/e5ee251c860e494cbe61ec5ae7f9bfeatplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/e5ee251c860e494cbe61ec5ae7f9bfeatplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 数据序列化
 
 - 可以对密码加解密等
 
-![img](图片/aee7153433094ec9bd6fd9f55333e7b4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/aee7153433094ec9bd6fd9f55333e7b4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ## 批量数据操作
 
@@ -1553,11 +1553,11 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 - 避免把数据都加载到内存，避免oom
 - FindInBatches： 每100条查询数据，分批处理
 
-![img](图片/f3a7f6d95a9f4f0bb8e79b297dd85106tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/f3a7f6d95a9f4f0bb8e79b297dd85106tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 更新
 
-![img](图片/6c11f90c385d4236a1196c5cd453ae61tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/6c11f90c385d4236a1196c5cd453ae61tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 批量数据加速操作
 
@@ -1566,7 +1566,7 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 - 使用Prepares Statement预编译sql
 - 混合使用， CreateBatchSize：默认使用批量插入，1000个一次
 
-![img](图片/6279eecd0f54488c88bf4df33b707242tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/6279eecd0f54488c88bf4df33b707242tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 代码复用、分库分表、Sharding
 
@@ -1574,63 +1574,63 @@ Gorm是在应用程序和database/sql之间的一层，操作sql的接口
 
 - 把分页逻辑抽象出来，利用Scopes方法复用抽象的逻辑
 
-![img](图片/515021bae69c4c60b8f3588bae600fc4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/515021bae69c4c60b8f3588bae600fc4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 分库分表
 
 - 根据数据选择分库分表，然后后面复用这个逻辑
 
-![img](图片/64dce47981a842edb3887ec2ce027cc8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/64dce47981a842edb3887ec2ce027cc8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### Sharding
 
 - 创建订单时，userId是2，就会把数据插入到orders_2的表里
 
-![img](图片/47d4c98f724c4febb712dbcd42e6af0btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/47d4c98f724c4febb712dbcd42e6af0btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 混沌工程/压测
 
 插入数据时篡改一些数据，检查系统状态能不能发现
 
-![img](图片/f840244606b045acb5c4a6731a5d8d6ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/f840244606b045acb5c4a6731a5d8d6ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### Logger/Trace
 
 - 全局模式
 - 会话模式
 
-![img](图片/4266fe6661a94e9eb2c3b29c6a7adb74tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/4266fe6661a94e9eb2c3b29c6a7adb74tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### Migrator 数据库迁移管理
 
 - 自动迁移数据库
 - 版本管理数据库
 
-![img](图片/4f0613b9415e49239f33ee19fc9552f4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/4f0613b9415e49239f33ee19fc9552f4tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 数据库迁移接口
 
-![img](图片/9671b52994bf4edbb1cd13d68dc46c36tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/9671b52994bf4edbb1cd13d68dc46c36tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 获取字段信息的接口
 
-![img](图片/c0a4cd3ae9d44595889e7af462d8096ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/c0a4cd3ae9d44595889e7af462d8096ctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### Raw SQL
 
 - Raw sql 不容易管理，改的时候容易忘
 
-![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe50496b18d64004b6b111899a8b1374~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe50496b18d64004b6b111899a8b1374~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ### 代码生成 Raw SQL - Gen
 
-![img](图片/73450d95bff248fd9fce02dca68a5a27tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/73450d95bff248fd9fce02dca68a5a27tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 安全问题
 
 - 要以参数的形式输入，如果直接拼接会发生sql注入的事故
 
-![img](图片/1ac68244cc794d0bba264dc33ad87161tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](图片/1ac68244cc794d0bba264dc33ad87161tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### Q&A
 

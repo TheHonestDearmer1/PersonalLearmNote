@@ -16,7 +16,7 @@
 
 # **课程背景**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/c4e0f5e86e7ad8d5955067cbf3ba921c.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/c4e0f5e86e7ad8d5955067cbf3ba921c.png)
 
 1.png
 
@@ -35,7 +35,7 @@
 
 HTTP：超文本传输协议(Hypertext Transfer Protocol)
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/da4d8579677ea04cd45d5808c7014c9f.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/da4d8579677ea04cd45d5808c7014c9f.png)
 
 2.png
 
@@ -47,7 +47,7 @@ HTTP：超文本传输协议(Hypertext Transfer Protocol)
 
 一个常见的POST请求在协议层究竟做了什么？
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/3d2587353f557fe502ae6d347cf260b7.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/3d2587353f557fe502ae6d347cf260b7.png)
 
 3.png
 
@@ -55,7 +55,7 @@ HTTP：超文本传输协议(Hypertext Transfer Protocol)
 讲师举了一个场景，你要和小姐姐交流去请她看电影。然后就是把请小姐姐看电影这句话，把它转换成一个真实的http协议。可以看到这个协议里面的第一行是从post开始打头，然后一个空格之后接上的URL然后接下来又是一个空格，然后接上一个HTTP1.1，这看着像是一个HD当前版本的一个描述。这就是协议里面的描述。然后再一个大空行之后，我们可以看到我们真实的一个想说的话，也就是body部分：lets watch a movie totogether tonight 那之后这个协议结束了。那我们可以看到那我们的协议的开始，那其实就是我们的这个post这一行开始，只要我们对端检测到这一行的内容后，就可以接收我们的协议了。那协议的结束就是我们这个Let‘s watch a movie together tonight 最后我们再加上那一个换行之后就结束掉了我们的这个协议。然后同时我们可以看到源数据里面有一个叫做content Length的一个描述，这个是协议的关键的一个header 它描述的是我们的body到底有多少个字节。所以我们的server 端就是我们的小姐姐端就能根据这个字节来指定去接收多少个字节的数据，这样就能拿到我们完整的一个消息了。OK这是我们请求的一个真实的场景。那我们小姐姐肯定会给我们一个回复对吧？那回复其实可以看到非常类似，我们回复其实也是有一个first line.first line 的话它是由我们的一个http 1.1是一个版本的开始，然后空格，然后200是一个状态码，然后再一个空格，然后又是一个OK OK的话就是一个我们对应200的一个状态码的一个文字描述，然后最后是一些源数据，然后最后是小姐姐回复的一个OK，这就是小姐姐响应的完整的协议了。
 ```
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/d4af789c81474c0a243776ce98e93dde.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/d4af789c81474c0a243776ce98e93dde.png)
 
 4.png
 
@@ -67,17 +67,17 @@ HTTP：超文本传输协议(Hypertext Transfer Protocol)
 
 pathc就是部分更新，put它的语义就是完整的更新，所以它一个比较细微的一个区别在（PUT是幂等的，而PATCH不是幂等的。）
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/36d4263854697040f10a73cbccbb9ed1.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/36d4263854697040f10a73cbccbb9ed1.png)
 
 5.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/651c9bf3c70851b9d1afa4b96e72f76c.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/651c9bf3c70851b9d1afa4b96e72f76c.png)
 
 6.png
 
 ## **1.3 请求流程**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/6f239e0e23b78997bd35d907715465f0.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/6f239e0e23b78997bd35d907715465f0.png)
 
 7.png
 
@@ -114,7 +114,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 - 扩展性
 - 复用性
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/8d99fb074e1029f41ec0aeddd3adf48a.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/8d99fb074e1029f41ec0aeddd3adf48a.png)
 
 8.png
 
@@ -122,7 +122,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 - 易复用
 - 高扩展性
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/36eb3433d37971b1657c47b349299eca.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/36eb3433d37971b1657c47b349299eca.png)
 
 9.png
 
@@ -136,11 +136,11 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **两种设计进行对比：**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/36eb3433d37971b1657c47b349299eca.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/36eb3433d37971b1657c47b349299eca.png)
 
 11.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/b7c61f464e73c28842b5c8cff13fc62b.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/b7c61f464e73c28842b5c8cff13fc62b.png)
 
 10.png
 
@@ -148,7 +148,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 ## **2.2 应用层设计**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/49ca41836d5201dcf4ec0f6be791cac2.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/49ca41836d5201dcf4ec0f6be791cac2.png)
 
 12.png
 
@@ -172,7 +172,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **洋葱模型:**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/77a8db94119adf3e29af6066f0295586.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/77a8db94119adf3e29af6066f0295586.png)
 
 13.png
 
@@ -190,19 +190,19 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 打印每个请求的request 和 response
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/67781b2f8721d0bad8f060643cd625bd.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/67781b2f8721d0bad8f060643cd625bd.png)
 
 14.png
 
 **1. 既然要实现预处理和后处理，那这个就很像调用了一个函数**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/7149f66e8dab0f02c4b145ca4c7e63d9.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/7149f66e8dab0f02c4b145ca4c7e63d9.png)
 
 15.png
 
 **将nextMiddleware() 统称为Next()**   //nextMiddleware 下一个中间件
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/c8afa490e6e9ce782ce599c539457a6b.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/c8afa490e6e9ce782ce599c539457a6b.png)
 
 16.png
 
@@ -210,11 +210,11 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **3. 用户如果不主动调用下一个处理函数怎么办？**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/e3403434cd99cea40e000b22a76cb4c2.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/e3403434cd99cea40e000b22a76cb4c2.png)
 
 17.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/a128e2ce027212a3424ce9c11a867b60.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/a128e2ce027212a3424ce9c11a867b60.png)
 
 18.png
 
@@ -222,13 +222,13 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **4. 出现异常想停止怎么办？**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/840b102079c0f1cbc12950cfa23480f6.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/840b102079c0f1cbc12950cfa23480f6.png)
 
 19.png
 
 **调用链：**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/3d3e1d7110922edc60745781a420f311.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/3d3e1d7110922edc60745781a420f311.png)
 
 20.png
 
@@ -263,7 +263,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 /a/b/c、/a/b/d
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/cc12ab8f73a2527705981afac1bfe772.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/cc12ab8f73a2527705981afac1bfe772.png)
 
 21.png
 
@@ -275,13 +275,13 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 /a/:c/f
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/4a80833de2a5308e5516a8cae455d6b8.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/4a80833de2a5308e5516a8cae455d6b8.png)
 
 22.png
 
 **如何匹配HTTP方法？**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/4d97d0cb92af9f9320999b41e0d42bae.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/4d97d0cb92af9f9320999b41e0d42bae.png)
 
 路由映射表
 
@@ -291,7 +291,7 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **在每个节点上适用一个list存储handler**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/4f0c31f9879ab7802b0156300fbb02cc.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/4f0c31f9879ab7802b0156300fbb02cc.png)
 
 24.png
 
@@ -307,13 +307,13 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 ## **2.5 协议层设计**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/19f7175bcd40959e7fa5ea4c3f2e06f8.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/19f7175bcd40959e7fa5ea4c3f2e06f8.png)
 
 25.png
 
 **抽象出合适的接口：**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/83a3671fa9fec04cc63dc09df0596ad7.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/83a3671fa9fec04cc63dc09df0596ad7.png)
 
 26.png
 
@@ -326,19 +326,19 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 **BIO(阻塞IO)**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/e0c2d36d89d86097ee381d738d3b7ad5.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/e0c2d36d89d86097ee381d738d3b7ad5.png)
 
 27.png
 
 **NIO(非阻塞)**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/6146a897f27cb031e9c6bbc8cd3b0993.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/6146a897f27cb031e9c6bbc8cd3b0993.png)
 
 28.png
 
 **go net "BIO" 用户管理 buffer**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/dde7cf573d33f717b63a6340c5c26834.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/dde7cf573d33f717b63a6340c5c26834.png)
 
 29.png
 
@@ -346,11 +346,11 @@ pathc就是部分更新，put它的语义就是完整的更新，所以它一个
 
 netpoll地址：https://github.com/cloudwego/netpoll
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/a2ea73d6583a8a7373dff64bc869510a.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/a2ea73d6583a8a7373dff64bc869510a.png)
 
 30.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/017b0fc142cd2b4a905b5c62b3e4d0f3.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/017b0fc142cd2b4a905b5c62b3e4d0f3.png)
 
 31.png
 
@@ -371,7 +371,7 @@ netpoll地址：https://github.com/cloudwego/netpoll
 
 **go net "BIO"**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/1cc60b2935a0488e90d8679a6b881662.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/1cc60b2935a0488e90d8679a6b881662.png)
 
 32.png
 
@@ -386,7 +386,7 @@ go net
 
 绑定一块缓冲区
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/0eb511e32bdb3fba91f98265f922e28d.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/0eb511e32bdb3fba91f98265f922e28d.png)
 
 33.png
 
@@ -394,11 +394,11 @@ go net
 
 存下全部Header 拷贝出完整的Body
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/6eb8de73b30d32fae10c73ad40e8a55b.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/6eb8de73b30d32fae10c73ad40e8a55b.png)
 
 34.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/83675c261770e5aee15938748b23e1dc.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/83675c261770e5aee15938748b23e1dc.png)
 
 35.png
 
@@ -420,7 +420,7 @@ go net
 
 所以我们先找到\n 再看它前一个是不是 \r
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/e6c9e68b8db3d54acac6cf80b8750240.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/e6c9e68b8db3d54acac6cf80b8750240.png)
 
 36.png
 
@@ -434,11 +434,11 @@ json解析库：Sonic，https://github.com/bytedance/sonic(由字节内部开源
 
 **适用SIMD加速和未使用比较**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/a0ad11a78d7a9bdf2899730af101a192.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/a0ad11a78d7a9bdf2899730af101a192.png)
 
 37.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/7d094f10c8af21f8f9ad7ff81fd63180.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/7d094f10c8af21f8f9ad7ff81fd63180.png)
 
 38.png
 
@@ -467,11 +467,11 @@ User-Agent、Content-Type、Content-Length、Connection、Transfer-Encoding
 
 aaa-bbb --> Aaa-Bbb
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/c34eaf88a3c17d900b2ad9242a83bcf2.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/c34eaf88a3c17d900b2ad9242a83bcf2.png)
 
 39.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/772da9b647397b3029b5f31df99b3b5d.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/772da9b647397b3029b5f31df99b3b5d.png)
 
 40.png
 
@@ -487,11 +487,11 @@ aaa-bbb --> Aaa-Bbb
 
 ## **3.4 热点资源池化**
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/2759670e55a2a77b028a7c3f25677f78.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/2759670e55a2a77b028a7c3f25677f78.png)
 
 41.png
 
-![img](https://ask.qcloudimg.com/http-save/yehe-9978966/0d393b8f607f071004ba682b94adc8a1.png)
+![](https://ask.qcloudimg.com/http-save/yehe-9978966/0d393b8f607f071004ba682b94adc8a1.png)
 
 42.png
 

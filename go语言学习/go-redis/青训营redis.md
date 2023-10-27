@@ -11,13 +11,13 @@
   - 数据量增长
   - 读写数据压力的不断增加
 
-![image.png](img/60acc71540ef42d580ee235aaca768c0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/60acc71540ef42d580ee235aaca768c0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 数据分冷热
   - 热数据:经常被访问到的数据
 - 将热数据存储到内存中
 
-![image.png](img/8ee1cb08ffc744f2aaf276f04895b4c8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/8ee1cb08ffc744f2aaf276f04895b4c8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ## 2：Redis工作原理
 
@@ -35,9 +35,9 @@
 
 - 单线程处理所有操作命令
 
-![image.png](img/01869c8e660b43c6858b71fe3999ca23tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/01869c8e660b43c6858b71fe3999ca23tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![image.png](img/9a67f43ec44f4c5685086d61649894b8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/9a67f43ec44f4c5685086d61649894b8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 # 二：Redis应用案例
 
@@ -118,13 +118,13 @@ func addContinuesDays(ctx context.Context, userID int64) {
 - 传用场景:消息通知。
   - 例如当文章更新时，将更新后的文章推送到ES，用户就能搜索到最新的文章数据
 
-![image.png](img/6015786d7346400b84b8f09b4b04f99dtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/6015786d7346400b84b8f09b4b04f99dtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （3）计数
 
 一个用户有多项计数需求，可通过hash结构存储
 
-![image.png](img/f2b4deab46b84f799fd34f37cea08f22tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/f2b4deab46b84f799fd34f37cea08f22tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （4）排行榜
 
@@ -133,7 +133,7 @@ func addContinuesDays(ctx context.Context, userID int64) {
   - zINCRBY myzset 2 "A1ex"
   - zSCORE myzset "A1ex"
 
-![image.png](img/710acfc65aa1449aad7288f6c87385c7tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/710acfc65aa1449aad7288f6c87385c7tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （5）限流
 
@@ -142,7 +142,7 @@ func addContinuesDays(ctx context.Context, userID int64) {
 - 对这个Key调用incr，超过限制N则禁止访问
 - 1671356046是当前时间戳
 
-![image.png](img/1d05a42877624e3ab6a877c260e3d356tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/1d05a42877624e3ab6a877c260e3d356tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （6）分布式锁
 
@@ -151,7 +151,7 @@ func addContinuesDays(ctx context.Context, userID int64) {
   - Redis是单线程执行命令
   - setnx只有未设置过才能执行成功
 
-![image.png](img/f1eda16743184d4b859e6dfb609330c8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/f1eda16743184d4b859e6dfb609330c8tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ## 2：常用数据结构
 
@@ -162,24 +162,24 @@ func addContinuesDays(ctx context.Context, userID int64) {
 - 通常和expire配合使用
 - 场景:存储计数、Session
 
-![image.png](img/c509093223654b038f8f2e75a47f4024tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/c509093223654b038f8f2e75a47f4024tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （2）list数据结构quicklist
 
 Quicklist由一个双向链表和listpack实现
 
-![image.png](img/e3d8a1a311174208b208726efa8c0089tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/e3d8a1a311174208b208726efa8c0089tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （3）listpack
 
-![image.png](img/f23fd833ffde49e691c163f758ae8849tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/f23fd833ffde49e691c163f758ae8849tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### （4）hash数据结构dict
 
 - rehash: rehash操作是将ht[0]中的数据.全部迁移到ht[1]中。数据量小的场景下,直接将数据从ht[0]拷贝到ht[1]速度是较快的。数据量大的场景，例如存有上百万的KV时，迁移过程将会明显阻塞用户请求。
 - 渐进式rehash:为避免出现这种情况，使用了rehash方案。基本原理就是，每次用户访问时都会迁移少量数据。将整个迁移过程，平摊到所有的访问用户请求过程中。
 
-![image.png](img/1363d8c197d74dd5adb5fe9be44ce1b9tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)  
+![](img/1363d8c197d74dd5adb5fe9be44ce1b9tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)  
 
 ### （5）zset数据结构zskiplist
 
@@ -188,15 +188,15 @@ Quicklist由一个双向链表和listpack实现
   - 之工NCRBY myzset 2 "Alex"
   - zSCORE myzset "Alex"
 
-![image.png](img/00ff4d31d9284c468f09b2c20dad281ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/00ff4d31d9284c468f09b2c20dad281ftplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![image.png](img/ed63f7e1536b41dea92e1c64929fcadctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/ed63f7e1536b41dea92e1c64929fcadctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 # 三：Redis使用注意事项
 
 ## 1：大key
 
-![image.png](img/214492d11c37474fa9a9898d90694b43tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/214492d11c37474fa9a9898d90694b43tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 大Key的危害
   - 读取成本高
@@ -205,14 +205,14 @@ Quicklist由一个双向链表和listpack实现
 - 业务侧使用大Key的表现
   - 请求Redis超时报错
 
-![image.png](img/1366195ffd5145b1b93519f46dd43bbctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/1366195ffd5145b1b93519f46dd43bbctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 消除大key的方法
 
 - 拆分
   - 将大key拆分为小key。例如一个String拆分成多个String
 
-![image.png](img/658b6f26cad4496db379628fce1d7573tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/658b6f26cad4496db379628fce1d7573tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 压缩
   -  将value压缩后写入redis，读取时解压后再使用。压缩算法可以是gzip、snappy、lz4等。通常情况下,一个压缩算法压缩率高、则解压耗时就长。需要对实际数据进行测试后，选择一个合适的算法
@@ -227,24 +227,24 @@ Quicklist由一个双向链表和listpack实现
   - 用户访问一个Key的QPS特别高，导致Server实例出现CPU负载突增或者不均的情况。热key没有明确的标准,QPS超过500就有可能被识别为热Key
   - *QPS*即每秒查询率，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。*QPS* = req/sec = 请求数/秒，即每秒的响应请求数，也即是最大吞吐能力。 
 
-![image.png](img/1f96f3405b7240d3b5784cd6bc362f43tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/1f96f3405b7240d3b5784cd6bc362f43tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 解决热Key的方法
 
 - 设置Localcache
   - 在访问Redis前，在业务服务侧设置Localcache，降低访问Redis的QPS。LocalCache中缓存过期或未命中，则从Redis中将数据更新到LocalCache。Java的Guava、Golang的Bigcache就是这类LocalCache
 
-![image.png](img/b685b855d38e488f8aa79e2b5b8633cetplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/b685b855d38e488f8aa79e2b5b8633cetplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 拆分
   - 将keyvalue这一个热Key复制写入多份，例如key1.value,key2:value，访问的时候访问多个key，但value是同一个.以此将qps分散到不同实例上，降低负载。代价是，更新时需要更新多个key，存在数据短暂不一致的风险
 
-![image.png](img/9117b1f9ff2648868c019a3710681906tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/9117b1f9ff2648868c019a3710681906tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 使用Redis代理的热Key承载能力
   - 字节跳动的Redis访问代理就具备热Key承载能力。本质上是结合了"热Key发现"、"LocalCache"两个功能
 
-![image.png](img/9bff54d0621045e6a805ba024cd3c73etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](img/9bff54d0621045e6a805ba024cd3c73etplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ## 3：慢查询情景
 

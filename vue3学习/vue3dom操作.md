@@ -10,7 +10,7 @@ https://blog.csdn.net/zxdznyy/article/details/127078632
 
 笔记等待完成
 
-![image-20231002030139408](img/image-20231002030139408.png)
+![](img/image-20231002030139408.png)
 
 [vue中input的type属性为file时，获取上传的文件名_还没想好叫啥~的博客-CSDN博客](https://blog.csdn.net/weixin_52613927/article/details/122985931)
 

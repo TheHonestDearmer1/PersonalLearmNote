@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e4c8de507cb8f30f",
+        "id": "a551d50d47e5c1b4",
         "type": "tabs",
         "children": [
           {
-            "id": "c3562bb53f76ee1c",
+            "id": "4c72a82c5a18e205",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "软考/软考笔记/软考-软件设计师-笔记.md",
+                "file": "go语言学习/Go 语言原理与实践2.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "软考/软考笔记/软考-软件设计师-笔记.md",
+                "file": "go语言学习/Go 语言原理与实践2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "软考/软考笔记/软考-软件设计师-笔记.md",
+                "file": "go语言学习/Go 语言原理与实践2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "软考/软考笔记/软考-软件设计师-笔记.md"
+                "file": "go语言学习/Go 语言原理与实践2.md"
               }
             }
           }
@@ -146,11 +146,16 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c3562bb53f76ee1c",
+  "active": "4c72a82c5a18e205",
   "lastOpenFiles": [
-    "软考/设计模式/设计模式.md",
+    "python.py",
+    "go语言学习/Go 语言原理与实践1.md",
     "java开发/springboot_SSM开发整合.md",
+    "java开发/spring.md",
+    "java开发/mybatis配置.md",
     "java开发/img/1630459727575.png",
+    "软考/软考笔记/软考-软件设计师-笔记.md",
+    "软考/设计模式/设计模式.md",
     "java开发/SSM.md",
     "智能车/Ubuntu20.04指令.md",
     "智能车/carla.md",

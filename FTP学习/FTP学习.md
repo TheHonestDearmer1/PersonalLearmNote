@@ -9,51 +9,51 @@
   ②、打开"控制面板" > 点击 " 程序 " > "启用或关闭Windows功能 " > 手动勾选"Internet Information Services 和 Internet Information Services可承载的Web核心 "（系统不会自动全选）> 点击"确定"按钮 > 等待安装完成重启电脑；
 
 
-![img](img/fdcf43de1ef44643833bd688e8f84234.png)
+![](img/fdcf43de1ef44643833bd688e8f84234.png)
 
-![img](img/d1a2be7fe15e4cb7a7c322d88fb160a3.png)
+![](img/d1a2be7fe15e4cb7a7c322d88fb160a3.png)
 
-![img](img/253c347d9ca346698526399ec644df6c.png)
+![](img/253c347d9ca346698526399ec644df6c.png)
 
-![img](img/cd82d1db8cf5489bb25abdded8fe223b.png)
+![](img/cd82d1db8cf5489bb25abdded8fe223b.png)
 
  ②、左侧栏"**网站** " > 点击"**添加FTP站点**"；
 
-![image-20230822103609288](img/image-20230822103609288.png)
+![](img/image-20230822103609288.png)
 
  ③、"***\*FTP站点名称\****" 输入名称  > "**物理路径**" 选择设置FTP存放文件的盘符地址 > 点击"**下一步**"；
 
-![img](img/e42dab9adf5848a8a316b244260c9439.png)
+![](img/e42dab9adf5848a8a316b244260c9439.png)
 
 ④、"***\*IP地址\****" 输入本机IP  > "**SSL**" 选择无SSL > 点击"**下一步**"；
 
-![img](img/d1133a3fb2324d7784ec491972cc5382.png)
+![](img/d1133a3fb2324d7784ec491972cc5382.png)
 
  ⑤、"**授权**" 选择可访问的用户对象  > "**权限**" 选择可操作的权限范围 > 点击"**完成**"；
 
-![img](img/f6ccccc6931e47f99ed5d6561fd5ac48.png)
+![](img/f6ccccc6931e47f99ed5d6561fd5ac48.png)
 
   ⑥、"**本机名**"  > "**网站**" > 即可看到自建的FTP站点；
 
-![img](img/1ad092183ad547179b0d5b1ad0811fac.png)
+![](img/1ad092183ad547179b0d5b1ad0811fac.png)
 
 搜索计算机管理
 
-![image-20230822104830714](img/image-20230822104830714.png)
+![](img/image-20230822104830714.png)
 
-![image-20230822104914484](img/image-20230822104914484.png)
+![](img/image-20230822104914484.png)
 
 用户是23563，密码是最初设置的那个（z1o2m3b4i5e6）
 
 在文件夹地址中输入ftp://本机ip输入用户和密码即可访问
 
-![image-20230822105042622](img/image-20230822105042622.png)
+![](img/image-20230822105042622.png)
 
 打开防火墙
 
-![image-20230822105157155](img/image-20230822105157155.png)
+![](img/image-20230822105157155.png)
 
-![image-20230822105230693](img/image-20230822105230693.png)
+![](img/image-20230822105230693.png)
 
 ### win11使用FTP进行文件传输
 

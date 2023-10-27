@@ -80,7 +80,7 @@
   - Spring已形成了完整的生态圈，也就是说我们可以完全使用Spring技术完成整个项目的构建、设计与开发。
   - Spring有若干个项目，可以根据需要自行选择，把这些个项目组合起来，起了一个名称叫Spring全家桶，如下图所示
 
-[![Spring全家桶](img/630c26bd16f2c2beb1e9ef1e.jpg)](https://pic.imgdb.cn/item/630c26bd16f2c2beb1e9ef1e.jpg)
+[![](img/630c26bd16f2c2beb1e9ef1e.jpg)](https://pic.imgdb.cn/item/630c26bd16f2c2beb1e9ef1e.jpg)
 
 **说明:**
 
@@ -97,7 +97,7 @@
 
 接下来我们介绍下Spring Framework这个技术是如何来的呢?
 
-[![Spring发展史](img/630c28bf16f2c2beb1eb2f6a.jpg)](https://pic.imgdb.cn/item/630c28bf16f2c2beb1eb2f6a.jpg)
+[![](img/630c28bf16f2c2beb1eb2f6a.jpg)](https://pic.imgdb.cn/item/630c28bf16f2c2beb1eb2f6a.jpg)
 
 - IBM(IT公司-国际商业机器公司)在1997年提出了EJB思想,早期的JAVAEE开发大都基于该思想。
 - Rod Johnson(Java和J2EE开发领域的专家)在2002年出版的`Expert One-on-One J2EE Design and Development`,书中有阐述在开发中使用EJB该如何做。
@@ -118,9 +118,9 @@
 
 - Spring Framework是Spring生态圈中最基础的项目，是其他项目的根基。
 - Spring Framework的发展也经历了很多版本的变更，每个版本都有相应的调整
-  [![img](img/630c2c6e16f2c2beb1ee0194.jpg)](https://pic.imgdb.cn/item/630c2c6e16f2c2beb1ee0194.jpg)
+  [![](img/630c2c6e16f2c2beb1ee0194.jpg)](https://pic.imgdb.cn/item/630c2c6e16f2c2beb1ee0194.jpg)
 - Spring Framework的5版本目前没有最新的架构图，而最新的是4版本，所以接下来主要研究的是4的架构图
-  [![img](img/630c2c8616f2c2beb1ee158e.jpg)](https://pic.imgdb.cn/item/630c2c8616f2c2beb1ee158e.jpg)
+  [![](img/630c2c8616f2c2beb1ee158e.jpg)](https://pic.imgdb.cn/item/630c2c8616f2c2beb1ee158e.jpg)
 
 1. 核心层
    - Core Container：核心容器，这个模块是Spring最核心的模块，其他的都需要依赖该模块
@@ -144,7 +144,7 @@
   3. AOP的具体应用,事务管理
   4. IOC/DI的具体应用,整合Mybatis
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630c2daf16f2c2beb1eefe53.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630c2daf16f2c2beb1eefe53.jpg)
 
 ### Spring核心概念
 
@@ -405,7 +405,7 @@ ming.grab();
 
 
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://files.codelife.cc/website/zhihu.svg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://files.codelife.cc/website/zhihu.svg)
 
 浅谈控制反转与依赖注入--胡小国
 
@@ -633,7 +633,7 @@ XML
   - name="bookDao"中`bookDao`的作用是让Spring的IOC容器在获取到名称后，将首字母大写，前面加set找对应的`setBookDao()`方法进行对象注入
   - ref="bookDao"中`bookDao`的作用是让Spring能在IOC容器中找到id为`bookDao`的Bean对象给`bookService`进行注入
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630d5f3d16f2c2beb1abd707.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630d5f3d16f2c2beb1abd707.jpg)
 \4. 运行程序调用方法
 测试结果如下
 
@@ -659,7 +659,7 @@ XML
 ```
 
 其中，bean标签的功能、使用方式以及id和class属性的作用，我们通过一张图来描述下
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630d676b16f2c2beb1afa402.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/630d676b16f2c2beb1afa402.jpg)
 
 #### bean的name属性
 
@@ -2780,11 +2780,11 @@ XML
 
 #### bean相关
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/631070e616f2c2beb1536517.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/631070e616f2c2beb1536517.jpg)
 
 #### 依赖注入相关
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/631070f716f2c2beb1536fa3.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/631070f716f2c2beb1536fa3.jpg)
 
 ## IOC/DI注解开发
 
@@ -4014,7 +4014,7 @@ public DataSource dataSource(BookDao bookDao) {
 
 ## 注解开发总结
 
-[![img](img/6311791f16f2c2beb1cd19b1.jpg)](https://pic.imgdb.cn/item/6311791f16f2c2beb1cd19b1.jpg)
+[![](img/6311791f16f2c2beb1cd19b1.jpg)](https://pic.imgdb.cn/item/6311791f16f2c2beb1cd19b1.jpg)
 
 ## Spring整合
 
@@ -4248,9 +4248,9 @@ Mybatis的基础环境我们已经准备好了，接下来就得分析下在上�
 
 - Mybatis程序核心对象分析
   从图中可以获取到，真正需要交给Spring管理的是SqlSessionFactory
-  [![img](img/6313ff4416f2c2beb1bf13f0.jpg)](https://pic.imgdb.cn/item/6313ff4416f2c2beb1bf13f0.jpg)
+  [![](img/6313ff4416f2c2beb1bf13f0.jpg)](https://pic.imgdb.cn/item/6313ff4416f2c2beb1bf13f0.jpg)
 - 整合Mybatis，就是将Mybatis用到的内容交给Spring管理，分析下配置文件
-  [![img](img/6313ff5116f2c2beb1bf1ee5.jpg)](https://pic.imgdb.cn/item/6313ff5116f2c2beb1bf1ee5.jpg)
+  [![](img/6313ff5116f2c2beb1bf1ee5.jpg)](https://pic.imgdb.cn/item/6313ff5116f2c2beb1bf1ee5.jpg)
 
 说明:
 
@@ -4365,7 +4365,7 @@ public class MyBatisConfig {
 说明：
 
 - 使用SqlSessionFactoryBean封装SqlSessionFactory需要的环境信息
-  [![img](img/6314160016f2c2beb1d5ae4f.jpg)](https://pic.imgdb.cn/item/6314160016f2c2beb1d5ae4f.jpg)
+  [![](img/6314160016f2c2beb1d5ae4f.jpg)](https://pic.imgdb.cn/item/6314160016f2c2beb1d5ae4f.jpg)
 - SqlSessionFactoryBean是前面我们讲解FactoryBean的一个子类，在该类中将SqlSessionFactory的创建进行了封装，简化对象的创建，我们只需要将其需要的内容设置即可。
 - 方法中有一个参数为dataSource,当前Spring容器中已经创建了Druid数据源，类型刚好是DataSource类型，此时在初始化SqlSessionFactoryBean这个对象的时候，发现需要使用DataSource对象，而容器中刚好有这么一个对象，就自动加载了DruidDataSource对象。
 - `sqlSessionFactory.setTypeAliasesPackage("com.blog.domain");`，替换掉配置文件中的
@@ -4395,7 +4395,7 @@ XML
 ```
 
 - 使用MapperScannerConfigurer加载Dao接口，创建代理对象保存到IOC容器中
-  [![img](img/631416a116f2c2beb1d64489.jpg)](https://pic.imgdb.cn/item/631416a116f2c2beb1d64489.jpg)
+  [![](img/631416a116f2c2beb1d64489.jpg)](https://pic.imgdb.cn/item/631416a116f2c2beb1d64489.jpg)
 - 这个MapperScannerConfigurer对象也是MyBatis提供的专用于整合的jar包中的类，用来处理原始配置文件中的mappers相关配置，加载数据层的Mapper接口类
 - MapperScannerConfigurer有一个核心属性basePackage，就是用来设置所扫描的包路径
 
@@ -4590,7 +4590,7 @@ book dao save …
 - 无入侵式/无侵入式
 
 说了这么多，Spring到底是如何实现的呢?
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/63155fb516f2c2beb109d12c.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/63155fb516f2c2beb109d12c.jpg)
 
 1. 前面一直在强调，Spring的AOP是对一个类的方法在不进行任何修改的前提下实现增强。对于上面的案例中BookServiceImpl中有`save`,`update`,`delete`和`select`方法,这些方法我们给起了一个名字叫`连接点`
 2. 在BookServiceImpl的四个方法中，`update`和`delete`只有打印没有计算万次执行消耗时间，但是在运行的时候已经有该功能，那也就是说`update`和`delete`方法都已经被增强，所以对于需要增强的方法我们给起了一个名字叫`切入点`
@@ -4905,7 +4905,7 @@ public class MyAdvice {
   - 注意第一步在容器启动的时候，bean对象还没有被创建成功。
   - 要被实例化bean对象的类中的方法和切入点进行匹配
 
-[![img](img/6315bf8416f2c2beb16ede79.jpg)](https://pic.imgdb.cn/item/6315bf8416f2c2beb16ede79.jpg)
+[![](img/6315bf8416f2c2beb16ede79.jpg)](https://pic.imgdb.cn/item/6315bf8416f2c2beb16ede79.jpg)
 
 - 匹配失败，创建原始对象，如`UserDao`
 
@@ -5249,7 +5249,7 @@ JAVA
 
 为了更好的理解这几种通知类型，我们来看一张图
 
-[![img](img/6315d94816f2c2beb18bafb7.jpg)](https://pic.imgdb.cn/item/6315d94816f2c2beb18bafb7.jpg)
+[![](img/6315d94816f2c2beb18bafb7.jpg)](https://pic.imgdb.cn/item/6315d94816f2c2beb18bafb7.jpg)
 
 1. 前置通知，追加功能到方法执行前,类似于在代码1或者代码2添加内容
 2. 后置通知,追加功能到方法执行后,不管方法执行的过程中有没有抛出异常都会执行，类似于在代码5添加内容
@@ -5621,7 +5621,7 @@ public class MyAdvice {
 
 因为环绕通知是可以控制原始方法执行的，所以我们把增强的代码写在调用原始方法的不同位置就可以实现不同的通知类型的功能，如
 
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/6316050116f2c2beb1be2656.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/6316050116f2c2beb1be2656.jpg)
 
 #### 通知类型总结
 
@@ -7004,7 +7004,7 @@ public class SpringConfig {
 这部分我们重点要理解两个概念，分别是`事务管理员`和`事务协调员`。
 
 当未开启Spring事务之前
-[![img](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/63180cda16f2c2beb1974dc0.jpg)
+[![](data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)](https://pic.imgdb.cn/item/63180cda16f2c2beb1974dc0.jpg)
 
 - AccountDao的outMoney因为是修改操作，会开启一个事务T1
 - AccountDao的inMoney因为是修改操作，会开启一个事务T2
@@ -7014,7 +7014,7 @@ public class SpringConfig {
   - 就会导致数据出现错误
 
 当开启Spring的事务管理后
-[![img](img/63180d1a16f2c2beb197868a.jpg)](https://pic.imgdb.cn/item/63180d1a16f2c2beb197868a.jpg)
+[![](img/63180d1a16f2c2beb197868a.jpg)](https://pic.imgdb.cn/item/63180d1a16f2c2beb197868a.jpg)
 
 - transfer上添加了@Transactional注解，在该方法上就会有一个事务T
 - AccountDao的outMoney方法的事务T1加入到transfer的事务T中
@@ -7201,7 +7201,7 @@ public class AccountServiceImpl implements AccountService {
 
 #### 事务传播行为
 
-[![img](img/6318177d16f2c2beb1a2274f.jpg)](https://pic.imgdb.cn/item/6318177d16f2c2beb1a2274f.jpg)
+[![](img/6318177d16f2c2beb1a2274f.jpg)](https://pic.imgdb.cn/item/6318177d16f2c2beb1a2274f.jpg)
 
 对于上述案例的分析:
 

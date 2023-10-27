@@ -334,7 +334,7 @@ const createWindow = () => {
 
 完成上述步骤后，您应该有一个功能齐全的Electron程序，如下所示：
 
-![最简的 Electron 应用程序](img/simplest-electron-app-849f2d68df0c27475bfb850ed5d171a6.png)
+![](img/simplest-electron-app-849f2d68df0c27475bfb850ed5d171a6.png)
 
 完整代码如下：
 
@@ -1338,7 +1338,7 @@ index.html
 
 做完这几步之后，你的应用应该长这样：
 
-![Electron 应用显示这个应用正在使用 Chrome (v102.0.5005.63)、Node.js (v16.14.2) 和 Electron (v19.0.3)。](img/preload-example-f77948d27686974e427084fa94fe620c.png)
+![](img/preload-example-f77948d27686974e427084fa94fe620c.png)
 
 你的代码应该长这样：
 

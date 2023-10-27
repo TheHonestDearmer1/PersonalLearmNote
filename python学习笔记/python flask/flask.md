@@ -153,7 +153,7 @@ $ flask run --host=0.0.0.0
 
 `flask run` 命令不只可以启动开发服务器。如果您打开调试模式，那么服 务器会在修改应用代码之后自动重启，并且当请求过程中发生错误时还会在浏 览器中提供一个交互调试器。
 
-![The interactive debugger in action.](%E5%9B%BE%E7%89%87/debugger.png)
+![](%E5%9B%BE%E7%89%87/debugger.png)
 
 Warning
 

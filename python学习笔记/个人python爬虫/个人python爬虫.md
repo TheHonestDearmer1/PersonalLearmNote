@@ -98,7 +98,7 @@ pip install requests
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests
 ```
 
-![image-20230713162722914](图片/1.png)
+![](图片/1.png)
 
 标准爬虫
 
@@ -1248,7 +1248,7 @@ driver.quit()
 
 selenium不但可以打开浏览器. 还可以对浏览器各种操作. ⽐如, 点击, 查找. 都可以
 
-![image-20230723205826612](图片/3.png)
+![](图片/3.png)
 
 实现点击百度页面上这个按一按的按钮
 
@@ -1271,7 +1271,7 @@ driver.quit()
 
 搜索python，实现搜索内容，首先定位到文本框，在里面输入内容再点击回车
 
-![image-20230723210113250](图片/4.png)
+![](图片/4.png)
 
 ```python
 from selenium import webdriver

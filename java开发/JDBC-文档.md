@@ -15,7 +15,7 @@
 >   通过Java语言操作数据库，操作表中的数据 
  oracle公司为**了简化、**统一对数据库的操作，定义了一套Java操作数据库的规范，称之为JDBC 
  连接不同的数据库，需要不同的jar包。 
- ![assets/image-20211119101546036.png](assets/image-20211119101546036.png) 
+ ![](assets/image-20211119101546036.png) 
 
 
 ### JDBC的本质
@@ -703,7 +703,7 @@ MVC开始是存在于桌面程序中的，M是指业务[模型](https://baike.ba
 
 所需要的jar包： mysql的驱动包
 
-![在这里插入图片描述](img/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjE2ODM1MA==,size_16,color_FFFFFF,t_70.jpeg)
+![](img/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjE2ODM1MA==,size_16,color_FFFFFF,t_70.jpeg)
 
 #### 数据库准备
 

@@ -710,7 +710,7 @@ export default {
 
 最后，在这里你可以直观地看到完整的指令语法：
 
-![指令语法图](img/directive.69c37117.png)
+![](img/directive.69c37117.png)
 
 # 响应式基础
 
@@ -2429,7 +2429,7 @@ export default {
 
 下面是实例生命周期的图表。你现在并不需要完全理解图中的所有内容，但以后它将是一个有用的参考。
 
-![组件生命周期图示](img/lifecycle.16e4c08e.png)
+![](img/lifecycle.16e4c08e.png)
 
 有关所有生命周期钩子及其各自用例的详细信息，请参考[生命周期钩子 API 索引](https://cn.vuejs.org/api/composition-api-lifecycle.html)。
 
@@ -2872,7 +2872,7 @@ TypeScript 用户请参考：[为组件的模板引用标注类型](https://cn.v
 
 组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用中，组件常常被组织成层层嵌套的树状结构：
 
-![组件树](img/components.7fbb3771.png)
+![](img/components.7fbb3771.png)
 
 这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](https://cn.vuejs.org/guide/extras/web-components.html)。
 
