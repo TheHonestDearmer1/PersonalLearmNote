@@ -10,7 +10,7 @@
 
 设想一下，下面的这段代码有一个团队进行开发，因为没有具备统一的代码标准，所以生成了下面的代码：
 
-<img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210903190021029.png" alt="image-20210903190021029" style="zoom:67%;" />
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210903190021029.png)
 
 这段代码可以正常运行没有问题，但是整体的代码结构却非常的难看。
 
@@ -28,7 +28,7 @@
 
 我们把上面的代码进行一下修正，做一个对比：
 
-<img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210903193913261.png" alt="image-20210903193913261" style="zoom:67%;" />
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210903193913261.png)
 
 修改之后的代码具备了统一的规范之后，是不是看起来就舒服多了！
 
@@ -124,7 +124,8 @@ module.exports = {
    */
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "quotes": "warn" //"quotes": "error" // 默认 这里是新增的，是其中一个
   }
 };
 
@@ -138,7 +139,7 @@ module.exports = {
 
 此时，只要我们一保存代码，那么就会得到一个对应的错误
 
-<img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904185336318.png" alt="image-20210904185336318" style="zoom:67%;" />
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904185336318.png)
 
 这个错误表示： 
 
@@ -206,7 +207,7 @@ module.exports = {
 那么这一小节，我们就来去完成这个功能：
 
 1. 在 `VSCode` 中安装 `prettier` 插件（搜索 `prettier`），这个插件可以帮助我们在配置 `prettier` 的时候获得提示
-   <img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904195026475.png" alt="image-20210904195026475" style="zoom:50%;" />
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904195026475.png)
 
 2. 在项目中新建 `.prettierrc` 文件，该文件为 `perttier` 默认配置文件
 
@@ -224,10 +225,10 @@ module.exports = {
    ```
 
 4. 打开 `VSCode` 《设置面板》
-   <img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904200638072.png" alt="image-20210904200638072" style="zoom:67%;" />
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904200638072.png)
 
 5. 在设置中，搜索 `save` ，勾选 `Format On Save`
-   <img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904200738067.png" alt="image-20210904200738067" style="zoom:67%;" />
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904200738067.png)
 
 至此，你即可在 **`VSCode` 保存时，自动格式化代码！**
 
@@ -241,7 +242,7 @@ module.exports = {
 
 我们尝试在 `Home.vue` 中写入一个 `created` 方法，写入完成之后，打开我们的控制台我们会发现，此时代码抛出了一个 `ESLint` 的错误
 
-<img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904201057594.png" alt="image-20210904201057594" style="zoom:67%;" />
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904201057594.png)
 
 这个错误的意思是说：**`created` 这个方法名和后面的小括号之间，应该有一个空格！**
 
@@ -283,7 +284,7 @@ module.exports = {
 
 比如说，我们来看这几条提交记录：
 
-![image-20210904203051754](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904203051754.png)
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904203051754.png)
 
 你能够想象得到它们经历了什么吗？
 
@@ -318,7 +319,7 @@ module.exports = {
 
 也就是说，如果要按照 **约定式提交规范** 来去做的化，那么你的一次提交描述应该式这个样子的：
 
-<img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904205519762.png" alt="image-20210904205519762"  />
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210904205519762.png)
 
 我想大家看到这样的一个提交描述之后，心里的感觉应该和我一样是崩溃的！要是每次都这么写，写到猴年马月了！
 
@@ -544,7 +545,7 @@ PS：详细的 `HOOKS介绍` 可点击[这里](https://git-scm.com/docs/githooks
 
 **注意：确保保存为 `UTF-8` 的编码格式**，否则可能会出现以下错误：
 
-![image-20210710121456416](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710121456416.png)
+![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710121456416.png)
 
 接下来我们来安装 `husky`
 
@@ -562,7 +563,7 @@ PS：详细的 `HOOKS介绍` 可点击[这里](https://git-scm.com/docs/githooks
    npx husky install
    ```
 
-   ![image-20210906202034156](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906202034156.png)
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906202034156.png)
 
 3. 在 `package.json` 中生成 `prepare` 指令（ **需要 npm > 7.0 版本** ）
 
@@ -570,7 +571,7 @@ PS：详细的 `HOOKS介绍` 可点击[这里](https://git-scm.com/docs/githooks
    npm set-script prepare "husky install"
    ```
 
-   <img src="第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906202128323.png" alt="image-20210906202128323" style="zoom:50%;" />
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906202128323.png)
 
 4. 执行 `prepare` 指令
 
@@ -579,7 +580,7 @@ PS：详细的 `HOOKS介绍` 可点击[这里](https://git-scm.com/docs/githooks
    ```
 
 5. 执行成功，提示
-   <img src=" 第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710120053221.png" alt="image-20210710120053221" style="zoom:80%;" />
+   ![]( 第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710120053221.png)
 
 6. 添加 `commitlint` 的 `hook` 到 `husky`中，并指令在 `commit-msg` 的 `hooks` 下执行 `npx --no-install commitlint --edit "$1"` 指令
 
@@ -588,7 +589,7 @@ PS：详细的 `HOOKS介绍` 可点击[这里](https://git-scm.com/docs/githooks
    ```
 
 7. 此时的 `.husky` 的文件结构
-   ![image-20210710120228931]( 第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710120228931.png)
+   ![]( 第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210710120228931.png)
 
 至此， 不符合规范的 commit 将不再可提交：
 
@@ -633,7 +634,7 @@ husky - commit-msg hook exited with code 1 (error)
 1. 执行 `npx husky add .husky/pre-commit "npx eslint --ext .js,.vue src"` 添加 `commit` 时的 `hook` （`npx eslint --ext .js,.vue src` 会在执行到该 hook 时运行）
 
 2. 该操作会生成对应文件 `pre-commit`：
-   ![image-20210906204043915](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906204043915.png)
+   ![](第二章：标准化大厂编程规范解决方案之ESLint + Git Hooks .assets/image-20210906204043915.png)
 
 3. 关闭 `VSCode` 的自动保存操作
 

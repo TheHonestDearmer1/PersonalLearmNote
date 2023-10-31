@@ -89,10 +89,10 @@
 如果你现在想要去选择一个编辑库，那么可以从以下几点中进行选择：
 
 1. [开源协议](https://www.runoob.com/w3cnote/open-source-license.html)：其中尽量选择 `MIT` 或者 `BSD` 协议的开源项目
-   <img src="第十章：富文本与markdown综合处理之创建文章.assets/image-20211006194630048.png" alt="image-20211006194630048" style="zoom:67%;" />
+   ![](第十章：富文本与markdown综合处理之创建文章.assets/image-20211006194630048.png)
 2. 功能：功能需要满足基本需求
 3. `issue`：通过 `issue` 查看作者对该库的维护程度
-   ![image-20211006194612197](第十章：富文本与markdown综合处理之创建文章.assets/image-20211006194612197.png)
+   ![](第十章：富文本与markdown综合处理之创建文章.assets/image-20211006194612197.png)
 4. 文档：文档越详尽越好，最好提供了中文文档（英文好的可以忽略）
 5. 国产的：或许你 `朋友的朋友的朋友` 就是这个库的作者
 
