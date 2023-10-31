@@ -15,7 +15,7 @@ markdown最全数学公式
 
 | 算式 | markdown |
 | --- | --- |
-| $z=z\_l$ | z=z\_l |
+| $z=z_l$ | z=z\_l |
 
 **省略号**
 
