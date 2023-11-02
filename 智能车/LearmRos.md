@@ -2109,7 +2109,7 @@ turtle\_tf\_listener.py：根据步骤，从tf中获取任意两个坐标之间�
 我们用键盘控制海龟，同样可以让第2只海龟追着我们跑。  
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/df868e2523514f2396f22b0a97fc1e11.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAdGFrZWRhY2hpYQ==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-#launch启动文件的使用方法
+# launch启动文件的使用方法
 
 在之前的学习中，比如上一讲TF坐标广播和监听，启动程序非常麻烦，一共启动了6个终端窗口，并且涉及到终端向ROS的参数传递。  
 **launch启动文件**将解决这个问题，帮助我们快速部署、整合并启动程序。  
@@ -2226,7 +2226,7 @@ arg：【不存在于ROS的参数服务器中】仅在launch文件中出现，�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/94a82cf9ccc44d7fb5199171c7a2e514.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAdGFrZWRhY2hpYQ==,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)我们输入`rostopic list`可以看到话题名已经改成了/cmd\_vel  
 我们可以向新话题名/cmd\_vel发布一个新的速度指令，海龟应该就会动起来（效果略^^）！
 
-#常用可视化工具的使用
+# 常用可视化工具的使用
 
 这节是最后一节，介绍一些常用可视化工具的使用。  
 在课的一开始曾经介绍过ROS的其中一个可视化工具，计算图可视化指令——rqt\_graph。  
