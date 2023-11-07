@@ -3203,6 +3203,23 @@ public String add() {
 
 # 接收前端发来的json数据（非from-data）
 
+如果不想修改后端的话，前端改成：
+
+```js
+axios.post('http://'+Url+':5000/ChangeWord',
+      {
+       ID : props.ID,
+       word:formLabelAlign.word,
+       mean:formLabelAlign.mean
+      },{
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+}) 
+```
+
+加上 'Content-Type': 'multipart/form-data'就能让后端接收form-data文件了，java中不用加@RequestBody
+
 安装依赖：
 
 ```xml
@@ -3350,3 +3367,45 @@ index.html:
 </html>
 ```
 
+# [已解决]springboot打包jar，部署运行jar包时找不到主清单属性
+
+在测试当前环境部署jar包能否正常运行的时候，遇到了jar包找不到主清单属性的报错
+
+![请添加图片描述](img/a7f326de8880469b8d7fc74291f6e085.png)
+
+这一般就是打包的问题，如果你是springboot项目，直接来到pom文件
+
+看这两个位置：
+
+![请添加图片描述](img/a9b11aa30bb04c35ae99ab5cb0f62020.png)
+
+这两个位置很重要，而导致我错误的就是这个skip
+
+也许是这里太过常识，所以导致我搜了很多博客都没找到有博主讲这里，这个skip是指忽略当前插件！！！这是打包插件，我们必不可能忽略的东西，而它出现在pom文件里的时候默认值就是true，被忽略状态。我们将它改为false，就可以解决问题了。
+
+有可能你在pom文件里没有找到这个plugin，那么你就需要在build下的plugins里添加下面的代码:
+
+```xml
+ <plugin>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-maven-plugin</artifactId>
+     <version>${spring-boot.version}</version>
+     <configuration>
+          <mainClass>classpath:mainclass</mainClass>
+          <skip>false</skip>
+     </configuration>
+     <executions>
+         <execution>
+             <id>repackage</id>
+             <goals>
+                 <goal>repackage</goal>
+             </goals>
+         </execution>
+     </executions>
+ </plugin>
+```
+
+
+mainClass里面放的是你的启动类的路径，而下面的executions也很重要，我发现有很多博主就是因为这repackage导致了这个错误。
+————————————————
+原文链接：https://blog.csdn.net/Bravesk/article/details/132331326

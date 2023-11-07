@@ -514,6 +514,8 @@ p1.start() //车子启动或者Porshe车子启动（如果子类存在）
 console.log('name',p1.name) // 苏梦仙
 ```
 
+
+
 ### HTML DOM操作
 
 window代表整个浏览器的一些操作 

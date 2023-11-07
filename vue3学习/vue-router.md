@@ -72,6 +72,12 @@ app.vue中
 </template>
 ```
 
+或者
+
+```vue
+<router-view />
+```
+
 最后在main.js 挂载
 
 ```js
