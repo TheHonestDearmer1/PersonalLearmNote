@@ -252,6 +252,26 @@ console.log(array1);  // 输出: [1, 2, 3, 4, 5, 6]
 
 `indexOf()` 是一个字符串方法，可以用于在字符串中查找指定子字符串（在这里就是问号 “?”）。如果找到了该子字符串，`indexOf()` 方法将返回子字符串的索引值（即首次出现的位置），否则返回 -1。
 
+在 JavaScript 中，你可以使用 `indexOf` 方法来判断一个字符串中是否包含空格。 `indexOf` 方法返回指定字符或子字符串在字符串中首次出现的位置索引，如果找不到，则返回 -1。
+
+下面是一个示例代码：
+
+```js
+function hasWhiteSpace(str) {
+  return str.indexOf(' ') !== -1;
+}
+
+// 示例用法
+console.log(hasWhiteSpace('Hello World')); // true
+console.log(hasWhiteSpace('HelloWorld'));  // false
+```
+
+
+
+在上述示例中，`hasWhiteSpace` 函数接收一个字符串作为参数，并使用 `indexOf` 方法查找空格字符。如果结果不等于 -1，表示字符串中存在空格，返回 `true`；否则，表示字符串中不存在空格，返回 `false`。
+
+请注意，此方法仅检查空格字符，如果你需要检查其他空白字符（如制表符、换行符等），可以相应地调整判断条件。
+
 ### if else  switch case
 
 

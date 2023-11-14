@@ -3442,3 +3442,46 @@ location.reload();
 window.location.reload();
 ```
 
+# 接口跨域问题
+
+发起请求示例：
+
+```js
+ axios({
+        headers:{
+		'Access-Control-Allow-Origin':'*',//允许跨域
+        'Content-Type':'application/x-www-form-urlencoded'
+    },
+    //proxy代理，此处位百度翻译api接口,如果不涉及跨域问题和原本没有接入后端接口		   的，直接把此处的url换为百度翻译api接(https://fanyiapi.baidu.com/api/trans/vip/translate),不用配置和执行vite.config.js操作
+        url: '/demo',
+        method: 'post',
+        data:transData
+    }).then((res) => {
+        console.log(res);
+        console.log(res.data.trans_result[0].dst);
+    })
+```
+
+vue.config.js新增配置：
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  server:{
+    proxy: { 
+      '/demo': {
+       target: "https://fanyi-api.baidu.com/api/trans/vip/translate",
+       changeOrigin: true,
+       rewrite: (path) => path.replace(/^\/demo/, '')
+      }
+    }
+  }
+})
+```
+
+/demo模拟向target发起请求
+
+（该方式经过打包成html，css，js时失效）
