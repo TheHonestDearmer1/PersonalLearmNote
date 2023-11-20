@@ -67,6 +67,44 @@ this.$nextTick(()=>{
       })
 ```
 
+# 新的简单的实现方法
+
+```vue
+<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+  <div class="login-container">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules"  ref="loginFromRef">
+ ......
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+
+const loading = ref(false)
+//定义null
+const loginFromRef = ref(null)
+const store = useStore()
+const handleLogin = () => {
+    //使用Ref操作DOM
+  loginFromRef.value.validate(valid => {
+    if (!valid) { return }
+    loading.value = true
+    store.dispatch('user/login', loginForm.value)
+      .then((respone) => {
+        loading.value = false
+        console.log(respone)
+      })
+      .catch(err => {
+        loading.value = false
+        console.log(err)
+      })
+  })
+}
+</style>
+
+```
+
 **怎么修改上传按钮的样式：**
 
 隐藏原来的上传按钮，用按钮操作dom来操作上传按钮
