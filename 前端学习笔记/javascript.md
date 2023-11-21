@@ -769,7 +769,7 @@ btn1.addEventListener('click',function (e) {
 
 ### 异步函数async关键字
 
-异步函数：异步函数则是非阻塞的，它们允许代码在等待异步操作完成的同时继续执行后续的语句。当遇到 `await` 关键字时，异步函数会暂时挂起执行，等待 `await` 后面的异步操作完成，然后再继续执行后续的代码。
+异步函数：异步函数则是非阻塞的，它们允许代码在等待异步操作完成的同时继续执行后续的语句。当遇到 `await` 关键字时，异步函数会暂时挂起执行，等待 `await` 后面的异步操作完成，然后再继续执行后续的代码。**(就是将异步的请求变成同步的请求，等待异步的请求完成之后再进行下一步操作)**
 
 要使用该异步函数，你可以按照以下步骤进行操作：
 
@@ -870,3 +870,82 @@ body通过将数据对象使用`JSON.stringify()`方法转换为**JSON字符串*
 
 以上是`fetch`函数的基本用法，你可以根据需要使用`fetch`来进行不同的HTTP请求，并根据返回的`response`对象处理响应数据和错误
 
+## 写入文件保存
+
+### Typeof和JSON.stringify(value)
+
+Typeof用于检测数据的类型，JSON.stringify将对象转换成json
+
+```js
+/**
+ * 存储数据
+ */
+export const setItem = (key, value) => {
+  // 将数组、对象类型的数据转化为 JSON 字符串进行存储
+  if (typeof value === 'object') {
+    value = JSON.stringify(value)
+  }
+    //将数据存入localStorage
+  window.localStorage.setItem(key, value)
+}
+
+/**
+ * 获取数据
+ */
+export const getItem = key => {
+  const data = window.localStorage.getItem(key)
+  try {
+    return JSON.parse(data)
+  } catch (err) {
+    return data
+  }
+}
+
+/**
+ * 删除数据
+ */
+export const removeItem = key => {
+  window.localStorage.removeItem(key)
+}
+
+/**
+ * 删除所有数据
+ */
+export const removeAllItem = key => {
+  window.localStorage.clear()
+}
+```
+
+### 存入数据到本地
+
+```js
+    //将数据存入localStorage
+  window.localStorage.setItem(key, value)
+```
+
+## 其他补充
+
+### path
+
+#### path.resolve()
+
+`path.resolve()` 是 Node.js 中用于将路径或路径片段转换为绝对路径的方法。它接受任意数量的路径作为参数，并将它们拼接到一起，并返回一个新的绝对路径字符串。在使用 `path.resolve()` 转换路径时，如果路径的绝对路径已知，则可以快速创建正确的路径。如果返回的路径是目录，则目录末尾会有一个斜杠。
+
+`path.resolve()` 可以接受多个参数，每个参数都可输入相对路径、绝对路径或 URL，然后通过将每个路径依次解析为绝对路径来将这些路径组合在一起，实现路径的拼接。如果最终结果不是绝对路径，则将根据当前工作目录将其转换为绝对路径。
+
+下面是一个简单的例子，演示了如何使用 `path.resolve()`：
+
+```
+const path = require('path');
+
+const dirPath = 'src';
+const fullPath = path.resolve('/home/user/project', dirPath);
+
+console.log(fullPath); // /home/user/project/src
+```
+
+
+
+在上面的例子中，我们传递了两个参数，第一个参数是绝对路径 `/home/user/project`，第二个参数是相对路径 `src`。path.resolve() 将这两个路径拼接在一起，并返回一个绝对路径 `/home/user/project/src`。
+
+需要注意的是，`path.resolve()` 方法返回的路径是一个字符串，即使提供的参数是数组或对象。所以，如果您需要使用数组或对象来组合路径，则需要使用其他方法（例如 `path.join()`）或手动拼接路径字符串。

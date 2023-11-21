@@ -986,3 +986,47 @@ Sass 颜色函数可以分为三个部分：颜色设置、颜色获取以及颜
 | fade-in(*color*, *amount*)                                   | 降低颜色的透明度，取值在 0-1 之。等价于 adjust-color(color, alpha: amount) |
 | transparentize(*color*, *amount*)                            | 提升颜色的透明度，取值在 0-1 之间。等价于 adjust-color(color, alpha: -amount) |
 | fade-out(*color*, *amount*)                                  | 提升颜色的透明度，取值在 0-1 之间。等价于 adjust-color(color, alpha: -amount) |
+
+#  scss 与 js 共享变量
+
+现在是有趣的部分。我们在 Sass 中定义实际的变量值并将其导出到 Javascript。CSS 模块有一个简洁的实用程序，称为 .该指令的工作原理基本上类似于 ES6 的关键字。您的 Sass 代码将导出一个对象，其中包含要在 Javascript 中使用的变量名称及其关联值。这些值都导出为字符串。
+
+```js
+// styles/animation.scss
+$animation-length: 250;
+$animation-length-ms: $animation-length + 0ms;
+
+:export {
+  animationMillis: $animation-length-ms;
+}
+
+.component-enter {
+  ...
+
+  transition: all $animation-length-ms ease-in;
+}
+```
+
+您会注意到，我们首先在一个变量中声明整数值，然后在另一个变量中将其添加到该变量中。这允许我们只导出，而不是在 Javascript 端更容易解析哪个（添加到数字强制其“类型”中）。`0ms``"250"``"250ms"``0ms``ms`
+
+现在，在 Javascript 中，我们只需要从样式表中导入样式，并从我们导出的变量中解析出一个 int！
+
+```js
+// js/animation.js
+import styles from '../styles/animation.scss'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+
+const millis = parseInt(styles.animationMillis)
+
+...
+
+<CSSTransitionGroup
+  transitionName="component"
+  transitionEnterTimeout={millis}
+  transitionLeaveTimeout={millis}
+/>
+
+...
+```
+
+这种方法非常简单，但是当您避免在 Javascript 和 Sass 之间同步更改的麻烦时，它会得到回报。
