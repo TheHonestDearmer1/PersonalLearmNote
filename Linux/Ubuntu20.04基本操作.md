@@ -151,3 +151,32 @@ gcc可以支持很多平台，刚才示范的是通用PC下的gcc编译，你还
 想了解更多gcc的只是可以到GNU的网站上去看看其文档。顺带提一下gdb是常用的调式软件，如何使用gdb调式gcc编译出来的程序请自行学习。
 
  
+
+## ubuntu扫描本地IP
+
+```
+ifconfig
+```
+
+
+
+## ubuntu使用ssh登录
+
+```
+sudo apt install openssh-server
+```
+
+在电脑端使用ssh命令登录:
+
+最好用的是：
+
+```
+ssh oem@sumengxian.local #用户名+主机名.local
+```
+
+最后：
+
+```
+ ssh oem@192.168.123.115 #用户名+地址
+```
+
