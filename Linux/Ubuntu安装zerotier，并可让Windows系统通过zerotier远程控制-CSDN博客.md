@@ -42,6 +42,16 @@ sudo zerotier-cli join 你的network ID
 
 通过贴吧的帮助，得知目前zerotier在IPV6的网络下能够ONLINE，在IPV4下就是OFFLINE，最后检查校园网发现校园网不支持IPV6（打开网页即可检测），随后打开手机热点（设置为IPV6：手机设置–更多–移动网络–接入点名称(APN)–进去找到APN协议–设置为ipv6），电脑连接热点，等待几分钟直到ONLINE，即可连接服务器
 
+### TTL过期
+
+检查是否VPN卡没关或者重启一下服务端zerotier，ubuntu重启zerotier命令：
+
+```
+sudo service zerotier-one restart
+```
+
+
+
 ### 4.Ubuntu安装xrdp远程桌面
 
 官网上下载[xrdp](http://www.c-nergy.be/products.html)  
