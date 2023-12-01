@@ -17,6 +17,7 @@
 
  
 
+
 ```
 使用 “route” 命令：
 
@@ -64,11 +65,14 @@ wlx28f3662f4845: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 请在命令行中执行以下命令：
 
 ```
-sudo route del default
-sudo route add default gw 192.168.123.119 dev wlx502b7310e607
+sudo route del default gw B70.lan dev wlx28f3662f4845
 ```
 
-这将从现有的默认路由删除，并将新的默认路由添加到网络接口"wlx502b7310e607"，使用网关地址为192.168.123.119。
+这将从现有的默认路由删除,同时del改成add就是添加
+
+```
+sudo route add default gw B70.lan dev wlx28f3662f4845
+```
 
 
 

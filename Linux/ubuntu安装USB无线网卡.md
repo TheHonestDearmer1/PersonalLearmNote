@@ -25,18 +25,18 @@ reboot
 sudo usb_modeswitch -KW -v 0bda -p a192 lsusb
 ```
 
-已经能够正常识别为网卡了。
+已经能够正常识别为网卡了。（有时候出错重启不能识别的时候就插拔一下就行了）
 
 但是在重新插拔、换了接口位置或者重启系统之后，还得手动切换模式才行。
 
-在 lib/udev/rules.d/40-usb\_modeswitch.rules 中追加指令
+在 /lib/udev/rules.d/40-usb\_modeswitch.rules 中追加指令(root下，所以前面yao)
 
 ```bash
-sudo vim lib/udev/rules.d/40-usb_modeswitch.rules
+sudo vim /lib/udev/rules.d/40-usb_modeswitch.rules
 ```
 
 ```bash
-# Realtek 8192F Wifi AC USB
+# Realtek c811 Wifi AC USB
 ATTR{idVendor}=="0bda", ATTR{idProduct}=="c811", RUN+="/usr/sbin/usb_modeswitch -K -v 0bda -p c811"
 ```
 
