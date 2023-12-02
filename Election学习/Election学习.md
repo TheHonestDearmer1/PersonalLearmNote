@@ -1198,3 +1198,309 @@ Electron 程序是通过 npm 包创建的。 您应将 Electron 依赖安装到 
 **渲染器进程**(简称渲染器) 负责展示图形内容。 您可以将渲染的网页指向 web 地址或本地 HTML 文件。 渲染器和常规的网页行为很相似，访问的 web API 也相同。
 
 在教程下一节，我们将会学习如何使用 API 给渲染器提权，以及如何在进程间通信。
+
+
+
+# 使用预加载脚本
+
+教程目录
+
+这是 Electron 教程的**第三部分**。
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. **[使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)**
+4. [添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)
+5. [打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)
+6. [发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)
+
+## 学习目标
+
+在这部分的教程中，你将会了解什么是预加载脚本，并且学会如何使用预加载脚本来安全地将特权 API 暴露至渲染进程中。 不仅如此，你还会学到如何使用 Electron 的进程间通信 (IPC) 模组来让主进程与渲染进程间进行通信。
+
+## 什么是预加载脚本？
+
+Electron 的主进程是一个拥有着完全操作系统访问权限的 Node.js 环境。 除了 [Electron 模组](https://www.electronjs.org/zh/docs/latest/api/app) 之外，您也可以访问 [Node.js 内置模块](https://nodejs.org/dist/latest/docs/api/) 和所有通过 npm 安装的包。 另一方面，出于安全原因，渲染进程默认跑在网页页面上，而并非 Node.js里。
+
+为了将 Electron 的不同类型的进程桥接在一起，我们需要使用被称为 **预加载** 的特殊脚本。
+
+## 使用预加载脚本来增强渲染器
+
+BrowserWindow 的预加载脚本运行在具有 HTML DOM 和 Node.js、Electron API 的有限子集访问权限的环境中。
+
+::: info 预加载脚本沙盒化
+
+从 Electron 20 开始，预加载脚本默认 **沙盒化** ，不再拥有完整 Node.js 环境的访问权。 实际上，这意味着你只拥有一个 polyfilled 的 `require` 函数，这个函数只能访问一组有限的 API。
+
+| 可用的 API            | 详细信息                                                     |
+| --------------------- | ------------------------------------------------------------ |
+| Electron 模块         | 渲染进程模块                                                 |
+| Node.js 模块          | [`events`](https://nodejs.org/api/events.html)、[`timers`](https://nodejs.org/api/timers.html)、[`url`](https://nodejs.org/api/url.html) |
+| Polyfilled 的全局模块 | [`Buffer`](https://nodejs.org/api/buffer.html)、[`process`](https://www.electronjs.org/zh/docs/latest/api/process)、[`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate)、[`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) |
+
+有关详细信息，请阅读 [沙盒进程](https://www.electronjs.org/zh/docs/latest/tutorial/sandbox) 教程。
+
+:::
+
+与 Chrome 扩展的[内容脚本](https://developer.chrome.com/docs/extensions/mv3/content_scripts/)（Content Script）类似，预加载脚本在渲染器加载网页之前注入。 如果你想为渲染器添加需要特殊权限的功能，可以通过 [contextBridge](https://www.electronjs.org/zh/docs/latest/api/context-bridge) 接口定义 [全局对象](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)。
+
+为了演示这一概念，你将会创建一个将应用中的 Chrome、Node、Electron 版本号暴露至渲染器的预加载脚本
+
+新建一个 `preload.js` 文件。该脚本通过 `versions` 这一全局变量，将 Electron 的 `process.versions` 对象暴露给渲染器。
+
+preload.js
+
+```js
+const { contextBridge } = require('electron')
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron
+  // 除函数之外，我们也可以暴露变量
+})
+```
+
+
+
+为了将脚本附在渲染进程上，在 BrowserWindow 构造器中使用 `webPreferences.preload` 传入脚本的路径。
+
+main.js
+
+```js
+const { app, BrowserWindow } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+})
+```
+
+
+
+INFO
+
+这里使用了两个Node.js概念：
+
+- [`__dirname`](https://nodejs.org/api/modules.html#modules_dirname) 字符串指向当前正在执行的脚本的路径(在本例中，它指向你的项目的根文件夹)。
+- [`path.join`](https://nodejs.org/api/path.html#path_path_join_paths) API 将多个路径联结在一起，创建一个跨平台的路径字符串。
+
+现在渲染器能够全局访问 `versions` 了，让我们快快将里边的信息显示在窗口中。 这个变量不仅可以通过 `window.versions` 访问，也可以很简单地使用 `versions` 来访问。 新建一个 `renderer.js` 脚本， 使用 [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) DOM API 来替换 `id` 属性为 `info` 的 HTML 元素的文本。
+
+renderer.js
+
+```js
+const information = document.getElementById('info')
+information.innerText = `本应用正在使用 Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), 和 Electron (v${versions.electron()})`
+```
+
+
+
+然后请修改你的 `index.html` 文件。加上一个 `id` 属性为 `info` 的全新元素，并且记得加上你的 `renderer.js` 脚本：
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>来自 Electron 渲染器的问好！</title>
+  </head>
+  <body>
+    <h1>来自 Electron 渲染器的问好！</h1>
+    <p>👋</p>
+    <p id="info"></p>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
+```
+
+
+
+做完这几步之后，你的应用应该长这样：
+
+![Electron 应用显示这个应用正在使用 Chrome (v102.0.5005.63)、Node.js (v16.14.2) 和 Electron (v19.0.3)。](E:/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E6%80%BB/%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/preload-example-f77948d27686974e427084fa94fe620c.png)
+
+你的代码应该长这样：
+
+[DOCS/FIDDLES/TUTORIAL-PRELOAD (27.0.2)](https://github.com/electron/electron/tree/v27.0.2/docs/fiddles/tutorial-preload)[Open in Fiddle](https://fiddle.electronjs.org/launch?target=electron/v27.0.2/docs/fiddles/tutorial-preload)
+
+- main.js
+- preload.js
+- index.html
+- renderer.js
+
+```js
+const { app, BrowserWindow } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+```
+
+
+
+## 在进程之间通信
+
+我们之前提到，Electron 的主进程和渲染进程有着清楚的分工并且不可互换。 这代表着无论是从渲染进程直接访问 Node.js 接口，亦或者是从主进程访问 HTML 文档对象模型 (DOM)，都是不可能的。
+
+解决这一问题的方法是使用进程间通信 (IPC)。可以使用 Electron 的 `ipcMain` 模块和 `ipcRenderer` 模块来进行进程间通信。 为了从你的网页向主进程发送消息，你可以使用 `ipcMain.handle` 设置一个主进程处理程序（handler），然后在预处理脚本中暴露一个被称为 `ipcRenderer.invoke` 的函数来触发该处理程序（handler）。
+
+我们将向渲染器添加一个叫做 `ping()` 的全局函数来演示这一点。这个函数将返回一个从主进程翻山越岭而来的字符串。
+
+首先，在预处理脚本中设置 `invoke` 调用：
+
+preload.js
+
+```js
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  ping: () => ipcRenderer.invoke('ping')
+  // 除函数之外，我们也可以暴露变量
+})
+```
+
+
+
+IPC 安全
+
+可以注意到我们使用了一个辅助函数来包裹 `ipcRenderer.invoke('ping')` 调用，而并非直接通过 context bridge 暴露 `ipcRenderer` 模块。 你**永远**都不会想要通过预加载直接暴露整个 `ipcRenderer` 模块。 这将使得你的渲染器能够直接向主进程发送任意的 IPC 信息，会使得其成为恶意代码最强有力的攻击媒介。
+
+然后，在主进程中设置你的 `handle` 监听器。 我们在 HTML 文件加载*之前*完成了这些，所以才能保证在你从渲染器发送 `invoke` 调用之前处理程序能够准备就绪。
+
+main.js
+
+```js
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('node:path')
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+  win.loadFile('index.html')
+}
+app.whenReady().then(() => {
+  ipcMain.handle('ping', () => 'pong')
+  createWindow()
+})
+```
+
+
+
+将发送器与接收器设置完成之后，现在你可以将信息通过刚刚定义的 `'ping'` 通道从渲染器发送至主进程当中。
+
+renderer.js
+
+```js
+const func = async () => {
+  const response = await window.versions.ping()
+  console.log(response) // 打印 'pong'
+}
+
+func()
+```
+
+
+
+INFO
+
+要了解更详细的关于使用 `ipcRenderer` 和 `ipcMain` 模块的详细说明，请查阅完整的 [进程间通信](https://www.electronjs.org/zh/docs/latest/tutorial/ipc) 指南。
+
+## 摘要
+
+预加载脚本包含在浏览器窗口加载网页之前运行的代码。 其可访问 DOM 接口和 Node.js 环境，并且经常在其中使用 `contextBridge` 接口将特权接口暴露给渲染器。
+
+由于主进程和渲染进程有着完全不同的分工，Electron 应用通常使用预加载脚本来设置进程间通信 (IPC) 接口以在两种进程之间传输任意信息。
+
+在下一部分的教程中，我们将向你展示如何向你的应用中添加更多的功能，之后将向你传授如何向用户分发你的应用。
+
+# 添加功能
+
+教程目录
+
+这是 Electron 教程的 **第四部分**
+
+1. [基本要求](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-prerequisites)
+2. [创建您的第一个应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-first-app)
+3. [使用预加载脚本](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-preload)
+4. **[添加功能](https://www.electronjs.org/zh/docs/latest/tutorial/tutorial-adding-features)**
+5. [打包您的应用程序](https://www.electronjs.org/zh/docs/latest/tutorial/打包教程)
+6. [发布和更新](https://www.electronjs.org/zh/docs/latest/tutorial/推送更新教程)
+
+## 增加应用复杂度
+
+如果你一路跟随本教程下来，你应该已经建立了一个拥有静态用户界面的功能性 Electron 程序。 从这里开始，你可以大概从两个大方向上进行开发：
+
+1. 增加渲染进程的网页应用代码复杂度
+2. 深化与操作系统和 Node.js 的集成
+
+了解这两个大概念之间的区别十分重要。 就第一点而言，Electron 特供的资源是非必要的。 在 Electron 中建立一个漂亮的待办列表只是将你的 Electron BrowserWindow 指向一个漂亮的待办列表网络应用。 说到底，你还是使用在 Web 开发中相同的工具 (HTML, CSS, JavaScript) 来构建你的渲染器 UI。 因此，Electron 的文档不会很详细的探讨如何使用标准的 Web 工具进行开发。
+
+另一方面，Electron 同时提供了丰富的工具集，可以让你和桌面环境整合起来。从建立托盘图标到添加全局的快捷方式，再到显示原生的菜单，都不在话下。 Electron 还赋予你在主进程中访问 Node.js 环境的所有能力。 这组能力使得 Electron 应用能够从浏览器运行网站中脱胎换骨，并且是 Electron 文档的重点。
+
+## How-to 示例
+
+Electron 的文档有着许多教程来帮助你处理更高级的主题和更深的操作系统集成。 要开始使用，请查看 [操作方法示例](https://www.electronjs.org/zh/docs/latest/tutorial/examples) 文档。
+
+请告诉我们哪里有遗漏！
+
+如果你找不到你想找的东西，请在 [GitHub](https://github.com/electron/website/issues/new) 或者是 [Discord 服务器](https://discord.gg/electronjs) 上告诉我们！
+
+## 下一步
+
+在教程的剩余部分，我们将从应用代码转向如何让你的应用从开发者的机器上转移到终端用户的手中。
