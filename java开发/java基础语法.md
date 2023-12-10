@@ -329,9 +329,9 @@ public static int sum(int k) {
 
 ## 类class
 
-![image-20231009104101987](img/image-20231009104101987.png)
+![](img/image-20231009104101987.png)
 
-![image-20231009104151901](img/image-20231009104151901.png)
+![](img/image-20231009104151901.png)
 
 ```java
 public class Sample22 {
@@ -450,7 +450,7 @@ public static void main(String[] args) {
 
 要创建自己的包，您需要了解 Java 使用文件系统目录来存储它们就像计算机上的文件夹一样:
 
-![image-20231009112345689](img/image-20231009112345689.png)
+![](img/image-20231009112345689.png)
 
 定义包：
 

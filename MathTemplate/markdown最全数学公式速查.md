@@ -15,13 +15,19 @@ markdown最全数学公式
 
 | 算式 | markdown |
 | --- | --- |
-| $z=z\_l$ | z=z\_l |
+| $z=z_l$ | z=z\_l |
 
 **省略号**
 
 | 省略号 | markdown |
 | --- | --- |
-| ⋯⋯ | \\cdots |
+| $\cdots$ | \\cdots |
+
+**点乘**
+
+| 点乘    | markdown |
+| ------- | -------- |
+| $\cdot$ | \cdot    |
 
 **行间公式（使用两个$包含公式可以独立一行）**
 
@@ -62,7 +68,7 @@ markdown最全数学公式
 
 | 算式 | markdown |
 | --- | --- |
-| limn→+∞nlimn→+∞nlim\_{n\\rightarrow+\\infty} n | \\lim\_{n\\rightarrow+\\infty} n |
+| $\lim_{n\rightarrow+\infty} n$ | \\lim\_{n\\rightarrow+\\infty} n |
 
 **累加**
 
@@ -189,6 +195,7 @@ $$
 | ≠ | \\neq |
 | ≤ | \\leq |
 | ≥ | \\geq |
+| $ \approx$ | \approx |
 
 **括号**
 
@@ -201,6 +208,28 @@ $$
 | 原始括号:$\lbrace\sum\_{i=0}^{n}    i^{2}=\frac{2a}{x^2+1} \rbrace$ | \\lbrace \\sum\_{i=0}^{n}i^{2}=\\frac{2a}{x^2+1} \\rbrace |
 | 全包括号:$\left\lbrace \sum\_{i=0}^{n}i^{2}=\frac{2a}{x^2+1} \right\rbrace$ | \\left\\lbrace \\sum\_{i=0}^{n}i^{2}=\\frac{2a}{x^2+1} \\right\\rbrace |
 
+**单边大括号**
+
+```
+ f(x)=\left\{
+\begin{aligned}
+x & =  \cos(t) \\
+y & =  \sin(t) \\
+z & =  \frac xy
+\end{aligned}
+\right.
+```
+
+
+$$
+ f(x)=\left\{
+\begin{aligned}
+x & =  \cos(t) \\
+y & =  \sin(t) \\
+z & =  \frac xy
+\end{aligned}
+\right.
+$$
 **后续添加更新中**
 
 文章知识点与官方知识档案匹配，可进一步学习相关知识

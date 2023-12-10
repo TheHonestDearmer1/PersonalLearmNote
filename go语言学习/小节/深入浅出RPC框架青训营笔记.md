@@ -8,7 +8,7 @@
 
 ### 1.1 本地函数调用
 
-![image.png](../图片/9f89369d53cd4babbfe817ca441719e1tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/9f89369d53cd4babbfe817ca441719e1tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 调用过程：
 
@@ -28,7 +28,7 @@
 
 ### 1.3 RPC概念模型
 
-![image.png](../图片/e7a1c6870c3e450f8568dfa41b730549tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/e7a1c6870c3e450f8568dfa41b730549tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ```
 复制代码①发起本地调用
@@ -54,7 +54,7 @@
 - 通信协议 规范了数据在网络中的传输内容和格式。除必须的请求/响应数据外，通常还会包含额外的元数据。
 - 网络传输 通常基于成熟的网络库走TCP/UDP传输。
 
-![image.png](../图片/d0735cbbf67940e3b8c7d7e129bdd02dtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/d0735cbbf67940e3b8c7d7e129bdd02dtplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 1.5 RPC的好处
 
@@ -75,7 +75,7 @@
 
 ### 2.1分层设计-以Apache Thrift为例
 
-![image.png](../图片/6f7b9a00e3b54ab1866339d2bda33553tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/6f7b9a00e3b54ab1866339d2bda33553tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 2.2编解码层
 
@@ -102,7 +102,7 @@ arduino复制代码struct Person {
 }
 ```
 
-![image.png](../图片/6550a443ffb14e8bb029396890927403tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/6550a443ffb14e8bb029396890927403tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 - 选型 兼容性
 
@@ -126,7 +126,7 @@ arduino复制代码struct Person {
 
 以定长加不定长的部分组成，其中定长的部分需要描述不定长的内容长度。（一般都是自定义协议，有header和payload组成，使用比较广泛）
 
-- 协议构造： ![image.png](../图片/7ce5fbdeb0174f2c87b69585c5a75554tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+- 协议构造： ![](../图片/7ce5fbdeb0174f2c87b69585c5a75554tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
   - LENGTH(32bits):数据包大小，不包含自身长度
   - HEADER MAGIC(16bits):标识版本信息，协议解析时
   - 候快速校验
@@ -140,11 +140,11 @@ arduino复制代码struct Person {
   - PAYLOAD:消息体
 - 协议解析
 
-![image.png](../图片/3779f294598e4e4aa0eee3a7b6395873tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/3779f294598e4e4aa0eee3a7b6395873tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 2.3 网络通信层：
 
-- Sockets API 介于通信层和应用层之间 ![image.png](../图片/6e456ab8aa0e4b80b6ccdeba9009fef0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 套接字编程中的客户端必须知道两个信息:服务器的IP地址、端口号。
+- Sockets API 介于通信层和应用层之间 ![](../图片/6e456ab8aa0e4b80b6ccdeba9009fef0tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 套接字编程中的客户端必须知道两个信息:服务器的IP地址、端口号。
 
 socket函数创建一个套接字， bind将一个套接字绑定到一个地址上。listen 监听进来的连接，backlog指定挂起的连接队列的长度，当客户端连接的时候，服务器可能正在处理其他逻辑而未调用accept接受连接，此时会导致这个连接被挂起，内核维护挂起的连接队列，backlog则指定这个队列的长度，accept函数从队列中取出连接请求并接收它，然后这个连接就从挂起队列移除。
 
@@ -199,13 +199,13 @@ diff复制代码- 应用层buffer减少copy
 
 ### 3.3稳定性-长尾请求
 
-长尾请求一般是指明显高于均值的那部分占比较小的请求。业界关于延迟有一个常用的P99标准， P99 单个请求响应耗时从小到大排列，顺序处于99%位置的值即为P99值，那后面这1%就可以认为是长尾请求。在较复杂的系统中，长尾延时总是会存在。造成这个的原因非常多，常见的有网络抖动，GC，系统调度。 ![image.png](../图片/f7ec5ad840e245c28baa32d6aae343dctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+长尾请求一般是指明显高于均值的那部分占比较小的请求。业界关于延迟有一个常用的P99标准， P99 单个请求响应耗时从小到大排列，顺序处于99%位置的值即为P99值，那后面这1%就可以认为是长尾请求。在较复杂的系统中，长尾延时总是会存在。造成这个的原因非常多，常见的有网络抖动，GC，系统调度。 ![](../图片/f7ec5ad840e245c28baa32d6aae343dctplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 我们预先设定一个阈值 t3 (比超时时间小，通常建议是RPC请求延时的pct99)，当Req1发出去后超过t3时间都没有返回，那我直接发起重试请求Req2，这样相当于同时有两个请求运行。然后等待请求返回，只要Resp1或者Resp2任意一个返回成功的结果， 就可以立即结束这次请求，这样整体的耗时就是t4，它表示从第一个请求发出到第一个成功结果返回之 间的时间，相比于等待超时后再发出请求，这种机制能大大减少整体延时。
 
 ### 3.4稳定性-注册中间件
 
-![image.png](../图片/ef418cce976e47b3a53d895cf2750631tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) Kitex Client和Server的创建接口]均采用Option模式，提供了极大的灵活性，很方便就能主入这些稳定性策略
+![](../图片/ef418cce976e47b3a53d895cf2750631tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) Kitex Client和Server的创建接口]均采用Option模式，提供了极大的灵活性，很方便就能主入这些稳定性策略
 
 ### 3.5易用性
 
@@ -231,7 +231,7 @@ diff复制代码- 生成服务代码脚手架
 - 网络传输层
 - 代码生成工具插件扩展
 
-![image.png](../图片/addc116c76c944d8b6fb54693e18938btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 一次请求发起首先会经过治理层面， 治理相关的逻辑被封装在middleware中，这些middleware会被构造成一个有序调用链逐个执行，比如服务发现、路由、负载均衡、超时控制等，mw执行后就会进入到remote模块，完成与远端的通信。
+![](../图片/addc116c76c944d8b6fb54693e18938btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 一次请求发起首先会经过治理层面， 治理相关的逻辑被封装在middleware中，这些middleware会被构造成一个有序调用链逐个执行，比如服务发现、路由、负载均衡、超时控制等，mw执行后就会进入到remote模块，完成与远端的通信。
 
 ### 3.7观测性
 
@@ -239,7 +239,7 @@ Log、Metric、Tracing
 
 内置观测性服务
 
-![image.png](../图片/cf5761a055e147ed827f1ebfd0169692tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 除了传统的Log、Metric、Tracing 三件套之外，对于框架来说可能还不够，还有些框架自身状态需要暴露出来，例如当前的环境变量、配置、Client/Server初始化参数、缓存信息等。
+![](../图片/cf5761a055e147ed827f1ebfd0169692tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp) 除了传统的Log、Metric、Tracing 三件套之外，对于框架来说可能还不够，还有些框架自身状态需要暴露出来，例如当前的环境变量、配置、Client/Server初始化参数、缓存信息等。
 
 ### 3.8 高性能
 
@@ -279,7 +279,7 @@ diff复制代码- 框架通过中间件来注入各种服务治理策略，保�
 2. Kitex Byted 与公司内部基础设施集成
 3. Kitex Tool 代码生成工具
 
-![img_3.png](../图片/bda141198d32475bacc625b3c369f917tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/bda141198d32475bacc625b3c369f917tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 自研网络库
 
@@ -298,9 +298,9 @@ diff复制代码- 框架通过中间件来注入各种服务治理策略，保�
 
 支持多协议，也支持灵活的自定义协议扩展
 
-![img_4.png](../图片/0bf231d2a11c4a678336ab3b11163e34tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/0bf231d2a11c4a678336ab3b11163e34tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
-![img_5.png](../图片/7722367997f548eb8a8dfeff3982985btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/7722367997f548eb8a8dfeff3982985btplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 ### 性能优化
 
@@ -337,7 +337,7 @@ diff复制代码- 框架通过中间件来注入各种服务治理策略，保�
 3. 定制化的服务发现和连接池实现
 4. 定制化的服务启动和监听逻辑
 
-![img_6.png](../图片/e509ec7f65bf4e52b6e00e6732c61272tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
+![](../图片/e509ec7f65bf4e52b6e00e6732c61272tplv-k3u1fbpfcp-zoom-in-crop-mark4536000.webp)
 
 
 

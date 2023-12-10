@@ -710,7 +710,7 @@ export default {
 
 最后，在这里你可以直观地看到完整的指令语法：
 
-![指令语法图](img/directive.69c37117.png)
+![](img/directive.69c37117.png)
 
 # 响应式基础
 
@@ -2429,7 +2429,7 @@ export default {
 
 下面是实例生命周期的图表。你现在并不需要完全理解图中的所有内容，但以后它将是一个有用的参考。
 
-![组件生命周期图示](img/lifecycle.16e4c08e.png)
+![](img/lifecycle.16e4c08e.png)
 
 有关所有生命周期钩子及其各自用例的详细信息，请参考[生命周期钩子 API 索引](https://cn.vuejs.org/api/composition-api-lifecycle.html)。
 
@@ -2872,7 +2872,7 @@ TypeScript 用户请参考：[为组件的模板引用标注类型](https://cn.v
 
 组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用中，组件常常被组织成层层嵌套的树状结构：
 
-![组件树](img/components.7fbb3771.png)
+![](img/components.7fbb3771.png)
 
 这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](https://cn.vuejs.org/guide/extras/web-components.html)。
 
@@ -3441,4 +3441,106 @@ location.reload();
 // 在需要重新刷新页面的地方调用该方法
 window.location.reload();
 ```
+
+# 接口跨域问题
+
+发起请求示例：
+
+```js
+ axios({
+        headers:{
+		'Access-Control-Allow-Origin':'*',//允许跨域
+        'Content-Type':'application/x-www-form-urlencoded'
+    },
+    //proxy代理，此处位百度翻译api接口,如果不涉及跨域问题和原本没有接入后端接口		   的，直接把此处的url换为百度翻译api接(https://fanyiapi.baidu.com/api/trans/vip/translate),不用配置和执行vite.config.js操作
+        url: '/demo',
+        method: 'post',
+        data:transData
+    }).then((res) => {
+        console.log(res);
+        console.log(res.data.trans_result[0].dst);
+    })
+```
+
+vue.config.js新增配置：
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  server:{
+    proxy: { 
+      '/demo': {
+       target: "https://fanyi-api.baidu.com/api/trans/vip/translate",
+       changeOrigin: true,
+       rewrite: (path) => path.replace(/^\/demo/, '')
+      }
+    }
+  }
+})
+```
+
+/demo模拟向target发起请求
+
+（该方式经过打包成html，css，js时失效）
+
+# vue.js插槽
+
+插槽（slot）是 Vue.js 组件中一个非常有用的特性，它允许您将额外的内容插入到组件的特定位置，以增强组件的灵活性和复用性。
+
+通常情况下，组件的内容是由组件自身的模板决定的。但是，在某些情况下，我们希望在使用组件时能够自定义一部分内容，这就是插槽派上用场的地方。
+
+Vue.js 中的插槽分为默认插槽和具名插槽两种类型。
+
+1. 默认插槽：
+   默认插槽是最基本的插槽类型，它使用组件标签中的任意内容作为插槽内容。父组件可以在子组件标签的内部写入要插入的内容，子组件可以通过 `<slot>` 标签将这些内容插入到组件内部的特定位置。例如：
+
+   ```vue
+   <!-- 子组件 -->
+   <div class="child-component">
+     <slot></slot>
+   </div>
+   
+   <!-- 父组件 -->
+   <div class="parent-component">
+     <child-component>
+       <p>这是插入到子组件内部的内容</p>
+     </child-component>
+   </div>
+   ```
+
+   
+
+   在上面的例子中，`<div>` 标签内的内容将被插入到子组件的 `<slot></slot>` 标签处，从而实现了在子组件内部自定义内容的目的。
+
+2. 具名插槽：
+   具名插槽允许您定义多个插槽，并以不同的名称引用它们，以便更精确地控制插入内容的位置。具名插槽通过为 `<slot>` 标签添加 `name` 属性来定义，并通过 `slot` 特性将具名插槽与内容关联起来。例如：
+
+   ```vue
+   <!-- 子组件 -->
+   <div class="child-component">
+     <slot name="header"></slot>
+     <div class="content">
+       <slot></slot>
+     </div>
+   </div>
+   
+   <!-- 父组件 -->
+   <div class="parent-component">
+     <child-component>
+       <template #header>
+         <h2>这是插入到子组件头部的内容</h2>
+       </template>
+       <p>这是插入到子组件内容的内容</p>
+     </child-component>
+   </div>
+   ```
+
+   
+
+   在这个例子中，通过为 `<slot>` 标签添加 `name` 属性定义了一个具名插槽 `header`，在父组件中使用 `<template>` 标签来包裹要插入到具名插槽的内容。父组件中的其他内容将插入到默认插槽中。
+
+使用插槽可以让组件更具有灵活性和可配置性。父组件可以根据自己的需求自由地插入内容，而子组件则可以定义插槽来控制插入内容的位置。这使得组件的复用变得更加简单和高效。
 

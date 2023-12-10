@@ -98,7 +98,7 @@ pip install requests
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests
 ```
 
-![image-20230713162722914](图片/1.png)
+![](图片/1.png)
 
 标准爬虫
 
@@ -1227,7 +1227,13 @@ pip install selenium
 
 但是呢, 它与其他库不同的地⽅是他要启动你电脑上的浏览器, 这就需要⼀个驱动程序来辅助.
 
+[Selenium安装WebDriver最新Chrome驱动(含116/117/118/119)_chromedriver-CSDN博客](https://blog.csdn.net/Z_Lisa/article/details/133307151)
+
 [(85条消息) chromedriver驱动的下载和安装！亲测有效！_JOKERCDD的博客-CSDN博客](https://blog.csdn.net/weixin_46064809/article/details/131082448)
+
+[microsoft edge驱动器下载以及使用_msedgedriver-CSDN博客](https://blog.csdn.net/weixin_50233989/article/details/113242332)
+
+[python selenium报错ValueError: Timeout value connect was ＜...＞, but it must be an int, float or None._流势的博客-CSDN博客](https://blog.csdn.net/liu_liu_123/article/details/131146119)
 
 安装成功后测试代码
 
@@ -1248,7 +1254,7 @@ driver.quit()
 
 selenium不但可以打开浏览器. 还可以对浏览器各种操作. ⽐如, 点击, 查找. 都可以
 
-![image-20230723205826612](图片/3.png)
+![](图片/3.png)
 
 实现点击百度页面上这个按一按的按钮
 
@@ -1271,7 +1277,7 @@ driver.quit()
 
 搜索python，实现搜索内容，首先定位到文本框，在里面输入内容再点击回车
 
-![image-20230723210113250](图片/4.png)
+![](图片/4.png)
 
 ```python
 from selenium import webdriver
@@ -1289,6 +1295,7 @@ time.sleep(2) # 让浏览器反应⼀会⼉
 #driver.find_element_by_xpath('//*[@id="su"]').click() #点击搜索按钮
 input()
 driver.quit()
+
 ```
 
 爬取小说内容
@@ -1522,3 +1529,29 @@ for cell in worksheet['C']:
 确保将`'path/to/file.xlsx'`替换为你实际的Excel文件路径。以上代码将打开指定的Excel文件，并选择名为'Sheet1'的工作表。然后它将遍历C列的所有单元格，并打印每个单元格的值。
 
 注意，openpyxl库中的工作表（worksheet）是基于1索引的，所以'Sheet1'表示第一个工作表。如果你的文件中有其他工作表，请根据需要进行调整。
+
+# 遇到被阻碍无法点击按钮时候
+
+问题描述
+----
+
+在用selenium实现自动化的过程中，因为要提高效率，不可能等页面全部加载完毕才去进行下一步操作，一般是用显性等待，等需要操作的元素出现就行点击，但是有时候页面加载过程中的那些转动的进度条和进度圈之类的东西会遮挡你要点击的要素，导致无法点击。
+
+* * *
+
+解决方案：
+-----
+
+网上找了很多办法，有的加长等待时间，有的说是网络卡顿，有的说加强制等待，但都不能完美解决，最后一个绝杀的办法就是使用[JS脚本](https://so.csdn.net/so/search?q=JS%E8%84%9A%E6%9C%AC&spm=1001.2101.3001.7020)来点击，不用selenium点击。
+
+```python
+    zbxx = driver.find_element(By.XPATH, '//div[(text()="坐标信息")]')
+    #使用JS脚本来点击，能解决需要点击的要素被遮挡无法点击的情况。
+    driver.execute_script('arguments[0].click()', zbxx)
+```
+
+第一步还是使用selenium常规方法获取需要操作的对象  
+第二步直接用selenium支持的JS脚本方法点击，'arguments\[0\].click()'是固定的，后面的点击对象替换即可。原理：
+
+上述办法仅适用于，JS动态加载 不可交互式元素的 input 点击事件。其他的提示无法找到元素标签的，可以在代码前，添加：time.sleep(你的秒数)，前提是要导入time 函数。
+或者是 ： driver.refresh() #刷新网页/加载网页

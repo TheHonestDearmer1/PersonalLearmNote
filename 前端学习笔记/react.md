@@ -51,14 +51,14 @@ React Hook
 **理由一：**
 共用Class组件的状态逻辑，需要抽离然后包来包去....很麻烦。
 
-![image-20230906110327082](img/image-20230906110327082.png)
+![](img/image-20230906110327082.png)
 
 
 
 **理由二：**
 难以理解的生命周期，我要在哪里设定事件，然后又要在哪里清除。。。
 
-![image-20230906110554296](img/image-20230906110554296.png)
+![](img/image-20230906110554296.png)
 
 
 
@@ -66,7 +66,7 @@ React Hook
 
 this到底在哪
 
-![image-20230906110706827](img/image-20230906110706827.png)
+![](img/image-20230906110706827.png)
 
 
 
@@ -135,7 +135,7 @@ React可以将HTML模块化
 
 写出一个页面模块
 
-![image-20230906164422253](img/image-20230906164422253.png)
+![](img/image-20230906164422253.png)
 
 在主文件中导入该模块 <Edit/>并赋予样式
 
@@ -156,7 +156,7 @@ export default Home //根元件
 
 在设置中搜索并添加：
 
-![在这里插入图片描述](img/e54d4a0bc2f44e719937af0d2c9a795e.png)
+![](img/e54d4a0bc2f44e719937af0d2c9a795e.png)
 
 
 
@@ -164,7 +164,7 @@ export default Home //根元件
 
 文件结构图：
 
-![image-20230906131604306](img/image-20230906131604306.png)
+![](img/image-20230906131604306.png)
 
 index.js
 
@@ -186,12 +186,12 @@ import Home from './pages/Home';
 
 在根目录的index.js的 <React.StrictMode>下放入<Home/>,便可以使用Home中index.js里面的函数
 
-![image-20230906132232629](img/image-20230906132232629.png)
+![](img/image-20230906132232629.png)
 
 components 元件（模块）
 
 页面模块组成：
-![image-20230906132808746](img/image-20230906132808746.png)
+![](img/image-20230906132808746.png)
 
 ​       Home
 

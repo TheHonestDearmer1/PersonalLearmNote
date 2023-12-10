@@ -99,7 +99,7 @@ print(jwt_decode)
 
 首先，JWT由三部分组成：`header`、`payload`、`signature`
 
-<img src="https://img-blog.csdnimg.cn/20210602122127905.png#pic_center" alt="在这里插入图片描述">
+![](https://img-blog.csdnimg.cn/20210602122127905.png#pic_center)
 - header
 格式为字典
 
@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
 进入网站后，往下拉，在Debugger区域，可以看到如下图所示：
 
-<img src="https://img-blog.csdnimg.cn/20210602122225220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODMxNDY2,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">
+![](https://img-blog.csdnimg.cn/20210602122225220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODMxNDY2,size_16,color_FFFFFF,t_70#pic_center)
 - 第一步，将我们生成的token串，填入①位置。- 第二步，将我们使用的私有秘钥key，填入②位置。此处打钩为base64转换- 第三步，在右上方显示的，就是我们的header和公有信息，私有信息了- 在左下方，会提示token串是否合规
 五、结语
 

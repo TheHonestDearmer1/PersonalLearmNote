@@ -92,7 +92,7 @@ Templater 是一个强大却复杂的插件，后续我会以一个个案例的�
 
 让我们来选择「泰勒公式」：
 
-![动图封面](https://pic4.zhimg.com/v2-5c65ceb5dac55d4f609ecbfc1595c96b_b.jpg)
+![](https://pic4.zhimg.com/v2-5c65ceb5dac55d4f609ecbfc1595c96b_b.jpg)
 
 可以看到在当前已打开的「Templater 演示」笔记中被填充了与「泰勒公式」一模一样的内容！
 

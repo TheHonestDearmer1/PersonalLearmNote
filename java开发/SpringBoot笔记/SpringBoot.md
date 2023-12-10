@@ -14,23 +14,23 @@
 
 1. **创建工程，并在 `pom.xml` 配置文件中配置所依赖的坐标**
 
-<img src="assets/image-20210911132335452.png" alt="image-20210911132335452" style="zoom:50%;" />
+![](assets/image-20210911132335452.png)
 
 2. **编写 `web3.0` 的配置类**
 
    作为 `web` 程序，`web3.0` 的配置类不能缺少，而这个配置类还是比较麻烦的，代码如下
 
-<img src="assets/image-20210911133112602.png" alt="image-20210911133112602" style="zoom:50%;" />
+![](assets/image-20210911133112602.png)
 
 3. **编写 `SpringMVC` 的配置类**
 
-<img src="assets/image-20210911133219847.png" alt="image-20210911133219847" style="zoom:50%;" />
+![](assets/image-20210911133219847.png)
 
 ​	做到这只是将工程的架子搭起来。要想被外界访问，最起码还需要提供一个 `Controller` 类，在该类中提供一个方法。
 
 4. **编写 `Controller` 类**
 
-<img src="assets/image-20210911133532151.png" alt="image-20210911133532151" style="zoom:50%;" />
+![](assets/image-20210911133532151.png)
 
 从上面的 `SpringMVC` 程序开发可以看到，前三步都是在搭建环境，而且这三步基本都是固定的。`SpringBoot` 就是对这三步进行简化了。接下来我们通过一个入门案例来体现 `SpingBoot` 简化 `Spring` 开发。
 
@@ -51,19 +51,19 @@
 
 * 点击 `+` 选择 `New Module` 创建新模块
 
-<img src="assets/image-20210911155135008.png" alt="image-20210911155135008" style="zoom:60%;" />
+![](assets/image-20210911155135008.png)
 
 * 选择 `Spring Initializr` ，用来创建 `SpringBoot` 工程
 
   以前我们选择的是 `Maven` ，今天选择 `Spring Initializr` 来快速构建 `SpringBoot` 工程。而在 `Module SDK` 这一项选择我们安装的 `JDK` 版本。
 
-<img src="assets/image-20210911155249493.png" alt="image-20210911155249493" style="zoom:60%;" />
+![](assets/image-20210911155249493.png)
 
 * 对 `SpringBoot` 工程进行相关的设置
 
   我们使用这种方式构建的 `SpringBoot` 工程其实也是 `Maven` 工程，而该方式只是一种快速构建的方式而已。
 
-  <img src="assets/image-20210911155916899.png" alt="image-20210911155916899" style="zoom:67%;" />
+  ![](assets/image-20210911155916899.png)
 
   > ==注意：打包方式这里需要设置为 `Jar`==
 
@@ -71,15 +71,15 @@
 
   由于我们需要开发一个 `web` 程序，使用到了 `SpringMVC` 技术，所以按照下图红框进行勾选
 
-<img src="assets/image-20210911160040328.png" alt="image-20210911160040328" style="zoom:60%;" />
+![](assets/image-20210911160040328.png)
 
 * 下图界面不需要任何修改，直接点击 `Finish` 完成 `SpringBoot` 工程的构建
 
-<img src="assets/image-20210911160353534.png" alt="image-20210911160353534" style="zoom:70%;" />
+![](assets/image-20210911160353534.png)
 
 经过以上步骤后就创建了如下结构的模块，它会帮我们自动生成一个 `Application` 类，而该类一会再启动服务器时会用到
 
-<img src="assets/image-20210911160541833.png" alt="image-20210911160541833" style="zoom:80%;" />
+![](assets/image-20210911160541833.png)
 
 > ==注意：==
 >
@@ -111,11 +111,11 @@ maven会使用远程仓库来加载依赖，请求的是一个国外的网站，
 
 > 右击pom.xml -> maven -> create settings.xml
 
-![[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-ZljajmmH-1652750177300)(springboot.assets/image-20220517091218904.png)]](img/64f64f71e5c646f18d584e98cc4b0b5e.png)
+![](img/64f64f71e5c646f18d584e98cc4b0b5e.png)
 
 > 编辑settings.xml
 
-![[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-lDimbocA-1652750177301)(springboot.assets/image-20220517091348967.png)]](img/076b4ffecc00448b9f6074d8dc3a5759.png)
+![](img/076b4ffecc00448b9f6074d8dc3a5759.png)
 
 #### 复制黏贴镜像路径
 
@@ -135,7 +135,7 @@ maven会使用远程仓库来加载依赖，请求的是一个国外的网站，
 
 > Maven - > reload
 
-![[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-qYrpvoj3-1652750177302)(springboot.assets/image-20220517091547293.png)]](img/0ef654fbd2b442d783b7d7cd77a61027.png)
+![](img/0ef654fbd2b442d783b7d7cd77a61027.png)
 
 文章知识点与官方知识档案匹配，可进一步学习相关知识
 
@@ -160,13 +160,13 @@ public class BookController {
 
 运行 `SpringBoot` 工程不需要使用本地的 `Tomcat` 和 插件，只运行项目 `com.itheima` 包下的 `Application` 类，我们就可以在控制台看出如下信息
 
-![image-20210911165642280](assets/image-20210911165642280.png)
+![](assets/image-20210911165642280.png)
 
 ##### 1.1.1.4  进行测试
 
 使用 `Postman` 工具来测试我们的程序
 
-![image-20210911160850121](assets/image-20210911160850121.png)
+![](assets/image-20210911160850121.png)
 
 通过上面的入门案例我们可以看到使用 `SpringBoot` 进行开发，使整个开发变得很简单，那它是如何做到的呢？
 
@@ -238,7 +238,7 @@ public class Application {
 
 做完 `SpringBoot` 的入门案例后，接下来对比一下 `Spring` 程序和 `SpringBoot` 程序。如下图
 
-<img src="assets/image-20210911172200292.png" alt="image-20210911172200292" style="zoom:60%;" />
+![](assets/image-20210911172200292.png)
 
 * **坐标**
 
@@ -272,11 +272,11 @@ https://spring.io/projects/spring-boot
 
 进入到 `SpringBoot` 官网后拖到最下方就可以看到如下内容
 
-<img src="assets/image-20210911173712014.png" alt="image-20210911173712014" style="zoom:60%;" />
+![](assets/image-20210911173712014.png)
 
 然后点击 `Spring Initializr` 超链接就会跳转到如下页面
 
-![image-20210911174110687](assets/image-20210911174110687.png)
+![](assets/image-20210911174110687.png)
 
 这个页面内容是不是感觉很眼熟的，这和我们使用 `Idea` 快速构建 `SpringBoot` 工程的界面基本相同。在上面页面输入对应的信息
 
@@ -284,17 +284,17 @@ https://spring.io/projects/spring-boot
 
 选择 `Spring Web` 可以点击上图右上角的 `ADD DEPENDENCIES... CTRL + B` 按钮，就会出现如下界面
 
-![image-20210911174650679](assets/image-20210911174650679.png)
+![](assets/image-20210911174650679.png)
 
 ##### 1.1.3.3  生成工程
 
 以上步骤完成后就可以生成 `SpringBoot` 工程了。在页面的最下方点击 `GENERATE CTRL + 回车` 按钮生成工程并下载到本地，如下图所示
 
-![image-20210911175222857](assets/image-20210911175222857.png)
+![](assets/image-20210911175222857.png)
 
 打开下载好的压缩包可以看到工程结构和使用 `Idea` 生成的一模一样，如下图
 
-<img src="assets/image-20210911175502834.png" alt="image-20210911175502834" style="zoom:80%;" />
+![](assets/image-20210911175502834.png)
 
 而打开 `pom.xml` 文件，里面也包含了父工程和 `Spring Web` 的依赖。
 
@@ -304,13 +304,13 @@ https://spring.io/projects/spring-boot
 
 ##### 1.1.4.1  问题导入
 
-<img src="assets/image-20210911180828611.png" alt="image-20210911180828611" style="zoom:50%;" />
+![](assets/image-20210911180828611.png)
 
 以后我们和前端开发人员协同开发，而前端开发人员需要测试前端程序就需要后端开启服务器，这就受制于后端开发人员。为了摆脱这个受制，前端开发人员尝试着在自己电脑上安装 `Tomcat` 和 `Idea` ，在自己电脑上启动后端程序，这显然不现实。
 
 我们后端可以将 `SpringBoot` 工程打成 `jar` 包，该 `jar` 包运行不依赖于 `Tomcat` 和 `Idea` 这些工具也可以正常运行，只是这个 `jar` 包在运行过程中连接和我们自己程序相同的 `Mysql` 数据库即可。这样就可以解决这个问题，如下图
 
-<img src="assets/image-20210911181714437.png" alt="image-20210911181714437" style="zoom:50%;" />
+![](assets/image-20210911181714437.png)
 
 那现在问题是如何打包呢？
 
@@ -339,7 +339,7 @@ jar -jar springboot_01_quickstart-0.0.1-SNAPSHOT.jar
 
 执行上述命令就可以看到 `SpringBoot` 运行的日志信息
 
-<img src="assets/image-20210911182956629.png" alt="image-20210911182956629" style="zoom:60%;" />
+![](assets/image-20210911182956629.png)
 
 ## 1.2  SpringBoot概述
 
@@ -364,7 +364,7 @@ jar -jar springboot_01_quickstart-0.0.1-SNAPSHOT.jar
 
 我们使用 `Spring Initializr`  方式创建的 `Maven` 工程的的 `pom.xml` 配置文件中自动生成了很多包含 `starter` 的依赖，如下图
 
-<img src="assets/image-20210918220338109.png" alt="image-20210918220338109" style="zoom:70%;" />
+![](assets/image-20210918220338109.png)
 
 这些依赖就是==启动依赖==，接下来我们探究一下他是如何实现的。
 
@@ -372,21 +372,21 @@ jar -jar springboot_01_quickstart-0.0.1-SNAPSHOT.jar
 
 从上面的文件中可以看到指定了一个父工程，我们进入到父工程，发现父工程中又指定了一个父工程，如下图所示
 
-<img src="assets/image-20210918220855024.png" alt="image-20210918220855024" style="zoom:80%;" />
+![](assets/image-20210918220855024.png)
 
 再进入到该父工程中，在该工程中我们可以看到配置内容结构如下图所示
 
-<img src="assets/image-20210918221042947.png" alt="image-20210918221042947" style="zoom:80%;" />
+![](assets/image-20210918221042947.png)
 
 上图中的 `properties` 标签中定义了各个技术软件依赖的版本，避免了我们在使用不同软件技术时考虑版本的兼容问题。在 `properties` 中我们找 `servlet`  和 `mysql` 的版本如下图
 
-<img src="assets/image-20210918221511249.png" alt="image-20210918221511249" style="zoom:80%;" />
+![](assets/image-20210918221511249.png)
 
 `dependencyManagement` 标签是进行依赖版本锁定，但是并没有导入对应的依赖；如果我们工程需要那个依赖只需要引入依赖的 `groupid` 和 `artifactId` 不需要定义 `version`。
 
 而 `build` 标签中也对插件的版本进行了锁定，如下图
 
-<img src="assets/image-20210918221942453.png" alt="image-20210918221942453" style="zoom:80%;" />
+![](assets/image-20210918221942453.png)
 
 看完了父工程中 `pom.xml` 的配置后不难理解我们工程的的依赖为什么都没有配置 `version`。
 
@@ -394,11 +394,11 @@ jar -jar springboot_01_quickstart-0.0.1-SNAPSHOT.jar
 
 在我们创建的工程中的 `pom.xml` 中配置了如下依赖
 
-<img src="assets/image-20210918222321402.png" alt="image-20210918222321402" style="zoom:80%;" />
+![](assets/image-20210918222321402.png)
 
 进入到该依赖，查看 `pom.xml` 的依赖会发现它引入了如下的依赖
 
-<img src="assets/image-20210918222607469.png" alt="image-20210918222607469" style="zoom:80%;" />
+![](assets/image-20210918222607469.png)
 
 里面的引入了 `spring-web` 和 `spring-webmvc` 的依赖，这就是为什么我们的工程中没有依赖这两个包还能正常使用 `springMVC` 中的注解的原因。
 
@@ -471,7 +471,7 @@ public class Springboot01QuickstartApplication {
 
 现在我们运行引导类可以吗？运行一下试试，打印的日志信息如下
 
-![image-20210918232512707](assets/image-20210918232512707.png)
+![](assets/image-20210918232512707.png)
 
 程序直接停止了，为什么呢？那是因为排除了 `tomcat` 服务器，程序中就没有服务器了。所以此时不光要排除 `tomcat` 服务器，还要引入 `jetty` 服务器。在 `pom.xml` 中因为 `jetty` 的起步依赖
 
@@ -484,7 +484,7 @@ public class Springboot01QuickstartApplication {
 
 接下来再次运行引导类，在日志信息中就可以看到使用的是 `jetty` 服务器
 
-![image-20210918232904623](assets/image-20210918232904623.png)
+![](assets/image-20210918232904623.png)
 
 **小结：**
 
@@ -534,7 +534,7 @@ http://localhost/books/1
 
 创建一个新工程 `springboot_02_base_config` 用来演示不同的配置文件，工程环境和入门案例一模一样，结构如下：
 
-<img src="assets/image-20210917151314753.png" alt="image-20210917151314753" style="zoom:80%;" />
+![](assets/image-20210917151314753.png)
 
 在该工程中的 `com.itheima.controller` 包下创建一个名为 `BookController` 的控制器。内容如下：
 
@@ -557,7 +557,7 @@ public class BookController {
 
 现在需要进行配置，配合文件必须放在 `resources` 目录下，而该目录下有一个名为 `application.properties` 的配置文件，我们就可以在该配置文件中修改端口号，在该配置文件中书写 `port` ，`Idea` 就会提示，如下
 
-<img src="assets/image-20210917161422535.png" alt="image-20210917161422535" style="zoom:80%;" />
+![](assets/image-20210917161422535.png)
 
 `application.properties` 配置文件内容如下：
 
@@ -567,7 +567,7 @@ server.port=80
 
 启动服务，会在控制台打印出日志信息，从日志信息中可以看到绑定的端口号已经修改了
 
-<img src="assets/image-20210917161720855.png" alt="image-20210917161720855" style="zoom:80%;" />
+![](assets/image-20210917161720855.png)
 
 * **application.yml配置文件**
 
@@ -582,11 +582,11 @@ server:
 
 而在 `yml` 配置文件中也是有提示功能的，我们也可以在该文件中书写 `port` ，然后 `idea` 就会提示并书写成上面的格式
 
-<img src="assets/image-20210917162512646.png" alt="image-20210917162512646" style="zoom:80%;" />
+![](assets/image-20210917162512646.png)
 
 启动服务，可以在控制台看到绑定的端口号是 `81`
 
-![image-20210917162700711](assets/image-20210917162700711.png)
+![](assets/image-20210917162700711.png)
 
 * **application.yaml配置文件**
 
@@ -601,29 +601,29 @@ server:
 
 启动服务，在控制台可以看到绑定的端口号
 
-![image-20210917163335913](assets/image-20210917163335913.png)
+![](assets/image-20210917163335913.png)
 
 ==注意：在配合文件中如果没有提示，可以使用一下方式解决==
 
 * 点击 `File` 选中 `Project Structure`
 
-<img src="assets/image-20210917163557071.png" alt="image-20210917163557071" style="zoom:80%;" />
+![](assets/image-20210917163557071.png)
 
 * 弹出如下窗口，按图中标记红框进行选择
 
-<img src="assets/image-20210917163736458.png" alt="image-20210917163736458" style="zoom:70%;" />
+![](assets/image-20210917163736458.png)
 
 * 通过上述操作，会弹出如下窗口
 
-<img src="assets/image-20210917163818051.png" alt="image-20210917163818051" style="zoom:80%;" />
+![](assets/image-20210917163818051.png)
 
 * 点击上图的 `+` 号，弹出选择该模块的配置文件
 
-<img src="assets/image-20210917163828518.png" alt="image-20210917163828518" style="zoom:80%;" />
+![](assets/image-20210917163828518.png)
 
 * 通过上述几步后，就可以看到如下界面。`properties` 类型的配合文件有一个，`ymal` 类型的配置文件有两个
 
-<img src="assets/image-20210917163846243.png" alt="image-20210917163846243" style="zoom:80%;" />
+![](assets/image-20210917163846243.png)
 
 #### 2.1.3  三种配合文件的优先级
 
@@ -758,7 +758,7 @@ enterprise:
 
 新创建一个名为 `springboot_03_read_data` 的 `SpringBoot` 工程，目录结构如下
 
-<img src="assets/image-20210917172736484.png" alt="image-20210917172736484" style="zoom:80%;" />
+![](assets/image-20210917172736484.png)
 
 在 `com.itheima.controller` 包写创建名为 `BookController` 的控制器，内容如下
 
@@ -959,7 +959,7 @@ public class BookController {
 
 使用第三种方式，在实体类上有如下警告提示
 
-<img src="assets/image-20210917180919390.png" alt="image-20210917180919390" style="zoom:70%;" />
+![](assets/image-20210917180919390.png)
 
 这个警告提示解决是在 `pom.xml` 中添加如下依赖即可
 
@@ -975,7 +975,7 @@ public class BookController {
 
 以后在工作中，对于开发环境、测试环境、生产环境的配置肯定都不相同，比如我们开发阶段会在自己的电脑上安装 `mysql` ，连接自己电脑上的 `mysql` 即可，但是项目开发完毕后要上线就需要该配置，将环境的配置改为线上环境的。
 
-<img src="assets/image-20210917185253557.png" alt="image-20210917185253557" style="zoom:60%;" />
+![](assets/image-20210917185253557.png)
 
 来回的修改配置会很麻烦，而 `SpringBoot` 给开发者提供了多环境的快捷配置，需要切换环境时只需要改一个配置即可。不同类型的配置文件多环境开发的配置都不相同，接下来对不同类型的配置文件进行说明
 
@@ -1112,13 +1112,13 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-featu
 
 进入上面网站后会看到如下页面
 
-![image-20210917193910191](assets/image-20210917193910191.png)
+![](assets/image-20210917193910191.png)
 
 如果使用了多种方式配合同一个配置项，优先级高的生效。
 
 ### 2.5  配置文件分类
 
-<img src="assets/image-20210917194941597.png" alt="image-20210917194941597" style="zoom:70%;" />
+![](assets/image-20210917194941597.png)
 
 有这样的场景，我们开发完毕后需要测试人员进行测试，由于测试环境和开发环境的很多配置都不相同，所以测试人员在运行我们的工程时需要临时修改很多配置，如下
 
@@ -1145,7 +1145,7 @@ java –jar springboot.jar –-spring.profiles.active=test --server.port=85 --se
 
 创建一个名为 `springboot_06_config_file` 的 `SpringBoot` 工程，目录结构如下
 
-<img src="assets/image-20210917200241282.png" alt="image-20210917200241282" style="zoom:80%;" />
+![](assets/image-20210917200241282.png)
 
 在 `resources` 下创建一个名为 `config` 的目录，在该目录中创建 `application.yml` 配置文件，而在该配置文件中将端口号设置为 `81`，内容如下
 
@@ -1165,7 +1165,7 @@ server:
 
 运行启动引导类，可以在控制台看到如下日志信息
 
-![image-20210917200805389](assets/image-20210917200805389.png)
+![](assets/image-20210917200805389.png)
 
 通过这个结果可以得出==类路径下的 `config` 下的配置文件优先于类路径下的配置文件。==
 
@@ -1177,11 +1177,11 @@ server:
 
   点击工程的 `package` 来打 `jar` 包
 
-  <img src="assets/image-20210917201243721.png" alt="image-20210917201243721" style="zoom:80%;" />
+  ![](assets/image-20210917201243721.png)
 
 * 在硬盘上找到 `jar` 包所在位置
 
-  <img src="assets/image-20210917201523669.png" alt="image-20210917201523669" style="zoom:70%;" />
+  ![](assets/image-20210917201523669.png)
 
 * 在 `jar` 包所在位置创建 `config` 文件夹，在该文件夹下创建 `application.yml` 配置文件，而在该配合文件中将端口号设置为 `82` 
 
@@ -1193,7 +1193,7 @@ server:
 
   运行后日志信息如下
 
-  ![image-20210917201922831](assets/image-20210917201922831.png)
+  ![](assets/image-20210917201922831.png)
 
   通过这个结果可以得出==file： `config` 下的配置文件优先于类路径下的配置文件。==
 
@@ -1230,7 +1230,7 @@ public class UserServiceTest {
 
 创建一个名为 `springboot_07_test` 的 `SpringBoot` 工程，工程目录结构如下
 
-<img src="assets/image-20210917213556673.png" alt="image-20210917213556673" style="zoom:80%;" />
+![](assets/image-20210917213556673.png)
 
 在 `com.itheima.service` 下创建 `BookService` 接口，内容如下
 
@@ -1358,11 +1358,11 @@ class Springboot07TestApplicationTests {
 
 * 创建新模块，选择 `Spring Initializr`，并配置模块相关基础信息
 
-<img src="assets/image-20210917215913779.png" alt="image-20210917215913779" style="zoom:80%;" />
+![](assets/image-20210917215913779.png)
 
 * 选择当前模块需要使用的技术集（MyBatis、MySQL）
 
-  <img src="assets/image-20210917215958091.png" alt="image-20210917215958091" style="zoom:80%;" />
+  ![](assets/image-20210917215958091.png)
 
 #### 4.2.2  定义实体类
 
@@ -1430,7 +1430,7 @@ spring:
 
 运行测试方法，我们会看到如下错误信息
 
-<img src="assets/image-20210917221427930.png" alt="image-20210917221427930" style="zoom:70%;" />
+![](assets/image-20210917221427930.png)
 
 错误信息显示在 `Spring` 容器中没有 `BookDao` 类型的 `bean`。为什么会出现这种情况呢？
 

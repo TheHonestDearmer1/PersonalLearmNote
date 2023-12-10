@@ -111,13 +111,18 @@ const wall = [
 console.log(wall)
 ```
 
-#### **数组元素的输出**：
+#### **数组元素的输出**和遍历索引：
 
 ```js
 const dataList = [];
 dataList.forEach(function(item){
      console.log('item',item); //item是数组中的元素
     })
+const array = [1, 2, 3, 4, 5];
+
+array.forEach(function(element, index) {
+  console.log(index); // 索引值
+});
 
 ```
 
@@ -251,6 +256,26 @@ console.log(array1);  // 输出: [1, 2, 3, 4, 5, 6]
 ### index() 字符串查找
 
 `indexOf()` 是一个字符串方法，可以用于在字符串中查找指定子字符串（在这里就是问号 “?”）。如果找到了该子字符串，`indexOf()` 方法将返回子字符串的索引值（即首次出现的位置），否则返回 -1。
+
+在 JavaScript 中，你可以使用 `indexOf` 方法来判断一个字符串中是否包含空格。 `indexOf` 方法返回指定字符或子字符串在字符串中首次出现的位置索引，如果找不到，则返回 -1。
+
+下面是一个示例代码：
+
+```js
+function hasWhiteSpace(str) {
+  return str.indexOf(' ') !== -1;
+}
+
+// 示例用法
+console.log(hasWhiteSpace('Hello World')); // true
+console.log(hasWhiteSpace('HelloWorld'));  // false
+```
+
+
+
+在上述示例中，`hasWhiteSpace` 函数接收一个字符串作为参数，并使用 `indexOf` 方法查找空格字符。如果结果不等于 -1，表示字符串中存在空格，返回 `true`；否则，表示字符串中不存在空格，返回 `false`。
+
+请注意，此方法仅检查空格字符，如果你需要检查其他空白字符（如制表符、换行符等），可以相应地调整判断条件。
 
 ### if else  switch case
 
@@ -514,6 +539,8 @@ p1.start() //车子启动或者Porshe车子启动（如果子类存在）
 console.log('name',p1.name) // 苏梦仙
 ```
 
+
+
 ### HTML DOM操作
 
 window代表整个浏览器的一些操作 
@@ -598,7 +625,7 @@ element.style.backgroundColor = "red";
 
 **想要更改样式更方便的方法是修改标签的id或者class进行样式切换**
 
-![image-20230911114056256](img/image-20230911114056256.png)
+![](img/image-20230911114056256.png)
 
 
 
@@ -747,7 +774,7 @@ btn1.addEventListener('click',function (e) {
 
 ### 异步函数async关键字
 
-异步函数：异步函数则是非阻塞的，它们允许代码在等待异步操作完成的同时继续执行后续的语句。当遇到 `await` 关键字时，异步函数会暂时挂起执行，等待 `await` 后面的异步操作完成，然后再继续执行后续的代码。
+异步函数：异步函数则是非阻塞的，它们允许代码在等待异步操作完成的同时继续执行后续的语句。当遇到 `await` 关键字时，异步函数会暂时挂起执行，等待 `await` 后面的异步操作完成，然后再继续执行后续的代码。**(就是将异步的请求变成同步的请求，等待异步的请求完成之后再进行下一步操作)**
 
 要使用该异步函数，你可以按照以下步骤进行操作：
 
@@ -847,4 +874,160 @@ body通过将数据对象使用`JSON.stringify()`方法转换为**JSON字符串*
 需要注意的是，`fetch`函数默认只对网络错误（比如请求无法到达）返回`reject`，对HTTP错误码（比如404、500）不会返回`reject`。如果你希望在HTTP错误码时也返回`reject`，可以使用`response.ok`属性进行判断，或者自己处理特定的HTTP错误码。
 
 以上是`fetch`函数的基本用法，你可以根据需要使用`fetch`来进行不同的HTTP请求，并根据返回的`response`对象处理响应数据和错误
+
+## 写入文件保存
+
+### Typeof和JSON.stringify(value)
+
+Typeof用于检测数据的类型，JSON.stringify将对象转换成json
+
+```js
+/**
+ * 存储数据
+ */
+export const setItem = (key, value) => {
+  // 将数组、对象类型的数据转化为 JSON 字符串进行存储
+  if (typeof value === 'object') {
+    value = JSON.stringify(value)
+  }
+    //将数据存入localStorage
+  window.localStorage.setItem(key, value)
+}
+
+/**
+ * 获取数据
+ */
+export const getItem = key => {
+  const data = window.localStorage.getItem(key)
+  try {
+    return JSON.parse(data)
+  } catch (err) {
+    return data
+  }
+}
+
+/**
+ * 删除数据
+ */
+export const removeItem = key => {
+  window.localStorage.removeItem(key)
+}
+
+/**
+ * 删除所有数据
+ */
+export const removeAllItem = key => {
+  window.localStorage.clear()
+}
+```
+
+### 存入数据到本地
+
+```js
+    //将数据存入localStorage
+  window.localStorage.setItem(key, value)
+```
+
+## 其他补充
+
+### path
+
+#### path.resolve()
+
+`path.resolve()` 是 Node.js 中用于将路径或路径片段转换为绝对路径的方法。它接受任意数量的路径作为参数，并将它们拼接到一起，并返回一个新的绝对路径字符串。在使用 `path.resolve()` 转换路径时，如果路径的绝对路径已知，则可以快速创建正确的路径。如果返回的路径是目录，则目录末尾会有一个斜杠。
+
+`path.resolve()` 可以接受多个参数，每个参数都可输入相对路径、绝对路径或 URL，然后通过将每个路径依次解析为绝对路径来将这些路径组合在一起，实现路径的拼接。如果最终结果不是绝对路径，则将根据当前工作目录将其转换为绝对路径。
+
+下面是一个简单的例子，演示了如何使用 `path.resolve()`：
+
+```
+const path = require('path');
+
+const dirPath = 'src';
+const fullPath = path.resolve('/home/user/project', dirPath);
+
+console.log(fullPath); // /home/user/project/src
+```
+
+
+
+在上面的例子中，我们传递了两个参数，第一个参数是绝对路径 `/home/user/project`，第二个参数是相对路径 `src`。path.resolve() 将这两个路径拼接在一起，并返回一个绝对路径 `/home/user/project/src`。
+
+需要注意的是，`path.resolve()` 方法返回的路径是一个字符串，即使提供的参数是数组或对象。所以，如果您需要使用数组或对象来组合路径，则需要使用其他方法（例如 `path.join()`）或手动拼接路径字符串。
+
+### js切片split()
+
+`split()` 方法是 JavaScript 字符串对象的一个函数，用于将字符串拆分为一个字符串数组，根据指定的分隔符将字符串分割为多个子字符串。
+
+`split()` 方法的语法如下：
+
+```js
+string.split(separator, limit)
+```
+
+参数说明：
+
+- `separator`：被用作分隔符的字符串或正则表达式。该参数可以是一个普通字符串或正则表达式。如果省略该参数，则返回包含整个字符串的数组。
+- `limit`（可选）：一个整数，用于限制返回的数组的长度。如果提供了此参数，则拆分的子字符串数量不会超过该限制。
+
+`split()` 方法返回拆分后的子字符串数组。
+
+下面是一些示例：
+
+```js
+const str = 'Hello,World,How,Are,You';
+
+// 使用逗号进行字符串拆分
+const arr1 = str.split(',');
+console.log(arr1);
+// 输出：["Hello", "World", "How", "Are", "You"]
+
+// 使用空格进行字符串拆分
+const arr2 = str.split(' ');
+console.log(arr2);
+// 输出：["Hello,World,How,Are,You"]
+
+// 使用正则表达式进行字符串拆分
+const arr3 = str.split(/,| /);
+console.log(arr3);
+// 输出：["Hello", "World", "How", "Are", "You"]
+
+// 限制返回的数组长度为3
+const arr4 = str.split(',', 3);
+console.log(arr4);
+// 输出：["Hello", "World", "How"]
+```
+
+在上述示例中，我们演示了不同的分隔符（逗号和空格）以及如何使用正则表达式进行字符串拆分。我们还使用了可选的 `limit` 参数来限制返回的数组的长度。
+
+请注意，`split()` 方法不会改变原始字符串，而是返回一个新的数组。
+
+要将类似字符串 “116.38505796846,39.9558690232;116.38519711598,39.955741262754;116.38542555507,39.955464931573;116.38544540763,39.955445228156;116.38548511273,39.955335856804;116.38549490426,39.955115938272;116.38549481443,39.955095958213;116.38550460596,39.954876038903;116.38551439749,39.954726153219” 的值按照分号进行拆分，并将子字符串存入一个数组中，您可以使用 JavaScript 的 `split()` 函数。
+
+示例代码如下所示：
+
+```js
+const str = "116.38505796846,39.9558690232;116.38519711598,39.955741262754;116.38542555507,39.955464931573;116.38544540763,39.955445228156;116.38548511273,39.955335856804;116.38549490426,39.955115938272;116.38549481443,39.955095958213;116.38550460596,39.954876038903;116.38551439749,39.954726153219";
+const array = str.split(";");
+
+console.log(array);
+```
+
+运行上述代码后，您将获得一个由子字符串组成的数组，每个子字符串都是通过分号拆分的：
+
+```js
+[
+  "116.38505796846,39.9558690232",
+  "116.38519711598,39.955741262754",
+  "116.38542555507,39.955464931573",
+  "116.38544540763,39.955445228156",
+  "116.38548511273,39.955335856804",
+  "116.38549490426,39.955115938272",
+  "116.38549481443,39.955095958213",
+  "116.38550460596,39.954876038903",
+  "116.38551439749,39.954726153219"
+]
+```
+
+现在，每个子字符串都被存储在数组中，您可以对该数组进行进一步的处理或使用其中的值。
 

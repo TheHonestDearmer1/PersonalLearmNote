@@ -10,7 +10,7 @@ https://blog.csdn.net/zxdznyy/article/details/127078632
 
 笔记等待完成
 
-![image-20231002030139408](img/image-20231002030139408.png)
+![](img/image-20231002030139408.png)
 
 [vue中input的type属性为file时，获取上传的文件名_还没想好叫啥~的博客-CSDN博客](https://blog.csdn.net/weixin_52613927/article/details/122985931)
 
@@ -65,6 +65,44 @@ ref是怎么操作dom的，dom为什么没有响应
 this.$nextTick(()=>{
         this.$refs.uploadRef.click(); //操纵dom中的click()行为，提交行为使用submit()
       })
+```
+
+# 新的简单的实现方法
+
+```vue
+<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+  <div class="login-container">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules"  ref="loginFromRef">
+ ......
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+
+const loading = ref(false)
+//定义null
+const loginFromRef = ref(null)
+const store = useStore()
+const handleLogin = () => {
+    //使用Ref操作DOM
+  loginFromRef.value.validate(valid => {
+    if (!valid) { return }
+    loading.value = true
+    store.dispatch('user/login', loginForm.value)
+      .then((respone) => {
+        loading.value = false
+        console.log(respone)
+      })
+      .catch(err => {
+        loading.value = false
+        console.log(err)
+      })
+  })
+}
+</style>
+
 ```
 
 **怎么修改上传按钮的样式：**

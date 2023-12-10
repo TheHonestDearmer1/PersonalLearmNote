@@ -78,8 +78,9 @@ vim /etc/nginx/nginx.conf
     http 
     
     {    server { 
-    
-    
+
+
+​    
     location / {            
     
     proxy_pass http://127.0.0.1:8899;        
@@ -100,3 +101,16 @@ reverse_proxy 127.0.0.1:8899
 
 总结
 Pandora不愧是一个优秀的项目，除了docker安装，还可以pip，解决了GPT使用上的诸多问题，而且速度比官网还快，值得点赞！ 
+
+提高不锈钢耐腐蚀性的最主要的元素是
+
+A.Al
+
+B.Si
+
+C.Ni
+
+D.Cr
+
+E.Mn
+
