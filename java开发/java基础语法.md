@@ -570,34 +570,103 @@ public void sleep(){   // The body of sleep() is provided here
 
 ## 枚举类型
 
+`enum` 是 Java 中的关键字，用于定义枚举类型。
+
+枚举类型是一种特殊的数据类型，它限制变量只能取一组预定义的值，并且这些值在枚举类型中被称为枚举常量。枚举常量可以作为单独的值使用，也可以与其他枚举常量进行比较。
+
+使用 `enum` 关键字可以定义一个枚举类型。以下是定义枚举类型的示例：
+
 ```java
-public class Sample32 {
-enum Level {
-LOW，MEDIUM，HIGH //常量
-}
-public static void main(string[] args) {
-    Level myVar = Level.MEDIUM;
-    System.out.println(myVar);//打印出来是MEDIUM
-switch (myvar) { 
-case LOW:
-   System.out.printIn("Low level");
-    break;
-case MEDIUM:
-   System.out.println("Medium level");
-    break;
-case HIGH:
-   System.out.println("High level");
-    break;
+enum Day {
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY,
+  THURSDAY,
+  FRIDAY,
+  SATURDAY,
+  SUNDAY
 }
 ```
 
-循环打印出来：
+在上面的示例中，定义了一个名为 `Day` 的枚举类型，包含了一周的每一天作为枚举常量。
+
+枚举类型的优势之一是可以使用 `switch` 语句来对枚举常量进行逻辑判断，而不需要使用繁琐的 `if-else` 语句。
+
+除了定义枚举常量外，枚举类型还可以包含字段、方法、构造函数和其他普通类的特性。
+
+以下是定义带有字段和方法的枚举类型的示例：
 
 ```java
-for (Level myVar1 : Level.values()) {
-System.out.println(myvar1);
+enum Season {
+  SPRING("Springtime", 1),
+  SUMMER("Summertime", 2),
+  AUTUMN("Autumn", 3),
+  WINTER("Winter", 4);
+
+  private String name;
+  private int order;
+
+  Season(String name, int order) {
+    this.name = name;
+    this.order = order;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getOrder() {
+    return order;
+  }
 }
 ```
+
+在上面的示例中，定义了一个名为 `Season` 的枚举类型，包含了四个枚举常量：`SPRING`、`SUMMER`、`AUTUMN` 和 `WINTER`。每个枚举常量都有一个对应的名称和顺序。
+
+枚举类型的每个常量都可以访问它们自己的字段和方法。可以通过枚举常量名加点符号来访问它们的成员，例如：`Season.SPRING.getName()`。
+
+总结一下，`enum` 关键字用于定义枚举类型，枚举类型是一种特殊的数据类型，限制变量只能取一组预定义的值。枚举类型可以包含枚举常量、字段、方法和构造函数。使用枚举类型可以简化代码，增加可读性，并提供一种更好的方式来处理特定的值集合。
+
+### 每个枚举常量实际上是其所属的枚举类型的一个实例
+
+每个枚举常量实际上是其所属的枚举类型的一个实例，因此可以说每个枚举常量是等于其所属的枚举类型本身。在 Java 中，枚举常量被编译成枚举类型中的静态常量。
+
+例如，考虑下面这个定义`Day`枚举类型的示例：
+
+```java
+enum Day {
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY
+}
+```
+
+
+
+在这个示例中，`MONDAY`、`TUESDAY`和`WEDNESDAY`都是`Day`枚举类型的常量。它们实际上是静态的`Day`类型的实例。因此，可以将每个枚举常量视为其所属的枚举类型的一个实例。
+
+在某些情况下，可以使用`==`操作符将枚举常量与枚举类型本身进行比较。例如，可以使用`==`操作符来比较两个枚举常量是否相等，或者将枚举常量与其所属的枚举类型进行比较。
+
+示例：
+
+```java
+Day day1 = Day.MONDAY;
+Day day2 = Day.MONDAY;
+
+if (day1 == day2) {
+  System.out.println("day1 and day2 are equal");
+}
+
+if (day1 == Day.MONDAY) {
+  System.out.println("day1 is equal to Day.MONDAY");
+}
+```
+
+
+
+在上面的示例中，`day1` 和 `day2` 都引用同一个 `Day.MONDAY` 的实例，所以它们是相等的。同时，`day1` 和 `Day.MONDAY` 也是相等的。
+
+总的来说，每个枚举常量是其所属枚举类型的一个实例，可以将其看作等于枚举类型本身。可以使用`==`操作符比较枚举常量之间的相等性，或者将枚举常量与枚举类型本身进行比较。
 
 ### 输入输出
 
