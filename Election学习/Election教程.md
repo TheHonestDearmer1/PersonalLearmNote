@@ -1199,6 +1199,11 @@ Electron 程序是通过 npm 包创建的。 您应将 Electron 依赖安装到 
 
 在教程下一节，我们将会学习如何使用 API 给渲染器提权，以及如何在进程间通信。
 
+<<<<<<< HEAD:Election学习/Election学习.md
+
+
+=======
+>>>>>>> 2bb46588ee4a714960fd5b5aed40edad5f3e65a6:Election学习/Election教程.md
 # 使用预加载脚本
 
 教程目录
@@ -1338,7 +1343,11 @@ index.html
 
 做完这几步之后，你的应用应该长这样：
 
+<<<<<<< HEAD:Election学习/Election学习.md
+![Electron 应用显示这个应用正在使用 Chrome (v102.0.5005.63)、Node.js (v16.14.2) 和 Electron (v19.0.3)。](E:/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E6%80%BB/%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%AD%97%E8%8A%82%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/img/preload-example-f77948d27686974e427084fa94fe620c.png)
+=======
 ![](img/preload-example-f77948d27686974e427084fa94fe620c.png)
+>>>>>>> 2bb46588ee4a714960fd5b5aed40edad5f3e65a6:Election学习/Election教程.md
 
 你的代码应该长这样：
 
@@ -1501,6 +1510,9 @@ Electron 的文档有着许多教程来帮助你处理更高级的主题和更�
 
 ## 下一步
 
+<<<<<<< HEAD:Election学习/Election学习.md
+在教程的剩余部分，我们将从应用代码转向如何让你的应用从开发者的机器上转移到终端用户的手中。
+=======
 在教程的剩余部分，我们将从应用代码转向如何让你的应用从开发者的机器上转移到终端用户的手中。
 
 # 打包您的应用程序
@@ -1822,3 +1834,4 @@ Electron 应用程序可以通过将 autoUpdater 模块指向一个更新服务�
 
 从这里开始，您已经正式完成了我们的 Electron 教程。 请自由的探索我们的剩余文档并快乐的开发！ 如果您有疑问，请前往我们的社区 [Discord 服务器](https://discord.gg/electronjs) 。
 
+>>>>>>> 2bb46588ee4a714960fd5b5aed40edad5f3e65a6:Election学习/Election教程.md
