@@ -1,6 +1,6 @@
 ## 绘制图形
 
-### （1）
+## （1）画线，画矩形，画圆
 
 ![image-20231213135150719](img/image-20231213135150719.png)
 
@@ -77,13 +77,15 @@ cv2.destroyAllWindows()
 
 以上是绘制图形的示例代码，其中`line()`、`rectangle()`和`circle()`函数都是OpenCV中常用的图形绘制函数。
 
-### （2）
+## （2）画多边形，椭圆，绘制字体
 
 
 
 ![image-20231213135400874](img/image-20231213135400874.png)
 
 在OpenCV中，除了画线、矩形和圆形，还可以使用以下函数绘制更多类型的图形：
+
+### 画多边形
 
 1. 画多边形：可以使用OpenCV的`polylines()`函数在图像上绘制一系列连接的线段，形成多边形。该函数的参数包括原始图像、每个点的坐标、是否闭合多边形、颜色和线条粗细等。
 
@@ -108,7 +110,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
-
+### 画圆弧
 
 1. 画圆弧：可以使用OpenCV的`ellipse()`函数在图像上绘制一个椭圆形或圆弧。该函数的参数包括原始图像、椭圆或圆形的位置和大小、起始和结束角度、颜色和线条粗细等。
 
@@ -135,7 +137,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
-
+### 绘制字体
 
 1. 绘制字体：可以使用OpenCV的`putText()`函数在图像上绘制文本。该函数的参数包括原始图像、文本内容、文本位置和大小、字体类型、颜色和线条粗细等。
 
@@ -163,11 +165,54 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
+### 1.画圆
 
+果您只想要画一个点，可以考虑使用`cv2.circle`函数，它更适合绘制圆。
+
+`cv2.circle`函数的语法如下：
+
+```
+cv2.circle(img, center, radius, color, thickness)
+```
+
+
+
+其中，参数的含义如下：
+
+- `img`：要绘制圆的图像。
+- `center`：圆心的坐标，以(x, y)的形式表示。
+- `radius`：圆的半径。
+- `color`：圆的颜色，以RGB值或BGR值表示。
+- `thickness`：圆边界的厚度，如果指定为负数，则表示填充圆内部。
+
+下面是一个简单的示例，演示了如何使用`cv2.circle`函数来画一个点：
+
+```py
+import cv2
+import numpy as np
+
+# 创建一张黑色背景的图像
+image = np.zeros((500, 500, 3), dtype=np.uint8)
+
+# 定义点的参数
+center = (250, 250)
+radius = 3
+color = (0, 255, 0)  # 用绿色表示
+
+# 在图像上画一个点
+cv2.circle(image, center, radius, color, thickness=-1)
+
+# 显示结果图像
+cv2.imshow('Image', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+在上述示例中，我们创建了一张黑色背景的图像，然后使用`cv2.circle`函数在图像上绘制了一个点。点的中心坐标为(250, 250)，半径为3，颜色为绿色。通过将`thickness`参数设置为负数，我们填充了点的内部。
 
 以上是绘制多边形、椭圆形和文本的示例代码，其中`polylines()`、`ellipse()`和`putText()`函数都是OpenCV中常用的图形绘制函数。
 
-### 绘制中文字体
+绘制中文字体
 
 要在OpenCV中绘制中文字体，需要使用额外的库来支持中文字符集，例如`pillow`和`numpy`。下面是一个使用`pillow`和`numpy`库来绘制中文字体的示例代码：
 
@@ -219,7 +264,7 @@ cv2.destroyAllWindows()
 
 
 
-### OpenCV大作业-实现鼠标绘制基本图形
+## OpenCV大作业-实现鼠标绘制基本图形
 
 要实现通过鼠标进行基本图形的绘制，你可以使用Python的`opencv`库来实现。下面是一个示例代码，演示了如何通过按键选择不同的绘制模式，并在鼠标滑动时绘制线条、矩形和圆形：
 

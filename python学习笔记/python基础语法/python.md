@@ -772,6 +772,112 @@ s.study()  # 调用子类方法
 s.eat()  # 调用父类方法
 ```
 
+
+
+# 类
+
+Python中的类是一种抽象数据类型，用于创建具有相似行为和属性的对象。类定义了对象的结构和行为，并允许从该类创建多个对象。下面是Python类的详细解释和示例：
+
+1. 类的定义：
+   在Python中，可以使用`class`关键字定义一个类。类由属性和方法组成。属性是类的数据成员，方法是类的函数成员。
+
+```python
+class MyClass:
+    attribute = "Hello, World!"  # 类属性
+
+    def method(self):  # 类方法
+        print(self.attribute)
+```
+
+2. 对象的创建：
+   通过使用类来创建实际的对象，这个对象可以访问类定义的属性和方法。
+
+```python
+my_object = MyClass()  # 创建对象
+
+print(my_object.attribute)  # 访问类属性
+my_object.method()  # 调用类方法
+```
+
+3. 属性和方法：
+   类的属性是类的数据成员，它们保存对象中的数据。类的方法是类的函数成员，用于操作或访问对象的数据。
+
+```python
+class Circle:
+    def __init__(self, radius):  # 初始化方法
+        self.radius = radius
+
+    def area(self):  # 计算面积的方法
+        return 3.14 * self.radius ** 2
+
+    def circumference(self):  # 计算周长的方法
+        return 2 * 3.14 * self.radius
+
+
+my_circle = Circle(5)  # 创建Circle对象，传递半径为5
+
+print(my_circle.area())  # 输出面积
+print(my_circle.circumference())  # 输出周长
+```
+
+在上面的示例中，`__init__`是一个特殊方法，用于在创建对象时初始化对象的属性。`area`和`circumference`是类的方法，用于计算圆的面积和周长。
+
+4. 继承：
+   继承是一种面向对象编程中重要的概念。它允许一个类继承另一个类的属性和方法。
+
+```python
+class Animal:
+    def sound(self):
+        print("The animal makes a sound.")
+
+
+class Dog(Animal):
+    def sound(self):
+        print("The dog barks.")
+
+
+my_dog = Dog()
+my_dog.sound()  # 输出"The dog barks."
+```
+
+在上面的示例中，`Dog`类继承了`Animal`类。`Dog`类可以访问和调用`Animal`类中定义的方法。
+
+`self` 是一个特殊的参数，在定义类的方法时使用。它表示对象实例本身，可以用来访问该实例的属性和方法。
+
+在Python中，当你调用一个对象的方法时，Python会自动将对应的对象实例作为第一个参数传递给该方法。这个参数通常被命名为 `self`，但其实你可以使用任何合法的变量名来代表这个参数。
+
+通过使用 `self` 这个参数，你可以在类的方法内部访问和操作对象实例的属性。同时，也可以调用该类的其他方法。
+
+以下是一个示例：
+
+```python
+class MyClass:
+    def __init__(self, x):
+        self.x = x
+
+    def method(self):
+        print("x =", self.x)
+
+    def update_x(self, new_x):
+        self.x = new_x
+
+my_object = MyClass(5)
+my_object.method()  # 输出 "x = 5"
+
+my_object.update_x(10)
+my_object.method()  # 输出 "x = 10"
+```
+
+
+
+在上面的示例中，我们定义了一个名为 `MyClass` 的类，其中包含一个初始化方法 `__init__`、一个打印属性值的方法 `method`，以及一个更新属性值的方法 `update_x`。
+
+当创建 `my_object` 对象时，我们将值 `5` 传递给了初始化方法，并赋值给了实例变量 `x`。然后，我们通过调用 `method` 方法输出了属性 `x` 的值。
+
+接着，我们调用了 `update_x` 方法，修改了属性 `x` 的值为 `10`。再次调用 `method` 方法，可以看到属性值已经被更新了。
+
+总之，`self` 参数是一个表示对象实例的引用，它让你可以在类的方法中访问和操作该实例的属性和方法。
+
 # 多文件编程
 
 在Python中，可以将代码拆分成多个文件进行编程，这样有助于组织和维护大型程序。以下是一些常用的方法：
