@@ -12,7 +12,7 @@ RGB 和 BGR 是两种最常见的图像表示方式，它们代表了像素的�
 
 RGB 表示红色（Red）、绿色（Green）、蓝色（Blue）。在 RGB 表示中，每个像素由一个三元组表示，其中每个分量值的范围通常在 0 到 255 之间，表示了红、绿、蓝三个通道的相对强度。例如，(255, 0, 0) 表示纯红色。
 
-BGR 表示蓝色（Blue）、绿色（Green）、红色（Red）。BGR 顺序从根本上来说是由硬件和软件支持的历史原因，比如 OpenCV 默认使用 BGR 格式。因此，在 OpenCV 中读取的图像数据通常以 BGR 顺序存储。
+BGR 表示蓝色（Blue）、绿色（Green）、红色（Red）。BGR 顺序从根本上来说是由硬件和软件支持的历史原因，比如 OpenCV 默认使用 BGR 格式。因此，在 OpenCV 中读取的图像数据通常以 **BGR 顺序存储**。
 
 在许多计算机视觉框架和图像处理工具中，颜色通常以 BGR 的顺序存储和处理。当我们使用这些工具时，需要注意将图像从一个表示方式（RGB）转换为另一个表示方式（BGR），或者反过来。
 
@@ -60,8 +60,6 @@ img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 # 将 BGR 转换为 HSL
 img_hsl = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
 ```
-
-
 
 在这个示例中，我们首先使用 `cv2.imread()` 读取图像文件。然后，使用 `cv2.cvtColor()` 函数将 BGR 图像转换为 HSV 或 HSL 格式。
 
@@ -131,7 +129,7 @@ import numpy as np
 # 创建一个 3x3 的矩阵
 matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
-# 获取矩阵中特定位置的元素
+# 获取矩阵中特定位置的元素(从0开始算)
 element = matrix[1, 2]
 print(element)  # 输出结果: 6
 
@@ -161,7 +159,7 @@ import numpy as np
 matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
 # 获取矩阵的子数组
-sub_array = matrix[:2, 1:3]
+sub_array = matrix[:2, 1:3] #从1开始算起(0,2] (1,3]
 print(sub_array)
 ```
 
@@ -288,6 +286,37 @@ print(eye_arr)
  [0. 0. 1.]
  [0. 0. 0.]]
 ```
+
+要创建一个全为特定值的数组，可以使用NumPy库中的`np.full()`函数。该函数的语法如下：
+
+```python
+np.full(shape, fill_value, dtype=None)
+```
+
+参数说明：
+- `shape`：表示数组的形状，可以是一个整数或一个整数的元组。
+- `fill_value`：表示要填充的值。
+- `dtype`：可选参数，表示数组的数据类型，默认为None，即根据`fill_value`的类型确定数据类型。
+
+下面是一个使用`np.full()`函数创建全为0的数组的示例：
+
+```python
+import numpy as np
+
+# 创建一个形状为(3, 4)的全为0的数组
+arr = np.full((3, 4), 0)
+
+print(arr)
+```
+
+输出结果：
+```
+[[0 0 0 0]
+ [0 0 0 0]
+ [0 0 0 0]]
+```
+
+在上面的示例中，我们创建了一个形状为(3, 4)的数组，其中的所有元素都被填充为0。
 
 ## Numpy基本操作之矩阵的检索与赋值 
 
