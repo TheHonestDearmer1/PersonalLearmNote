@@ -1,0 +1,146 @@
+# 通过OpenCV检测和定位条形码和QR码
+
+## 摘要
+
+在这个视频中，我们学习了如何使用OpenCV检测图像中的QR码和条形码，以及创建一个身份验证项目来检查某人是否被授权。视频中还介绍了如何导入库、检测和定位条形码和QR码，以及如何使用购买侧栏库。最后，演示了如何将条形码和QR码添加到图像中并进行识别。
+
+### 亮点
+
+- 通过OpenCV检测和定位条形码和QR码
+- 创建身份验证项目来检查授权情况
+- 导入OpenCV、numpy和bytes库进行图像处理和识别
+- 添加网络摄像头、边界框和多边形
+- 将条形码和QR码与文本文件进行比较并判断授权情况
+
+[#OpenCV](https://devv.ai/zh/search/OpenCV) [#图像处理](https://devv.ai/zh/search/图像处理) [#身份验证](https://devv.ai/zh/search/身份验证)
+
+### 问题
+
+1. [如何在Python中导入和使用OpenCV、numpy和bytes库？](https://devv.ai/zh/search/如何在Python中导入和使用OpenCV、numpy和bytes库？)
+2. [在身份验证项目中，如何判断条形码和QR码是否被授权？](https://devv.ai/zh/search/在身份验证项目中，如何判断条形码和QR码是否被授权？)
+3. [字符串解码时，为什么需要指定解码方法？](https://devv.ai/zh/search/字符串解码时，为什么需要指定解码方法？)
+
+## OpenCV检测和定位条形码和QR码
+
+基本版本代码：
+
+```python
+import cv2
+import numpy as np
+from pyzbar.pyzbar import decode
+
+# 初始化摄像头
+cap = cv2.VideoCapture(0)
+cap.set(3, 640)  # 设置摄像头宽度
+cap.set(4, 480)  # 设置摄像头高度
+
+while True:
+
+    # 读取摄像头捕捉的图像
+    success, img = cap.read()
+
+    # 解码图像中的条形码和QR码
+    for barcode in decode(img):
+        # 解码出的数据
+        myData = barcode.data.decode('utf-8')
+        print(myData)
+
+        # 绘制边框和多边形
+        pts = np.array([barcode.polygon], np.int32)
+        pts = pts.reshape((-1, 1, 2))
+        cv2.polylines(img, [pts], True, (255, 0, 255), 5) #传点的数组[pts]
+ 
+        # 在图像中标出解码出的数据
+        pts2 = barcode.rect
+        cv2.putText(img, myData, (pts2[0], pts2[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 255), 2)
+
+    # 显示结果图像
+    cv2.imshow('Result', img)
+    cv2.waitKey(1)
+
+```
+
+这段代码使用了cv2.VideoCapture函数从摄像头中捕捉图像。然后，循环读取每一帧图像，并对图像进行解码，使用pyzbar库的decode函数将图像中的条形码和QR码解码出来。对于每一个解码出的码，我们绘制了边框和多边形，并在图像上标注解码出的数据。最后，使用cv2.imshow函数将结果图像显示出来。
+
+`decode()` 函数返回的解码数据对象提供了关于条形码或 QR 码的详细信息。这个对象具有以下属性：
+
+- `data`：解码后的数据。是一个字节字符串（bytes）类型的数据，通常使用 `.decode('utf-8')` 转换为字符串格式。
+- `type`：码的类型。一个字符串，表示码的类型，例如 `'EAN13'`、`'QRCode'` 等。
+- `rect`：码的边界矩形。是一个包含四个整数的元组，表示码区域的左上角和右下角坐标。可以通过 `rect` 来定位码在图像中的位置。
+- `polygon`：码的多边形轮廓。是一个包含点坐标的列表，表示码的边界多边形。通过绘制多边形轮廓，可以更好地可视化码的位置和形状。
+
+在示例代码中，我们使用以下代码来访问解码数据对象的属性：
+
+```python
+for barcode in decode(img):
+    myData = barcode.data.decode('utf-8')
+    # 获取更多的解码信息
+    barcode_type = barcode.type
+    barcode_rect = barcode.rect
+    barcode_polygon = barcode.polygon
+    # 处理解码到的数据和其他属性
+```
+
+使用这些属性，可以进一步处理解码数据，例如获取码的类型、位置信息或绘制码的边界轮廓等。
+
+其中数组中的点数据
+
+根据提供的信息，Point(x=492, y=139) 是一个表示点坐标的数据。
+
+这里的 Point 是一个命名元组（namedtuple），包含两个属性 x 和 y 分别表示点的横坐标和纵坐标。它的数据类型可以是 Python 标准库中 `collections` 模块中的 `namedtuple` 类型，也可能是其他类似的自定义数据类型。
+
+具体来说，`Point(x=492, y=139)` 表示一个具有 x 值为 492，y 值为 139 的点坐标。这种数据结构常用于表示平面上的几何图形或数据。通过访问 `Point` 对象的属性，可以获取点的横坐标和纵坐标值。
+
+要注意的是，具体的数据类型取决于代码和上下文环境。如果不确定 Point 的数据类型，可以查看代码中的相关定义或使用的库的文档，以了解更多关于 Point 对象的详细信息。
+
+## OpenCV身份验证
+
+就是拿数据做对比，看看是否被授权了
+
+```python
+import cv2
+import numpy as np
+from pyzbar.pyzbar import decode
+
+# 打开包含授权数据的文本文件
+with open('myDataFile.text') as f:
+    myDataList = f.read().splitlines()
+
+# 初始化从摄像头捕获视频
+cap = cv2.VideoCapture(0)
+cap.set(3, 640)
+cap.set(4, 480)
+
+while True:
+    # 从摄像头读取帧
+    success, img = cap.read()
+
+    # 解码图像中的条形码
+    for barcode in decode(img):
+        myData = barcode.data.decode('utf-8')
+        print(myData)
+
+        # 检查解码后的数据是否为授权数据
+        if myData in myDataList:
+            myOutput = '授权通过'
+            myColor = (0, 255, 0)  # 授权数据为绿色
+        else:
+            myOutput = '未授权'
+            myColor = (0, 0, 255)  # 非授权数据为红色
+
+        # 在条形码周围绘制多边形
+        pts = np.array([barcode.polygon], np.int32)
+        pts = pts.reshape((-1, 1, 2))
+        cv2.polylines(img, [pts], True, myColor, 5)
+
+        # 在条形码上绘制授权状态文本
+        pts2 = barcode.rect
+        cv2.putText(img, myOutput, (pts2[0], pts2[1]), cv2.FONT_HERSHEY_SIMPLEX,
+                    0.9, myColor, 2)
+
+    # 显示带有条形码检测结果的图像
+    cv2.imshow('结果', img)
+    cv2.waitKey(1)
+```
+
+在这段代码中，我添加了注释来解释代码的每一部分及其功能。它包括打开具有授权数据的文本文件，从相机捕获视频，解码捕获帧中的条形码，检查解码的数据是否经过授权，以及在图像上绘制多边形和文本。cv2.multiples函数用于绘制多边形，cv2.putText函数用于绘制文本。最后，将处理后的图像显示在窗口中。

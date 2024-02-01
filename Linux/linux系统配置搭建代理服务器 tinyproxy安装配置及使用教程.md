@@ -21,7 +21,7 @@ vim /etc/tinyproxy/tinyproxy.conf
 # 注释掉这一行
 # Allow 127.0.0.1
 # 修改端口号
-Port 8787
+Port 8888
 ```
 
 *   Allow 是允许访问的主机IP，不写就是允许所有主机访问

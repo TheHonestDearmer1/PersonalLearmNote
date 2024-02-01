@@ -247,11 +247,33 @@ array1.push(...array2);
 console.log(array1);  // 输出: [1, 2, 3, 4, 5, 6]
 ```
 
-
-
 在上述示例中，我们使用了扩展运算符 `...` 来展开 `array2` 数组的元素，并将它们作为参数传递给 `push()` 方法。这样可以将 `array2` 数组中的元素一次性添加到 `array1` 数组的末尾。
 
 需要注意的是，`push()` 方法会修改原始的数组，而不是创建一个新的数组。
+
+#### Set去除数组中的重复元素
+
+以下是一个纯 JavaScript 的示例来演示如何移除数组中的重复元素：
+
+```javascript
+let historyList = ['A', 'B', 'A', 'C', 'B', 'D'];
+
+// 使用 Set 数据结构来移除重复元素
+historyList = [...new Set(historyList)];
+
+console.log(historyList);
+// 输出: ['A', 'B', 'C', 'D']
+```
+
+在上面的示例中，我们创建一个名为 `historyList` 的数组，其中包含一些重复的元素。然后，我们使用 Set 数据结构来移除重复元素的步骤如下：
+
+1. 通过 `new Set(historyList)` 创建一个新的 Set 对象。
+2. 使用扩展运算符 `...` 将 Set 对象展开为一个新的数组。
+3. 将结果赋值给 `historyList`，覆盖原来的数组。
+
+通过打印 `historyList`，你将看到移除了重复元素的结果。
+
+请注意，Set 是一种数据结构，它的特点是元素值的唯一性。利用 Set 数据结构的特性可以帮助我们去除数组中的重复元素。
 
 ### index() 字符串查找
 
