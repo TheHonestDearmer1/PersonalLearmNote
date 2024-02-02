@@ -10,7 +10,61 @@
 助教提供了一段基于 Python [Opencv](https://so.csdn.net/so/search?q=Opencv&spm=1001.2101.3001.7020) 的双目相机自动拍摄和保存的代码给我们直接用，但是在运行的时候我遇到了奇怪的现象，程序卡在 cv2.VideoCapture(0) 这里就不能运行，不报错，就是单纯的卡在这里。先放代码：
 
 ```python
-import time import cv2import numpy as np AUTO = False  # 自动拍照，或手动按s键拍照INTERVAL = 2  # 自动拍照间隔 camera_0 = cv2.VideoCapture(0) # 代码运行的时候卡在这里！！camera_1 = cv2.VideoCapture(1) cv2.namedWindow("left")cv2.namedWindow("right") counter = 0utc = time.time()folder = "./SaveImage/"  # 拍照文件目录， 先新建再运行，否则无法保存  def shot(pos, frame):    global counter    path = folder + pos + "_" + str(counter) + ".jpg"    cv2.imwrite(path, frame)    print("snapshot saved into: " + path)  while True:    ret_0, frame_0 = camera_0.read()    ret_1, frame_1 = camera_1.read()    left_frame = frame_0    right_frame = frame_1    cv2.imshow("left", left_frame)    cv2.imshow("right", right_frame)    now = time.time()     if AUTO and now - utc >= INTERVAL:        shot("left", left_frame)        shot("right", right_frame)        counter += 1        utc = now     key = cv2.waitKey(1)     # press 's' in keyboard for capturing, 'q' for exit.    if key == ord("q"):        break    elif key == ord("s"):        shot("left", left_frame)        shot("right", right_frame)        counter += 1 camera_0.release()camera_1.release()cv2.destroyWindow("left")cv2.destroyWindow("right")
+import time
+ 
+import cv2
+import numpy as np
+ 
+AUTO = False  # 自动拍照，或手动按s键拍照
+INTERVAL = 2  # 自动拍照间隔
+ 
+camera_0 = cv2.VideoCapture(0) # 代码运行的时候卡在这里！！
+camera_1 = cv2.VideoCapture(1)
+ 
+cv2.namedWindow("left")
+cv2.namedWindow("right")
+ 
+counter = 0
+utc = time.time()
+folder = "./SaveImage/"  # 拍照文件目录， 先新建再运行，否则无法保存
+ 
+ 
+def shot(pos, frame):
+    global counter
+    path = folder + pos + "_" + str(counter) + ".jpg"
+    cv2.imwrite(path, frame)
+    print("snapshot saved into: " + path)
+ 
+ 
+while True:
+    ret_0, frame_0 = camera_0.read()
+    ret_1, frame_1 = camera_1.read()
+    left_frame = frame_0
+    right_frame = frame_1
+    cv2.imshow("left", left_frame)
+    cv2.imshow("right", right_frame)
+    now = time.time()
+ 
+    if AUTO and now - utc >= INTERVAL:
+        shot("left", left_frame)
+        shot("right", right_frame)
+        counter += 1
+        utc = now
+ 
+    key = cv2.waitKey(1)
+ 
+    # press 's' in keyboard for capturing, 'q' for exit.
+    if key == ord("q"):
+        break
+    elif key == ord("s"):
+        shot("left", left_frame)
+        shot("right", right_frame)
+        counter += 1
+ 
+camera_0.release()
+camera_1.release()
+cv2.destroyWindow("left")
+cv2.destroyWindow("right")
 ```
 
 这就比较违反常理，我和助教进行了一番讨论，无果。

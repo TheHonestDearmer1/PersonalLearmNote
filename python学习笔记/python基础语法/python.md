@@ -1282,3 +1282,32 @@ script_path = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append(script_path)
 ```
 
+# 高级函数
+
+## zip()
+
+for classId, confidence, box in zip(classIds.flatten(), confs.flatten(), bbox):
+
+这行代码使用了 `zip()` 函数将 `classIds`、`confs` 和 `bbox` 三个数组进行打包，然后通过迭代解压缩的方式分别将每个数组中的元素赋值给 `classId`、`confidence` 和 `box`。
+
+- `classIds` 是一个一维数组，包含了每个检测到的对象的类别标签。
+- `confs` 是一个一维数组，包含了每个检测到的对象的置信度。
+- `bbox` 是一个二维数组，每行包含了每个检测到的对象的边界框坐标（左上角和右下角坐标）。
+
+通过使用 `zip()` 函数将这三个数组打包在一起，并使用 `for` 循环进行迭代，我们可以方便地对每个检测到的对象进行处理。
+
+例如，可以将 `classId` 作为对象的类别标签，`confidence` 作为对象的置信度，`box` 作为对象的边界框坐标，来进行后续的操作，例如绘制边界框、标签等。
+
+## flatten()
+
+for classId, confidence, box in zip(classIds.flatten(), confs.flatten(), bbox):
+
+`flatten()` 是用于将多维数组（例如二维数组）转换为一维数组的方法。
+
+在上述代码中，`classIds.flatten()` 和 `confs.flatten()` 是将 `classIds` 和 `confs` 两个数组转换为一维数组的操作。
+
+`classIds` 和 `confs` 都是数组，其中 `classIds` 用于存储每个检测到的对象的类别标签，`confs` 用于存储每个对象的置信度。
+
+通过调用 `flatten()` 方法，我们可以将这些数组重新构造为一维的形式，便于进行后续的操作，例如使用 `zip()` 函数进行迭代、或者进行其他一维数组操作。
+
+希望这个解释对您有所帮助。如果还有其他问题，请随时提问。
