@@ -214,7 +214,7 @@ cv2.destroyAllWindows()
 
 以上是绘制多边形、椭圆形和文本的示例代码，其中`polylines()`、`ellipse()`和`putText()`函数都是OpenCV中常用的图形绘制函数。
 
-绘制中文字体
+## 绘制中文字体
 
 要在OpenCV中绘制中文字体，需要使用额外的库来支持中文字符集，例如`pillow`和`numpy`。下面是一个使用`pillow`和`numpy`库来绘制中文字体的示例代码：
 
