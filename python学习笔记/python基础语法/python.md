@@ -1311,3 +1311,28 @@ for classId, confidence, box in zip(classIds.flatten(), confs.flatten(), bbox):
 通过调用 `flatten()` 方法，我们可以将这些数组重新构造为一维的形式，便于进行后续的操作，例如使用 `zip()` 函数进行迭代、或者进行其他一维数组操作。
 
 希望这个解释对您有所帮助。如果还有其他问题，请随时提问。
+
+## round()
+
+`round()` 是Python内置函数，它用于将浮点数四舍五入为最接近的整数或指定的小数位数。
+
+`round()` 函数的语法如下：
+
+```
+round(number [, ndigits])
+```
+其中，`number` 是要四舍五入的浮点数，`ndigits` 是可选的，表示要保留的小数位数。如果省略 `ndigits` 参数，则 `round()` 函数会返回最接近的整数。
+
+下面是一些示例：
+```python
+num1 = 3.14159
+num2 = 2.71828
+
+rounded1 = round(num1)  # 四舍五入为整数
+rounded2 = round(num2, 2)  # 保留两位小数
+
+print(rounded1)  # 输出: 3
+print(rounded2)  # 输出: 2.72
+```
+
+希望这能够帮助到你！如果还有其他问题，请随时问我。
