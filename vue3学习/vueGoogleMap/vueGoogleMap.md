@@ -1,5 +1,7 @@
 ## 开始
 
+[Marker  | Maps JavaScript API  | Google for Developers](https://developers.google.com/maps/documentation/javascript/reference/marker?hl=zh-cn#Marker-Events) 具体api文档地址，需要魔法上网
+
 ### 安装
 
 #### NPM
@@ -26,7 +28,7 @@ pnpm add vue3-google-map
 
 要构建地图，您需要使用基本组件来接收您的 [Google Maps API 密钥](https://developers.google.com/maps/documentation/javascript/get-api-key)、样式（例如设置宽度和高度）以及任何 [MapOptions](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) 来配置您的地图（[请参阅此处](https://github.com/inocan-group/vue3-google-map/blob/develop/src/components/GoogleMap.vue#L57-L218)了解所有支持的 ）。 通过将地图子组件（[Marker](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#marker)、[Polyline、Polygon](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#polyline)、[Rectangle](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#rectangle)、[Circle](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#circle)、[InfoWindow](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#info-window)、[CustomMarker、CustomControl 或 MarkerCluster](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#custom-marker)）传递到组件的默认插槽，可以将其他地图要素添加到地图中。 `vue3-google-map``GoogleMap``MapOptions``GoogleMap`
 
-```
+```vue
 <template>
   <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="15">
     <Marker :options="{ position: center }" />
@@ -48,6 +50,16 @@ export default defineComponent({
 </script>
 ```
 
+1. `GoogleMap` 组件：用于显示 Google 地图。它接受以下数据结构和讲解：
+   - `api-key` (必需)：您的 Google 地图 API 密钥，用于授权访问 Google 地图服务。
+   - `style`：用于设置地图的样式，比如宽度和高度。
+   - `center`：地图的中心点坐标，使用 `lat` 和 `lng` 属性来指定纬度和经度。
+   - `zoom`：地图的缩放级别。
+2. `Marker` 组件：用于在地图上放置标记（指示某个位置）。它接受以下数据结构和讲解：
+   - `options`：用于配置标记的选项，包括位置；在示例中，位置与地图的中心点相同。
+
+> 在地图上显示一个标记（Marker），并将该标记设置在地图的中心点位置。将代码中的 `YOUR_GOOGLE_MAPS_API_KEY` 替换为自己的 Google 地图 API 密钥。
+
 ## 组件
 
 该库旨在以*可组合*的方式使用，因此您会发现自己使用嵌套组件来构建地图，而不仅仅是复杂的*内联*格式。
@@ -64,7 +76,7 @@ export default defineComponent({
 - [自定义控件](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#custom-control)
 - [MarkerCluster（标记集群）](https://www.npmjs.com/package/vue3-google-map?activeTab=readme#marker-cluster)
 
-### 标记
+### 标记MarkerOptions
 
 使用该组件在地图上绘制标记、放置图钉或任何自定义图标。`Marker`
 
@@ -99,7 +111,9 @@ export default defineComponent({
 
 您可以在组件上侦听[以下事件](https://developers.google.com/maps/documentation/javascript/reference/marker#Marker-Events)。`Marker`
 
-### 折线
+[Marker  | Maps JavaScript API  | Google for Developers](https://developers.google.com/maps/documentation/javascript/reference/marker?hl=zh-cn#Marker-Events) 具体api文档地址，需要魔法上网
+
+### 折线Polyline
 
 使用该组件在地图上绘制路径和任意形状。`Polyline`
 
@@ -109,7 +123,9 @@ export default defineComponent({
 
 ```vue
 <template>
+  <!-- 创建一个 GoogleMap 组件，并传入 Google Maps API 密钥以及样式和中心点等属性 -->
   <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="3">
+    <!-- 在 GoogleMap 组件内部，创建一个 Polyline 组件，并传入 options 属性进行配置 -->
     <Polyline :options="flightPath" />
   </GoogleMap>
 </template>
@@ -121,22 +137,27 @@ import { GoogleMap, Polyline } from "vue3-google-map";
 export default defineComponent({
   components: { GoogleMap, Polyline },
   setup() {
+    // 设置地图的中心点
     const center = { lat: 0, lng: -180 };
+
+    // 设置多段线的坐标点
     const flightPlanCoordinates = [
       { lat: 37.772, lng: -122.214 },
       { lat: 21.291, lng: -157.821 },
       { lat: -18.142, lng: 178.431 },
       { lat: -27.467, lng: 153.027 },
     ];
+
+    // 配置多段线的属性
     const flightPath = {
-      path: flightPlanCoordinates,
-      geodesic: true,
-      strokeColor: "#FF0000",
-      strokeOpacity: 1.0,
-      strokeWeight: 2,
+      path: flightPlanCoordinates, // 设置多段线的坐标点
+      geodesic: true, // 是否使用大地测量
+      strokeColor: "#FF0000", // 多段线的颜色
+      strokeOpacity: 1.0, // 多段线的透明度
+      strokeWeight: 2, // 多段线的宽度
     };
 
-    return { center, flightPath };
+    return { center, flightPath }; // 返回必要的数据供组件使用
   },
 });
 </script>
@@ -146,7 +167,7 @@ export default defineComponent({
 
 您可以在组件上侦听[以下事件](https://developers.google.com/maps/documentation/javascript/reference/polygon#Polyline-Events)。`Polyline`
 
-### 多边形
+### 多边形Polygon
 
 使用该组件在地图上绘制多边形（任意数量的边）。`Polygon`
 
@@ -156,7 +177,9 @@ export default defineComponent({
 
 ```vue
 <template>
+  <!-- Google 地图组件 -->
   <GoogleMap api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="5">
+    <!-- 多边形组件 -->
     <Polygon :options="bermudaTriangle" />
   </GoogleMap>
 </template>
@@ -168,22 +191,28 @@ import { GoogleMap, Polygon } from "vue3-google-map";
 export default defineComponent({
   components: { GoogleMap, Polygon },
   setup() {
+    // 地图中心点的经纬度
     const center = { lat: 24.886, lng: -70.268 };
+
+    // 三角形的坐标点数组
     const triangleCoords = [
-      { lat: 25.774, lng: -80.19 },
-      { lat: 18.466, lng: -66.118 },
-      { lat: 32.321, lng: -64.757 },
-      { lat: 25.774, lng: -80.19 },
+      { lat: 25.774, lng: -80.19 },   // 第一个坐标点的经纬度
+      { lat: 18.466, lng: -66.118 },  // 第二个坐标点的经纬度
+      { lat: 32.321, lng: -64.757 },  // 第三个坐标点的经纬度
+      { lat: 25.774, lng: -80.19 },   // 第四个坐标点的经纬度（与第一个坐标点重合，形成封闭图形）
     ];
+
+    // 三角形的样式选项
     const bermudaTriangle = {
-      paths: triangleCoords,
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.35,
+      paths: triangleCoords,         // 设置三角形的坐标点数组
+      strokeColor: "#FF0000",        // 设置边框颜色为红色
+      strokeOpacity: 0.8,            // 设置边框透明度为0.8
+      strokeWeight: 2,               // 设置边框宽度为2个像素
+      fillColor: "#FF0000",          // 设置填充颜色为红色
+      fillOpacity: 0.35,             // 设置填充透明度为0.35
     };
 
+    // 返回数据供模板使用
     return { center, bermudaTriangle };
   },
 });
@@ -194,7 +223,7 @@ export default defineComponent({
 
 您可以在组件上侦听[以下事件](https://developers.google.com/maps/documentation/javascript/reference/polygon#Polygon-Events)。`Polygon`
 
-### 矩形
+### 矩形Rectangle
 
 使用该组件在地图上绘制简单的矩形。`Rectangle`
 
@@ -204,39 +233,45 @@ export default defineComponent({
 
 ```vue
 <template>
+  <!-- Google 地图组件 -->
   <GoogleMap
-    api-key="YOUR_GOOGLE_MAPS_API_KEY"
+    api-key="YOUR_GOOGLE_MAPS_API_KEY"  // 替换成你自己的 Google Maps API 密钥
     style="width: 100%; height: 500px"
-    mapTypeId="terrain"
-    :center="center"
-    :zoom="11"
+    mapTypeId="terrain"                 // 设置地图类型为地形图
+    :center="center"                    // 地图中心点的经纬度
+    :zoom="11"                          // 地图的缩放级别
   >
+    <!-- 矩形组件 -->
     <Rectangle :options="rectangle" />
   </GoogleMap>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { GoogleMap, Marker } from "vue3-google-map";
+import { GoogleMap, Rectangle } from "vue3-google-map";
 
 export default defineComponent({
-  components: { GoogleMap, Marker },
+  components: { GoogleMap, Rectangle },
   setup() {
+    // 地图中心点的经纬度
     const center = { lat: 33.678, lng: -116.243 };
+
+    // 矩形的样式选项
     const rectangle = {
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.35,
+      strokeColor: "#FF0000",   // 设置边框颜色为红色
+      strokeOpacity: 0.8,       // 设置边框透明度为0.8
+      strokeWeight: 2,          // 设置边框宽度为2个像素
+      fillColor: "#FF0000",     // 设置填充颜色为红色
+      fillOpacity: 0.35,        // 设置填充透明度为0.35
       bounds: {
-        north: 33.685,
-        south: 33.671,
-        east: -116.234,
-        west: -116.251,
+        north: 33.685,          // 设置矩形的北边界纬度
+        south: 33.671,          // 设置矩形的南边界纬度
+        east: -116.234,         // 设置矩形的东边界经度
+        west: -116.251,         // 设置矩形的西边界经度
       },
     };
 
+    // 返回数据供模板使用
     return { center, rectangle };
   },
 });
@@ -818,6 +853,3 @@ input[type="number"] {
 - `InfoWindow`expose（一个 [InfoWindow](https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow) 类实例）。`infoWindow`
 - `MarkerCluster`expose（[一个 MarkerClusterer](https://googlemaps.github.io/js-markerclusterer/classes/MarkerClusterer.html) 类实例）。`markerCluster`
 
-## 贡献
-
-欢迎所有贡献。但是，在提交 PR 之前，如果您创建一个问题来解释您想要实现的目标以及原因，那就太好了。
