@@ -1501,7 +1501,13 @@ const styleObject = reactive({
 
 `v-else` 和 `v-else-if` 也可以在 `<template>` 上使用。
 
-## `v-show`
+## `v-show` 
+
+绑定函数需要加括号，否则会有问题
+
+```vue
+    <el-card v-show="funtionShow()" >
+```
 
 另一个可以用来按条件显示一个元素的指令是 `v-show`。其用法基本一样：
 
