@@ -177,7 +177,7 @@ lombok提供了一个注解：
 
 ### 分层编写样例方便记录：
 
-### 前置步骤
+### 前置步骤domain
 
 首先需要在domain建立一个数据类,需要生成get和set方法，方便数据更改和查询
 
@@ -953,3 +953,220 @@ public interface RoleDao {
 Invjavascript:void(0);alid bound statement (not found): com.example.saasserver.demos.web.dao.RoleDao.getAll
 
 说明xml有东西写错了，需要注意的是对象类型不能直接作为一个变量进行存储到数据库要经过处理，创建转换器类实现[mybatis](https://so.csdn.net/so/search?q=mybatis&spm=1001.2101.3001.7020)提供的`TypeHandler`接口
+
+## 定义多层级嵌套的数据结构
+
+当前端需要的数据是多层级嵌套或者是树状结构的时候，我们需要对在数据库中取出来的数据进行处理
+
+```json
+[
+      {
+        "path": "/permission",
+        "meta": {
+          "title": "权限管理",
+          "icon": "ep:lollipop",
+          "rank": 10,
+          "roles": [
+            "admin",
+            "common"
+          ]
+        },
+        "children": [
+          {
+            "path": "/permission/page/index",
+            "name": "PermissionPage",
+            "meta": {
+              "title": "页面权限",
+              "roles": [
+                "admin",
+                "common",
+                "newUser"
+              ]
+            }
+          },
+          {
+            "path": "/permission/button/index",
+            "name": "PermissionButton",
+            "meta": {
+              "title": "按钮权限",
+              "roles": [
+                "admin"
+              ],
+              "auths": [
+                "permission:btn:add",
+                "permission:btn:edit",
+                "permission:btn:delete"
+              ]
+            }
+          },
+          {
+            "path": "/permission/menu/index",
+            "name": "PermissionMenu",
+            "meta": {
+              "title": "菜单管理",
+              "roles": [
+                "admin",
+                "common",
+                "newUser"
+              ]
+            }
+          },
+          {
+            "path": "/permission/role/index",
+            "name": "PermissionRole",
+            "meta": {
+              "title": "角色管理",
+              "roles": [
+                "admin",
+                "common"
+              ]
+            }
+          },
+          {
+            "path": "/permission/user/index",
+            "name": "PermissionUser",
+            "meta": {
+              "title": "用户管理",
+              "roles": [
+                "admin",
+                "common"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+```
+
+为了方便，我选择用ts的类型来表达这个结构：
+
+```ts
+interface RouterList {
+    router_id: number;
+    parent_id: number;
+    path: string;
+    role: string;
+    title: string;
+    name: string;
+    icon?: string | null;
+    display_order?: number;
+    is_system: boolean;
+    created_at: string; // 根据实际情况修改日期时间类型
+    updated_at: string; // 根据实际情况修改日期时间类型
+}
+
+interface SysRouter{
+    path: string;
+    name: string;
+    meta: Routermeta;
+    children?: Array<SysRouter> | null;
+}
+interface Routermeta{
+    title: string;
+    roles?: Array<any>;
+    icon?: string | null;
+    rank?: number;
+}
+```
+
+RouterList是在数据库中拿出来的单级结构，通过处理之后得到SysRouter的嵌套结构
+
+很明显SysRouter它嵌套者自身又嵌套着meta
+
+在java中如何实现这个结构的传递呢？
+
+先将负责传递数据库信息的类创建处理：
+
+```java
+@Data
+public class RouterList {
+    private int router_id;
+    private int parent_id;
+    private String path;
+    private String role;
+    private String title;
+    private String name;
+    private String icon;
+    private Integer display_order;
+    private boolean is_system;
+    private String created_at;
+    private String updated_at;
+
+    // Getters and setters
+}
+```
+
+然后我们再将附属类都创建出来：
+
+RouterMeta.java
+
+```java
+@Data
+public class RouterMeta {
+    private String title;
+    private List<String> roles;
+    private String icon;
+    private Integer rank;
+
+    // Getters and setters
+}
+```
+
+然后再创建主类，将附属类也同样添加进去：
+
+ SysRouter.java
+
+```java
+@Data
+public class SysRouter {
+    private String path;
+    private String name;
+    private RouterMeta meta;
+    private List<SysRouter> children;
+
+    // Getters and setters
+}
+
+```
+
+在创建好这些类结构之后，我们就在service层对接收到的数据结构进行处理：
+
+```java
+    public AjaxResult getSystemRouterTree(){
+        return AjaxResult.success("查询成功",buildSysRouterTree(routerDao.getSystemRouter(),0));
+    }
+//通过创建数组循环和通过条件嵌套来进行结构处理，返回最终结构
+public List<SysRouter> buildSysRouterTree(List<RouterList> routerList, int parentId) {
+        List<SysRouter> sysRouterList = new ArrayList<>();
+        for (RouterList routerItem : routerList) {
+            if (routerItem.getParent_id() == parentId) {
+                List<RouterList> subData = new ArrayList<>();
+                for (RouterList elem : routerList) {
+                    if (routerItem.getRouter_id() == elem.getParent_id()) {
+                        subData.add(elem);
+                    }
+                }
+                List<String> roles = getRolesByRouterId(routerItem.getRouter_id());
+                SysRouter sysRouter = new SysRouter();
+                sysRouter.setPath(routerItem.getPath());
+                sysRouter.setName(routerItem.getName());
+                RouterMeta meta = new RouterMeta();
+                meta.setTitle(routerItem.getTitle());
+                meta.setRoles(roles);
+                meta.setIcon(routerItem.getIcon());
+                if (routerItem.getDisplay_order() != null && routerItem.getDisplay_order() != 0) {
+                    meta.setRank(routerItem.getDisplay_order());
+                }
+                sysRouter.setMeta(meta);
+                //判断非空才继续嵌套
+                if (!subData.isEmpty()) {
+                    sysRouter.setChildren(buildSysRouterTree(subData, routerItem.getRouter_id()));
+                }
+                sysRouterList.add(sysRouter);
+            }
+        }
+        return sysRouterList;
+    }
+```
+
+**注意：当写结构嵌套的时候一定要在传递参数前判空或做其他条件判断不能一直传递，否则会出现死循环**
