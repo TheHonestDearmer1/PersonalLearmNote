@@ -5955,6 +5955,42 @@ std::tie`是 C++ 标准库中的一个函数，它允许您将多个变量绑定
 
 在表达式中，创建一个由元组的前两个元素组成的元组，并创建一个由元组的前两个元素组成的元组。然后使用运算符比较这两个元组，并返回此比较的结果。
 
+抽离谓词：
+
+```c++
+#include <algorithm>
+#include <tuple>
+#include <vector>
+#include <iostream>
+
+// 定义谓词函数，用于元组排序
+bool tupleSortPredicate(const std::tuple<int, std::string>& a, const std::tuple<int, std::string>& b) {
+    return std::get<0>(a) > std::get<0>(b); // 按元组的第一个元素进行降序排序
+}
+
+int main() {
+    // 定义一个向量存储元组
+    std::vector<std::tuple<int, std::string>> tuples = {
+        {3, "c"},
+        {1, "a"},
+        {2, "b"},
+        {4, "d"}
+    };
+
+    // 使用定义的谓词函数对元组进行排序
+    std::sort(tuples.begin(), tuples.end(), tupleSortPredicate);
+
+    // 输出排序后的元组
+    for (const auto& t : tuples) {
+        std::cout << std::get<0>(t) << " " << std::get<1>(t) << std::endl;
+    }
+
+    return 0;
+}
+```
+
+
+
 ### 3.10 案例-员工分组
 
 #### 3.10.1 案例描述
@@ -6259,7 +6295,7 @@ struct GreaterFive{
 	}
 };
 
-void test01() {
+int main()() {
 
 	vector<int> v;
 	for (int i = 0; i < 10; i++)
@@ -6274,13 +6310,6 @@ void test01() {
 	else {
 		cout << "找到:" << *it << endl;
 	}
-
-}
-
-int main() {
-
-	test01();
-
 	system("pause");
 
 	return 0;
@@ -6316,7 +6345,7 @@ public:
 	}
 };
 
-void test01()
+int main() ()
 {
 	vector<int> v;
 	v.push_back(10);
@@ -6341,16 +6370,11 @@ void test01()
 		cout << *it << " ";
 	}
 	cout << endl;
-}
-
-int main() {
-
-	test01();
-
 	system("pause");
-
 	return 0;
 }
+
+
 ```
 
 总结：参数只有两个的谓词，称为二元谓词

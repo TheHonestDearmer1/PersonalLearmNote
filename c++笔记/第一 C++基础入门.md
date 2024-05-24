@@ -2521,7 +2521,30 @@ int main() {
 
 
 
+### 6.6修改实参
 
+要让函数中对实参的修改在函数外部可见，可以使用引用传递（pass by reference）而不是值传递。引用传递可以让函数直接操作实参的内存地址，从而修改实参的值。以下是如何修改你的 `swap` 函数来使用引用传递：
+
+```cpp
+void swap(int &num1, int &num2)
+{
+    cout << "交换前：" << endl;
+    cout << "num1 = " << num1 << endl;
+    cout << "num2 = " << num2 << endl;
+
+    int temp = num1;
+    num1 = num2;
+    num2 = temp;
+
+    cout << "交换后：" << endl;
+    cout << "num1 = " << num1 << endl;
+    cout << "num2 = " << num2 << endl;
+}
+```
+
+在上面的函数定义中，参数 `num1` 和 `num2` 前面的 `&` 符号表示这是引用，而不是值。现在当你调用 `swap(a, b)` 时，`a` 和 `b` 的值将通过引用传递给 `swap` 函数，函数内部对 `num1` 和 `num2` 的修改将直接影响到 `main` 函数中的变量 `a` 和 `b`。
+
+这样，当你运行程序时，会看到 `main` 函数中 `a` 和 `b` 的值已经被交换了，而不仅仅是在 `swap` 函数内部交换而不影响外部的效果。
 
 
 
