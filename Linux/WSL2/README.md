@@ -1,0 +1,7 @@
+- [返回上一级 [Linux]](Linux/)
+- [WSL2](Linux/WSL2/)
+  - [img](Linux/WSL2/img/)
+  - [win11如何迁移WSL2子系统到新设备以及将系统放到其它盘](Linux/WSL2/win11如何迁移WSL2子系统到新设备以及将系统放到其它盘.md)
+  - [win11安装WSL2和ubuntu](Linux/WSL2/win11安装WSL2和ubuntu.md)
+  - [安装WSL时，出现错误0x800701bc](Linux/WSL2/安装WSL时，出现错误0x800701bc.md)
+  - [玩转WSL 2(三)——Windows和Linux之间的文件操作](Linux/WSL2/玩转WSL%202(三)——Windows和Linux之间的文件操作.md)

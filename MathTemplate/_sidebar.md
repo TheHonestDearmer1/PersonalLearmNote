@@ -1,0 +1,4 @@
+- [返回首页](/)
+- [MathTemplate](MathTemplate/)
+  - [markdown最全数学公式速查](MathTemplate/markdown最全数学公式速查.md)
+  - [Obsidian数学插件工具](MathTemplate/Obsidian数学插件工具.md)

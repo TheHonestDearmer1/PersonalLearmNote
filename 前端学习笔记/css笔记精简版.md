@@ -168,7 +168,7 @@ body,h1,h2,h3,h4,h5,h6,ul,ol,li{
    padding: 0;
 }
 
-[type='checkbox'],[type=radio]{
+[type='checkbox'],[type=radio]{ //表示选择所有类型为复选框（checkbox）和单选按钮（radio）的输入元素
     box-mizin:border-box;
     padding:0;
 }
