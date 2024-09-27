@@ -1171,224 +1171,92 @@ public List<SysRouter> buildSysRouterTree(List<RouterList> routerList, int paren
 
 **注意：当写结构嵌套的时候一定要在传递参数前判空或做其他条件判断不能一直传递，否则会出现死循环**
 
-## SpringBoot 普通类获取Spring容器中的bean(SpringUtil)
+## Model层
 
-我们知道如果我们要在一个类使用spring提供的bean对象，我们需要把这个类注入到spring容器中，交给spring容器进行管理，但是在实际当中，我们往往会碰到在一个普通的Java类中，想直接使用spring提供的其他对象或者说有一些不需要交给spring管理，但是需要用到spring里的一些对象。如果这是spring框架的独立应用程序，我们通过
+在软件开发中，DTO（Data Transfer Object）、Entity、Enum 和 VO（Value Object）都是常用的设计模式或概念，它们各自有不同的用途和应用场景。下面是对这些概念的简要介绍和区别：
 
-```
-ApplicationContext ac = new FileSystemXmlApplicationContext("applicationContext.xml");
-ac.getBean("beanId"); 
-```
-
-这样的方式就可以很轻易的获取我们所需要的对象。
-
-但是往往我们所做的都是Web Application，这时我们启动spring容器是通过在web.xml文件中配置，这样就不适合使用上面的方式在普通类去获取对象了，因为这样做就相当于加载了两次spring容器，而我们想是否可以通过在启动web服务器的时候，就把Application放在某一个类中，我们通过这个类在获取，这样就可以在普通类获取spring bean对象了，让我们接着往下看的
-
-1.在Spring Boot可以扫描的包下
-
-写的工具类为SpringUtil，实现ApplicationContextAware接口，并加入Component注解，让spring扫描到该bean:
-
-ApplicationContextAware接口是用来获取框架自动初始化的ioc容器对象的。
-
-```java
-
-@Component
-public class SpringUtil implements ApplicationContextAware {
-
-    //获取applicationContext
-    @Getter
-    private static ApplicationContext applicationContext;
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if(SpringUtil.applicationContext == null) {
-            SpringUtil.applicationContext = applicationContext;
-        }
-    /**
-     * 重写接口的方法,该方法的参数为框架自动加载的IOC容器对象
-     * 该方法在启动项目的时候会自动执行,前提是该类上有IOC相关注解,例如@Component
-     * @param applicationContext ioc容器
-     * @throws BeansException e
-     */
-        System.out.println("========ApplicationContext配置成功,在普通类可以通过调用SpringUtils.getAppContext()获取applicationContext对象,applicationContext="+SpringUtil.applicationContext+"========");
-
-        System.out.println("---------------------------------------------------------------------");
-    }
-    
-    // 获取applicationContext  可以不写,是隐藏在@Getterz
-    public static ApplicationContext getApplicationContext() {
-        return applicationContext;
-    }
-    
-    //通过name获取 Bean.
-    public static Object getBean(String name){
-        return getApplicationContext().getBean(name);
-    }
-
-    //通过class获取Bean.
-    public static <T> T getBean(Class<T> clazz){
-        return getApplicationContext().getBean(clazz);
-    }
-
-    //通过name,以及Clazz返回指定的Bean
-    public static <T> T getBean(String name,Class<T> clazz){
-        return getApplicationContext().getBean(name, clazz);
-    }
-
-}
-
-```
-
-
-
-## springboot主程序附带启动（子线程）
-
-1. **Spring Boot 启动流程**
-
-   当 Spring Boot 应用启动时，它会扫描和初始化所有的 Spring Beans，包括实现了 `CommandLineRunner` 接口的类。`CommandLineRunner` 是 Spring Boot 提供的一个接口，用于在 Spring Boot 应用启动后执行某些操作。
-
-2.当你的 Spring Boot 应用程序启动时，`CommandLineRunner` 接口的 `run` 方法会被自动调用。这个机制保证了在应用程序启动时，会执行所有实现了 `CommandLineRunner` 接口的类中的 `run` 方法。
-
-在 Spring Boot 中实现 `CommandLineRunner` 的 `run` 方法并不意味着它自动在多线程中执行。`CommandLineRunner` 的 `run` 方法通常在主线程中执行，但是你可以在 `run` 方法中启动多线程任务。
-
-### 1. **`CommandLineRunner` 的运行方式**
-
-- `CommandLineRunner` 接口的 `run` 方法是由 Spring Boot 主线程调用的。这个方法的执行是在 Spring Boot 应用启动时发生的，通常是在主线程中进行的。
-
-### 2. **如何实现多线程**
-
-在 `CommandLineRunner` 的 `run` 方法中，你可以创建和启动新的线程，或者使用线程池来并发执行任务。具体来说，你可以使用以下几种方式实现多线程：
-
-- **使用 Java 原生线程**：
-
+### 1. DTO (Data Transfer Object)
+- **定义**：DTO 通常用于在服务层和服务调用者之间传递数据。它是一种简化了的数据结构，主要用于传输数据，而不包括业务逻辑或行为。
+- **用途**：
+  - 用于远程调用或跨层调用时的数据传递。
+  - 将复杂的业务对象转换为简单的数据载体。
+- **例子**：
   ```java
-  @Override
-  public void run(String... args) {
-      new Thread(() -> {
-          // 多线程任务代码
-      }).start();
-  }
-  ```
-
-- **使用线程池**：
-
-  ```java
-  @Autowired
-  private ThreadPoolTaskExecutor threadPool;
-
-  @Override
-  public void run(String... args) {
-      threadPool.execute(() -> {
-          // 多线程任务代码
-      });
-  }
-  ```
-
-- **使用 `ScheduledExecutorService`**：
-
-  ```java
-  ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+  public class UserDTO {
+      private String username;
+      private String email;
   
-  @Override
-  public void run(String... args) {
-      scheduler.scheduleAtFixedRate(() -> {
-          // 定时任务代码
-      }, 0, 1, TimeUnit.MINUTES);
+      // Getters and Setters
   }
   ```
 
-### 3. **代码中的多线程**
+### 2. Entity
+- **定义**：Entity 代表了系统中的一个实体对象，通常对应于数据库中的表。它包含了持久化相关的属性和行为。
+- **用途**：
+  - 用于表示持久化的对象，即可以直接映射到数据库表的对象。
+  - 包含业务逻辑和持久化逻辑。
+- **例子**：
+  ```java
+  import javax.persistence.Entity;
+  import javax.persistence.GeneratedValue;
+  import javax.persistence.GenerationType;
+  import javax.persistence.Id;
+  
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+      private String password;
+  
+      // Getters and Setters
+  }
+  ```
 
-在你提供的 `RedisDelayQueueRunner` 代码中，确实使用了多线程：
+### 3. Enum (枚举)
+- **定义**：Enum 是 Java 中的一种特殊类型，用于表示一组固定的常量值。枚举是一种特殊的类，它可以有构造函数和方法。
+- **用途**：
+  - 用于表示一组有限的状态或选项。
+  - 提供类型安全的方式处理固定集合的值。
+- **例子**：
+  ```java
+  public enum Role {
+      ADMIN,
+      USER,
+      GUEST
+  }
+  ```
 
-```java
-@Override
-public void run(String... args) {
-    threadPool.execute(() -> {
-        while (true) {
-            try {
-                // 处理延迟队列
-            } catch (InterruptedException e) {
-                log.error("(Redis延迟队列异常中断) {}", e.getMessage());
-            }
-        }
-    });
-    log.info("(Redis延迟队列启动成功)");
-}
-```
-
-- **`threadPool.execute(...)`**：这个调用将任务提交给 `ThreadPoolTaskExecutor`（线程池），线程池会在一个独立的线程中执行任务。这使得 `RedisDelayQueueRunner` 的任务是在多线程环境中运行的。
-
-### 4. **主线程与子线程**
-
-- **主线程**：`CommandLineRunner` 的 `run` 方法是在 Spring Boot 应用启动的主线程中被调用的。这是应用启动时执行的代码块。
-- **子线程**：在 `run` 方法中，通过线程池或其他方式启动的线程都是子线程。这些子线程会并行执行任务，不会阻塞主线程。
-
-### 示例代码
-
-```java
-/**
- * RedisDelayQueueRunner 类用于启动和处理 Redis 延迟队列。
- * 当 Spring Boot 应用程序启动时，这个类会自动被调用并执行延迟队列处理逻辑。
- */
-@Slf4j
-@Component
-public class RedisDelayQueueRunner implements CommandLineRunner {
-
-    @Autowired
-    private RedisDelayQueueUtil redisDelayQueueUtil;  // 用于操作 Redis 延迟队列的工具类
-
-    @Autowired
-    private ThreadPoolTaskExecutor threadPool;  // 线程池，用于并发处理任务
-
-    // 创建自定义的线程池执行器
-    ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-            10,  // 核心线程数
-            50,  // 最大线程数
-            30,  // 空闲线程最大空闲时间
-            TimeUnit.SECONDS,  // 空闲线程时间单位
-            new LinkedBlockingQueue<Runnable>(1000),  // 任务队列
-            Executors.defaultThreadFactory()  // 默认线程工厂
-    );
-
-    /**
-     * Spring Boot 启动时自动调用的方法，用于启动 Redis 延迟队列处理逻辑。
-     * @param args 启动参数
-     */
-    @Override
-    public void run(String... args) {
-        // 提交一个任务到线程池中执行
-        threadPool.execute(() -> {
-            while (true) {  // 无限循环，持续处理延迟队列中的任务
-                try {
-                    // 遍历所有的 Redis 延迟队列类型
-                    RedisDelayQueueEnum[] queueEnums = RedisDelayQueueEnum.values();
-                    for (RedisDelayQueueEnum queueEnum : queueEnums) {
-                        // 获取延迟队列中的任务
-                        Object value = redisDelayQueueUtil.getDelayQueue(queueEnum.getCode());
-                        if (value != null) {
-                            // 获取处理该队列的处理器 Bean
-                            RedisDelayQueueHandle redisDelayQueueHandle = 
-                                (RedisDelayQueueHandle) SpringUtil.getBean(queueEnum.getBeanId());
-                            // 执行任务处理
-                            redisDelayQueueHandle.execute(value);
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    // 捕获并记录中断异常
-                    log.error("(Redis延迟队列异常中断) {}", e.getMessage());
-                }
-            }
-        });
-        // 记录延迟队列启动成功的日志信息
-        log.info("(Redis延迟队列启动成功)");
-    }
-}
-```
-
-
+### 4. VO (Value Object)
+- **定义**：VO 通常用于表示不可变的数据结构，它强调的是值而不是引用。VO 不应该有状态改变的行为。
+- **用途**：
+  - 用于表示复杂的数据结构，如地址、货币金额等。
+  - 作为方法参数或返回值，用于封装多个值。
+- **例子**：
+  ```java
+  public class AddressVO {
+      private String street;
+      private String city;
+      private String state;
+      private String zipCode;
+  
+      // Constructor
+      public AddressVO(String street, String city, String state, String zipCode) {
+          this.street = street;
+          this.city = city;
+          this.state = state;
+          this.zipCode = zipCode;
+      }
+  
+      // Getters
+  }
+  ```
 
 ### 总结
+- **DTO**：主要用于数据传输，减少业务逻辑之间的耦合。
+- **Entity**：用于表示持久化的对象，通常与数据库表对应。
+- **Enum**：用于表示一组固定的常量值，提供类型安全的枚举。
+- **VO**：用于表示复杂的数据结构，强调不可变性和值相等性。
 
-`CommandLineRunner` 的 `run` 方法本身是在主线程中执行的。但你可以在 `run` 方法中启动多个子线程或使用线程池来并行处理任务。这使得你可以在应用启动时并发地执行各种操作，而**不会阻塞主线程**。
-
+这些概念在实际开发中可能会有一些重叠，但它们各自有着明确的作用范围和使用场景。理解这些概念及其差异可以帮助更好地设计和实现系统。
