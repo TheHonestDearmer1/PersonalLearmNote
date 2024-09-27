@@ -1170,3 +1170,93 @@ public List<SysRouter> buildSysRouterTree(List<RouterList> routerList, int paren
 ```
 
 **注意：当写结构嵌套的时候一定要在传递参数前判空或做其他条件判断不能一直传递，否则会出现死循环**
+
+## Model层
+
+在软件开发中，DTO（Data Transfer Object）、Entity、Enum 和 VO（Value Object）都是常用的设计模式或概念，它们各自有不同的用途和应用场景。下面是对这些概念的简要介绍和区别：
+
+### 1. DTO (Data Transfer Object)
+- **定义**：DTO 通常用于在服务层和服务调用者之间传递数据。它是一种简化了的数据结构，主要用于传输数据，而不包括业务逻辑或行为。
+- **用途**：
+  - 用于远程调用或跨层调用时的数据传递。
+  - 将复杂的业务对象转换为简单的数据载体。
+- **例子**：
+  ```java
+  public class UserDTO {
+      private String username;
+      private String email;
+  
+      // Getters and Setters
+  }
+  ```
+
+### 2. Entity
+- **定义**：Entity 代表了系统中的一个实体对象，通常对应于数据库中的表。它包含了持久化相关的属性和行为。
+- **用途**：
+  - 用于表示持久化的对象，即可以直接映射到数据库表的对象。
+  - 包含业务逻辑和持久化逻辑。
+- **例子**：
+  ```java
+  import javax.persistence.Entity;
+  import javax.persistence.GeneratedValue;
+  import javax.persistence.GenerationType;
+  import javax.persistence.Id;
+  
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+      private String password;
+  
+      // Getters and Setters
+  }
+  ```
+
+### 3. Enum (枚举)
+- **定义**：Enum 是 Java 中的一种特殊类型，用于表示一组固定的常量值。枚举是一种特殊的类，它可以有构造函数和方法。
+- **用途**：
+  - 用于表示一组有限的状态或选项。
+  - 提供类型安全的方式处理固定集合的值。
+- **例子**：
+  ```java
+  public enum Role {
+      ADMIN,
+      USER,
+      GUEST
+  }
+  ```
+
+### 4. VO (Value Object)
+- **定义**：VO 通常用于表示不可变的数据结构，它强调的是值而不是引用。VO 不应该有状态改变的行为。
+- **用途**：
+  - 用于表示复杂的数据结构，如地址、货币金额等。
+  - 作为方法参数或返回值，用于封装多个值。
+- **例子**：
+  ```java
+  public class AddressVO {
+      private String street;
+      private String city;
+      private String state;
+      private String zipCode;
+  
+      // Constructor
+      public AddressVO(String street, String city, String state, String zipCode) {
+          this.street = street;
+          this.city = city;
+          this.state = state;
+          this.zipCode = zipCode;
+      }
+  
+      // Getters
+  }
+  ```
+
+### 总结
+- **DTO**：主要用于数据传输，减少业务逻辑之间的耦合。
+- **Entity**：用于表示持久化的对象，通常与数据库表对应。
+- **Enum**：用于表示一组固定的常量值，提供类型安全的枚举。
+- **VO**：用于表示复杂的数据结构，强调不可变性和值相等性。
+
+这些概念在实际开发中可能会有一些重叠，但它们各自有着明确的作用范围和使用场景。理解这些概念及其差异可以帮助更好地设计和实现系统。

@@ -1555,3 +1555,6 @@ for cell in worksheet['C']:
 
 上述办法仅适用于，JS动态加载 不可交互式元素的 input 点击事件。其他的提示无法找到元素标签的，可以在代码前，添加：time.sleep(你的秒数)，前提是要导入time 函数。
 或者是 ： driver.refresh() #刷新网页/加载网页
+
+## 
+
