@@ -1,0 +1,26 @@
+{
+  "providers": [
+    {
+      "tag": "Qwen",
+      "vendor": "Qwen",
+      "options": {
+        "apiKey": "sk-83a18f6cb3b544108ac99335e385800b",
+        "baseURL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "model": "qwen-turbo",
+        "parameters": {}
+      }
+    }
+  ],
+  "systemTags": [
+    "System",
+    "系统"
+  ],
+  "newChatTags": [
+    "NewChat",
+    "新对话"
+  ],
+  "userTags": [
+    "User",
+    "我"
+  ]
+}

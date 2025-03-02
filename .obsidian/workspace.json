@@ -1,0 +1,161 @@
+{
+  "main": {
+    "id": "b8557de7c271edac",
+    "type": "split",
+    "children": [
+      {
+        "id": "f61636ec96b93430",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4b8fd4296f876444",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "FTP学习/FTP学习.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "FTP学习"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "84e3b99a1855368c",
+    "type": "split",
+    "children": [
+      {
+        "id": "410ba602ea980c35",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f5f239e98eb241e1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "d772038443d84f22",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "98ee937b495f87d3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dd39108994c89438",
+    "type": "split",
+    "children": [
+      {
+        "id": "c152a3458ab37bdc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6db2c1462a19f12e",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 420.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "fileorganizer2000:Fo2k Assistant View": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "copilot:Open Copilot Chat": false
+    }
+  },
+  "active": "6db2c1462a19f12e",
+  "lastOpenFiles": [
+    "FTP学习/README.md",
+    "FTP学习/FTP学习.md",
+    "textgenerator/templates/awesomePrompts/gnomistAwesome.md",
+    "完全模型组/规则内容说明.md",
+    "未命名.canvas",
+    "textgenerator/templates/awesomePrompts/solrsearchengineAwesome.md",
+    "textgenerator/templates/awesomePrompts/speechlanguagepathologistslpAwesome.md",
+    "textgenerator/templates/awesomePrompts/socialmediainfluencerAwesome.md",
+    "textgenerator/templates/awesomePrompts/screenwriterAwesome.md",
+    "textgenerator/templates/awesomePrompts/socratAwesome.md",
+    "textgenerator/templates/awesomePrompts/scientificdatavisualizerAwesome.md",
+    "textgenerator/templates/awesomePrompts/phpinterpreterAwesome.md",
+    "textgenerator/templates/awesomePrompts/socialmediamanagerAwesome.md",
+    "textgenerator/templates/awesomePrompts/yogiAwesome.md",
+    "textgenerator/templates/awesomePrompts/plagiarismcheckerAwesome.md",
+    "textgenerator/templates/awesomePrompts/stackoverflowpostAwesome.md",
+    "textgenerator/templates/awesomePrompts/proofreaderAwesome.md",
+    "textgenerator/templates/awesomePrompts/salespersonAwesome.md",
+    "textgenerator/templates/awesomePrompts/softwarequalityassurancetesterAwesome.md",
+    "textgenerator/templates/awesomePrompts/songrecommenderAwesome.md",
+    "textgenerator/templates/awesomePrompts/promptgeneratorAwesome.md",
+    "textgenerator/templates/awesomePrompts/promptenhancerAwesome.md",
+    "textgenerator/templates/awesomePrompts/socraticmethodAwesome.md",
+    "textgenerator/templates/awesomePrompts/seniorfrontenddeveloperAwesome.md",
+    "textgenerator/templates/awesomePrompts/psychologistAwesome.md",
+    "textgenerator/templates/awesomePrompts/poetAwesome.md",
+    "textgenerator/templates/awesomePrompts/unconstrainedaimodeldanAwesome.md",
+    "textgenerator/templates/awesomePrompts",
+    "textgenerator/templates",
+    "textgenerator",
+    "_FileOrganizer2000/Backups",
+    "_FileOrganizer2000/Fabric",
+    "_FileOrganizer2000/Templates",
+    "_FileOrganizer2000/Logs",
+    "_FileOrganizer2000/Processed/Attachments",
+    "_FileOrganizer2000/Processed",
+    "_FileOrganizer2000/Inbox"
+  ]
+}
